@@ -1,0 +1,18 @@
+1、使用:sudo passwd root设置root的密码，如下图所示：
+sudo passwd -u root
+2、使用su root来测试是否可以进入root用户，如果出现#说明已经设置root用户的密码成功，如下图所示：
+sudo passwd -u root
+3、进入到/usr/share/lightdm/lightdm.conf.d/目录，使用gedit 50-unity-greeter.conf &命令打开50-unity-greeter.conf 文件，如下图所示：
+cd /usr/share/lightdm/lightdm.conf.d/
+4、编辑追加文本
+vi 50-unity-greeter.conf
+
+user-session=ubuntu
+greeter-show-manual-login=true
+all-guest=false
+
+5、重启系统
+6、输入root用户名和密码，如下图所示
+7、此时会出现：读取/root/.profile时发现错误，对话框，如下图所示：
+8、点击确定按钮，进入系统，使用vi /root/.profile命令修改文件，找到mesg n，修改为：tty -s && mesg n，如下图所示：
+9、保存退出，然后重启系统即可。
