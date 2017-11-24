@@ -1,0 +1,52 @@
+http://nginx.org/en/linux_packages.html
+
+
+vi /etc/yum.repos.d/nginx.repo
+
+
+[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/centos/7/$basearch/
+gpgcheck=0
+enabled=1
+
+yum install -y nginx
+
+
+openssl genrsa -des3 -out cert.key 2048
+//openssl req -new -key cert.key -out cert.csr
+openssl req -new -x509 -days 3650 -key cert.key -out cert.crt
+
+
+vi /etc/nginx/conf.d/default.conf
+
+
+upstream tomcat{
+  server localhost:8080;
+}
+
+
+server {
+    listen       80;
+    listen 443 ssl;
+    server_name  tomcat;
+    ssl_certificate /etc/nginx/conf.d/cert.crt;
+    ssl_certificate_key /etc/nginx/conf.d/cert.key;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+	....
+
+	location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+        proxy_pass http://tomcat;
+    }
+
+	
+}
+
+vi /etc/nginx/nginx.conf
+报too large错误
+http看增加以下参数
+client_max_body_size 1026m;
+client_body_buffer_size 128k;
