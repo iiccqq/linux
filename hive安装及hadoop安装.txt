@@ -148,3 +148,11 @@ SELECT SUBSTR(name,2)  AS shortname FROM cust_info   GROUP BY  SUBSTR(name,2)  s
 
 SELECT * FROM cust_info a WHERE EXISTS 
 (SELECT * FROM  (SELECT SUBSTR(NAME,2)  AS shortname ,COUNT(*) AS num FROM cust_info   GROUP BY  SUBSTR(NAME,2) sort  BY num DESC  LIMIT 1) b WHERE SUBSTR(a.NAME,2) = b.shortname );
+
+
+使用sql客户端SQuirrel
+需要hadoop的jar和hive的jar
+目录为
+/opt/hadoop-2.9.0/share/hadoop/common
+/opt/hadoop-2.9.0/share/hadoop/common/lib
+/opt/apache-hive-2.3.2-bin/lib
