@@ -1,0 +1,108 @@
+
+
+官方文档：
+http://hadoop.apache.org/docs/r2.9.0/hadoop-project-dist/hadoop-common/ClusterSetup.html
+
+
+下载hadoop
+wget http://apache.website-solution.net/hadoop/common/hadoop-2.9.0/hadoop-2.9.0.tar.gz
+yum install -g rsync
+
+环境变量
+vi  etc/hadoop/hadoop-env.sh 
+export JAVA_HOME=/opt/jdk1.8.0_144
+
+cd /etc/profile.d
+vi hadoop.sh
+
+HADOOP_PREFIX=/opt/hadoop-2.9.0
+export HADOOP_PREFIX
+export HADOOP_CONF_DIR=/opt/hadoop-2.9.0/etc/hadoop
+source /etc/profile
+
+vi etc/hadoop/hdfs-site.xml
+
+
+Configurations for NameNode:
+Configurations for DataNode:
+
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>/user/namenodedir</value>
+    </property>
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>/user/namenodedir</value>
+    </property>	
+    
+	 <property>
+        <name>dfs.blocksize</name>
+        <value>268435456</value>
+    </property>
+	 <property>
+        <name>dfs.namenode.handler.count</name>
+        <value>100</value>
+    </property>	
+	
+	 <property>
+        <name>dfs.datanode.data.dir</name>
+        <value>/user/datanodedir</value>
+    </property>
+	
+	mkdir -p /user/namenodedir 
+	mkdir -p /user/datanodedir 
+
+Configurations for ResourceManager and NodeManager:
+vi etc/hadoop/yarn-site.xml
+
+    <property>
+        <name>yarn.acl.enable</name>
+        <value>false</value>
+    </property>
+	  <property>
+        <name>yarn.admin.acl</name>
+        <value>*</value>
+    </property>
+	  <property>
+        <name>yarn.log-aggregation-enable</name>
+        <value>false</value>
+    </property>
+	
+	  <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>ResourceManager</value>
+    </property>
+	
+	
+  在NameNode和ResourceManager上执行
+  $ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+  $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+  $ chmod 0600 ~/.ssh/authorized_keys
+  $	ssh-copy-id -i ~/.ssh/id_rsa.pub NameNode
+  $	ssh-copy-id -i ~/.ssh/id_rsa.pub ResourceManager
+  $	ssh-copy-id -i ~/.ssh/id_rsa.pub Slave1
+  $	ssh-copy-id -i ~/.ssh/id_rsa.pub Slave2  
+  
+  在NameNode机器上运行：
+	
+	 [hdfs]$ HADOOP_PREFIX/bin/hdfs namenode -format fc	 
+	 [hdfs]$ $HADOOP_PREFIX/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start namenode
+	 [hdfs]$ $HADOOP_PREFIX/sbin/hadoop-daemons.sh --config $HADOOP_CONF_DIR --script hdfs start datanode
+	 [hdfs]$ $HADOOP_PREFIX/sbin/start-dfs.sh
+	 
+  在ResourceManager机器上运行：
+	[yarn]$ $HADOOP_YARN_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start resourcemanager
+	[yarn]$ $HADOOP_YARN_HOME/sbin/yarn-daemons.sh --config $HADOOP_CONF_DIR start nodemanager
+	[yarn]$ $HADOOP_YARN_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start proxyserver
+	[yarn]$ $HADOOP_PREFIX/sbin/start-yarn.sh
+	[mapred]$ $HADOOP_PREFIX/sbin/mr-jobhistory-daemon.sh --config $HADOOP_CONF_DIR start historyserver
+	
+	
+	[hdfs]$ $HADOOP_PREFIX/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs stop namenode
+	[hdfs]$ $HADOOP_PREFIX/sbin/hadoop-daemons.sh --config $HADOOP_CONF_DIR --script hdfs stop datanode
+	[hdfs]$ $HADOOP_PREFIX/sbin/stop-dfs.sh
+	[yarn]$ $HADOOP_YARN_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR stop resourcemanager
+	[yarn]$ $HADOOP_YARN_HOME/sbin/yarn-daemons.sh --config $HADOOP_CONF_DIR stop nodemanager
+	[yarn]$ $HADOOP_PREFIX/sbin/stop-yarn.sh
+	[yarn]$ $HADOOP_YARN_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR stop proxyserver
+	[mapred]$ $HADOOP_PREFIX/sbin/mr-jobhistory-daemon.sh --config $HADOOP_CONF_DIR stop historyserver
