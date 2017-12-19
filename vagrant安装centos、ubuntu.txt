@@ -1,0 +1,56 @@
+
+安装virturlbox略
+安装chocolatey.参考：https://chocolatey.org/install
+安装vagrant.参考：https://www.vagrantup.com/docs/vagrantfile/
+参考：https://www.vagrantup.com/downloads.html下载，双击即可
+
+
+
+1.vagrant安装ubuntu
+https://www.vagrantup.com/docs/cli/init.html
+
+
+vagrant init hashicorp/precise64
+vagrant up
+vagrant ssh
+
+会提示私钥在哪，和访问端口2222。看提示。
+用户名：vagrant
+私钥：.vagrant\machines\default\virtualbox\private_key
+
+
+
+1.vagrant安装centos7
+
+choco install rsync
+vagrant init centos/7 
+
+在Vagrantfile中修改，并在当前目录中增加data目录。
+  config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "public_network"
+  config.vm.synced_folder "./data", "/vagrant"
+vagrant up
+vagrant ssh
+
+会提示私钥在哪
+用户名：vagrant
+私钥：.vagrant\machines\default\virtualbox\private_key
+
+
+virualbox设置-存储-控制器IDE-增加新光盘
+
+D:\Program Files\Oracle\VirtualBox\VBoxGuestAdditions.iso
+virualbox设置-共享文件夹-选择要共享的目录 data d:\virtualbox\data
+sudo mkdir /mnt/cdrom
+sudo mount /dev/cdrom /mnt/cdrom
+sudo yum install -y "kernel-devel-uname-r == $(uname -r)"
+sudo yum install -y gcc
+sudo ./VBoxLinuxAdditions.run
+sudo mkdir /mnt/data
+sudo mount -t vboxsf data /mnt/data
+sudo umount /mnt/data
+
+
+
+
+
