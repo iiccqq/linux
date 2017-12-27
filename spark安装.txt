@@ -1,0 +1,8 @@
+
+下载页面下载二进制包，解压即可
+http://spark.apache.org/downloads.html
+
+vi /etc/profile.d/spark.sh
+
+export SPARK_HOME=/opt/spark-2.2.0-bin-hadoop2.7
+export PATH=$PATH:$SPARK_HOME/bin

@@ -15,9 +15,13 @@ export JAVA_HOME=/opt/jdk1.8.0_144
 cd /etc/profile.d
 vi hadoop.sh
 
+export HADOOP_HOME=/opt/hadoop-2.9.0
 HADOOP_PREFIX=/opt/hadoop-2.9.0
 export HADOOP_PREFIX
 export HADOOP_CONF_DIR=/opt/hadoop-2.9.0/etc/hadoop
+export HADOOP_YARN_HOME=/opt/hadoop-2.9.0
+export PATH=$PATH:$HADOOP_PREFIX/bin
+
 source /etc/profile
 
 vi etc/hadoop/hdfs-site.xml
@@ -66,13 +70,17 @@ vi etc/hadoop/yarn-site.xml
 	  <property>
         <name>yarn.log-aggregation-enable</name>
         <value>false</value>
-    </property>
-	
+    </property>	
 	  <property>
         <name>yarn.resourcemanager.hostname</name>
         <value>ResourceManager</value>
     </property>
-	
+如果提示。。虚拟机内存小。可以增加以下配置
+	<property>
+    <name>yarn.nodemanager.vmem-check-enabled</name>
+    <value>false</value>
+</property>
+
 	
   在NameNode和ResourceManager上执行
   $ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
@@ -85,7 +93,7 @@ vi etc/hadoop/yarn-site.xml
   
   在NameNode机器上运行：
 	
-	 [hdfs]$ HADOOP_PREFIX/bin/hdfs namenode -format fc	 
+	 [hdfs]$ $HADOOP_PREFIX/bin/hdfs namenode -format fc	 
 	 [hdfs]$ $HADOOP_PREFIX/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start namenode
 	 [hdfs]$ $HADOOP_PREFIX/sbin/hadoop-daemons.sh --config $HADOOP_CONF_DIR --script hdfs start datanode
 	 [hdfs]$ $HADOOP_PREFIX/sbin/start-dfs.sh
@@ -101,8 +109,12 @@ vi etc/hadoop/yarn-site.xml
 	[hdfs]$ $HADOOP_PREFIX/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs stop namenode
 	[hdfs]$ $HADOOP_PREFIX/sbin/hadoop-daemons.sh --config $HADOOP_CONF_DIR --script hdfs stop datanode
 	[hdfs]$ $HADOOP_PREFIX/sbin/stop-dfs.sh
+	
 	[yarn]$ $HADOOP_YARN_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR stop resourcemanager
 	[yarn]$ $HADOOP_YARN_HOME/sbin/yarn-daemons.sh --config $HADOOP_CONF_DIR stop nodemanager
 	[yarn]$ $HADOOP_PREFIX/sbin/stop-yarn.sh
 	[yarn]$ $HADOOP_YARN_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR stop proxyserver
 	[mapred]$ $HADOOP_PREFIX/sbin/mr-jobhistory-daemon.sh --config $HADOOP_CONF_DIR stop historyserver
+	
+	
+	查看日志位置：$HADOOP_PREFIX/logs下
