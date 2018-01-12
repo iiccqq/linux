@@ -1,0 +1,39 @@
+centos7下mesos安装
+
+参考：http://mesos.apache.org/documentation/latest/building/
+
+
+$ sudo yum install -y tar wget git
+$ sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+$ sudo yum install -y epel-release
+$ sudo bash -c 'cat > /etc/yum.repos.d/wandisco-svn.repo <<EOF
+[WANdiscoSVN]
+name=WANdisco SVN Repo 1.9
+enabled=1
+baseurl=http://opensource.wandisco.com/centos/7/svn-1.9/RPMS/\$basearch/
+gpgcheck=1
+gpgkey=http://opensource.wandisco.com/RPM-GPG-KEY-WANdisco
+EOF'
+$ sudo yum update systemd
+$ sudo yum install -y apache-maven python-devel python-six python-virtualenv java-1.8.0-openjdk-devel zlib-devel libcurl-devel openssl-devel cyrus-sasl-devel cyrus-sasl-md5 apr-devel subversion-devel apr-util-devel
+$ yum install -y autoconf automake libtool gcc-c++
+$ cd mesos-1.4.1
+$ mkdir /hooks
+$ ./bootstrap
+$ mkdir build
+$ cd build
+$ ../configure
+$ make
+tip：确保内存2G,使用1G时，编译提示错误.
+
+pom.xml依赖：
+		<dependency>
+			<groupId>org.apache.mesos</groupId>
+			<artifactId>mesos</artifactId>
+			<version>1.4.1</version>
+		</dependency>
+编译TestFramework.java和TestExecutor.java，（位置：mesos-1.4.1\src\examples\java）打包成examples.jar分别放到master和slave的/opt/mesos-1.4.1/build/src/下面
+
+$ ./bin/mesos-master.sh --ip=0.0.0.0 --work_dir=/var/lib/mesos
+$ ./bin/mesos-agent.sh --master=192.168.123.128:5050 --work_dir=/var/lib/mesos
+.
