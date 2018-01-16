@@ -41,6 +41,6 @@ $ ./src/examples/java/test-framework 192.168.123.128:5050
 浏览器访问：http://192.168.123.128:5050
 
 tip:
- systemctl stop firewalld
- systemctl disable firewalld
+$ systemctl stop firewalld
+$ systemctl disable firewalld
 
