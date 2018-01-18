@@ -1,0 +1,71 @@
+﻿
+参考：http://azkaban.github.io/azkaban/docs/latest/
+
+
+编译：
+
+centos7
+yum install -y git
+git clone https://github.com/azkaban/azkaban.git -b 3.40.0
+如果分支没有显示3.40.0，git checkout -b 3.40.0
+为了加快下载速度：
+修改：azkaban/build.gradle，增加maven repository
+   repositories {
+    maven {
+            url 'http://maven.aliyun.com/nexus/content/groups/public'
+        }
+如果下载gradle慢，将从官方下载后替换到对应的位置：
+linux: ~/.gradle/wrapper/dists/gradle-4.1-all/bzyivzo6n839fup2jbap0tjew
+window：C:/Users/用户名/.gradle/wrapper/dists/gradle-4.1-all/bzyivzo6n839fup2jbap0tjew
+
+./gradlew build
+./gradlew installDist
+
+
+
+Database Setup:
+
+vi /etc/my.cnf
+ [mysqld]
+...
+max_allowed_packet=1024M
+
+sudo /sbin/service mysqld restart
+
+脚本位置：azkaban/azkaban-db/build/install/azkaban-db/create-all-sql-3.40.0.sql  
+
+CREATE DATABASE azkaban;
+CREATE USER 'azkaban'@'%' IDENTIFIED BY 'azkaban';
+GRANT SELECT,INSERT,UPDATE,DELETE ON azkaban.* to 'azkaban'@'%' WITH GRANT OPTION;
+ 
+ 
+cd azkaban/azkaban-solo-server/build/install/azkaban-solo-server/conf
+vi azkaban.properties
+database.type=mysql
+mysql.port=3306
+mysql.host=192.168.123.1(对应数据库的ip)
+mysql.database=azkaban
+mysql.user=azkaban
+mysql.password=azkaban
+mysql.numconnections=100
+ 
+ 
+Start the server:  
+cd azkaban-solo-server/build/install/azkaban-solo-server; 
+bin/azkaban-solo-start.sh
+Stop server: 
+bin/azkaban-solo-shutdown.sh
+如果需要发布包，位置：/azkaban/azkaban-solo-server/build/distributions
+azkaban-solo-server-3.40.0.tar.gz,azkaban-solo-server-3.40.0.zip
+
+cat azkaban/azkaban-solo-server/build/install/azkaban-solo-server/confazkaban-users.xml 
+
+登录用户:其中显示<user groups="azkaban" password="azkaban" roles="admin" username="azkaban"/>
+访问azkaban服务器：
+http://192.168.123.128:8081/index
+azkaban/azkaban
+
+创建项目：test
+上传项目：目录结构参考官方。这里有一个样例azkaban_job.zip，可供上传
+可以马上执行，或者设置定时，cron规则
+
