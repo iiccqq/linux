@@ -1,0 +1,12 @@
+﻿curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
+sudo yum install -y nodejs
+npm install n -g
+n 4.4.6
+新开窗口
+node -v
+npm install npm@3.9.x -g
+yum install git -y
+
+
+#git clone https://github.com/dcos/dcos-ui.git --branch release/1.9
+
