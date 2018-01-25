@@ -1,0 +1,134 @@
+一、安装svn服务器端
+sudo apt-get install subversion      从镜像下载安装svn服务器端 如果后面执行“svnadmin create /usr/local/svn/sunny”提示错误：“command not found”，把这句“mount /dev/cdrom /media/cdrom/  ”话挂在这句“yum install subversion”之前
+cd /usr/local/              //进入目录，准备创建svn目录
+mkdir svn                   //创建一个svn目录
+chmod -R 777 svn            //修改目录权限为777
+svnadmin create /usr/local/svn/sunny  //创建一个svn版本仓库sunny(sunny可以随便起名字)   到这一步了！！！！  
+
+
+cd svn/sunny/conf               //进入sunny版本仓库下的配置文件目录
+
+
+下面要修改这个目录下的三个配置文件
+(1)vi svnserve.conf    //配置版本库信息和用户文件和用户密码文件的路径、版本库路径
+
+
+把
+# anon-access = read
+# auth-access = write
+# password-db = passwd
+//这四行，前面的#号和空格去掉(注意去掉#要顶格写,不要留有多余空格)，变成
+anon-access = none      //改成none
+auth-access = write
+password-db = passwd
+realm = sunny           //改成自己的版本库
+保存
+
+
+(2)vi authz     //文件,创建svn组和组用户的权限
+[group]
+sunny = gep,wce //创建一个sunny的组，并指定两个用户gep和wce
+
+
+[/]             //制定根目录下的权限
+@sunny = rw     //sunny组用户权限为读写
+* = r           //其他用户只有读权限
+保存退出
+
+
+(3) vi passwd   //创建或修改用户密码
+[users]
+gep = 123456    //用户名为gep的用户的密码为123456
+wce = 123456    //用户名为wce 的用户的密码为123456
+保存退出
+
+
+
+
+启动svn:
+svnserve -d -r /usr/local/svn/     //这里采用多版本库的方式启动  如果是单版本库 可以svnserve -d -r /usr/local/svn/sunny
+添加一行
+然后要设置自启动
+vi /etc/rc.local    打开自启动文件添加
+/usr/bin/svnserve -d -r /usr/local/svn/
+
+
+到此为止可以从服务端检出文件了.
+
+
+svn命令：
+netstat -tnl |grep :3690   查看svn是否启动
+ps aux |grep 'svn'  查找所有svn启动的进程
+kill -9 2505    杀死2505这个查找到的svn进程
+
+
+
+
+svn checkout svn://172.19.5.2/sunny /data0/htdocs/blog  //检出一份版本库文件到指定目录
+svn up                        //更新文件
+
+
+自动更新
+在vi /usr/local/svn/sunny/hooks/post-commit中加入
+
+
+#!/bin/sh
+#设置一些变量
+SVN=/usr/bin/svn
+WEB=/home/testsvn #要更新的目录
+export LANG=en_US.UTF-8
+$SVN update $WEB --username xxx --password xxx 
+
+
+
+
+其中SVN=右边改成 svn 命令位置 一般默认为/usr/bin/svn
+    WEB=右边改成你实际的web目录
+赋予可执行权限
+chmod 777 /usr/local/svn/sunny/hooks/post-commit
+安装完毕
+
+
+
+
+=========================================================================
+其他操作
+
+
+#svn commit -m "注释" xxx.php  //提交文件
+svn ci -m'aaa' test.php       //提交文件
+
+
+#svn add file               //新建文件并添加到svn
+svn add *.php               //(添加当前目录下所有的php文件)
+svn delete test.php         //删除test.php
+svn log test.php            //查看test文件的log信息
+svn cleanup                 //清理当前目录
+
+
+svn switch --relocate svn://192.168.1.253  svn://172.19.10.250      //重新定位SVN版本库地址
+
+
+// SVN版本库起动方式，现在SVN下面有 sunny、test 两个版本库
+1：单版本库起动    svnserve -d -r /usr/local/svn/sunny
+2：多版本库起动    svnserve -d -r /usr/local/svn
+区别在于起动svn时候的命令中的启动参数-r指定的目录。
+
+
+限制不同的用户对不同的版本库操作权限，修改版本库中的conf目录下的 authz文件
+
+
+以配置 sunny 版本库为例
+vi authz
+[groups]
+teacher = sunny,sunny1
+[sunny:/]             //指定版本库跟目录下的权限
+@teacher = rw     //teacher组用户权限为读写
+* = r           //其他用户只有读权限
+保存退出
+
+
+vi passwd 设置组中用户的账号和密码
+[users]
+sunny  = 123456
+sunny1 = 123456

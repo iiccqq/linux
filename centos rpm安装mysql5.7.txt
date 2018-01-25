@@ -1,0 +1,28 @@
+
+mysql5.7安装方法
+
+1.5.7地址：https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.17-1.el6.x86_64.rpm-bundle.tar
+
+2.yum install mysql-community-{server,client,common,libs}-* 
+
+3.service mysqld start
+
+
+4.grep 'temporary password' /var/log/mysqld.log
+
+5.mysql -uroot -p 写在上面日志里的临时密码
+
+6.ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass4!';
+
+
+7.update user set host = '%' where user = 'root';
+
+8.FLUSH   PRIVILEGES;
+
+
+
+tip:
+MySql5.7操作时报错：You must SET PASSWORD before executing this statement解决
+mysql>  SET PASSWORD = PASSWORD('123456');
+Query OK, 0 rows affected (0.03 sec)
+

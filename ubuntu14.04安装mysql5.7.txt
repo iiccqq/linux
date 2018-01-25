@@ -1,0 +1,39 @@
+mysql安装
+
+1.官网下载http://dev.mysql.com/downloads/mysql/
+mysql-5.6.22-linux-glibc2.5-i686.tar.gz
+
+Warning
+If you have previously installed MySQL using your operating system native package management system, such as yum or apt-get, you may experience problems installing using a native binary. Make sure your previous MySQL previous installation has been removed entirely (using your package management system), and that any additional files, such as old versions of your data files, have also been removed. You should also check the existence of configuration files such as /etc/my.cnf or the /etc/mysql directory have been deleted.
+
+2.没有安装libaio1,刚需要安装libaio1
+sudo apt-get install libaio1
+
+3.To install and use a MySQL binary distribution, the basic command sequence looks like this:
+
+shell> groupadd mysql
+shell> useradd -r -g mysql mysql
+shell> cd /usr/local
+shell> tar zxvf /path/to/mysql-VERSION-OS.tar.gz
+shell> ln -s full-path-to-mysql-VERSION-OS mysql
+shell> cd mysql
+shell> cd mysql
+shell> chgrp -R mysql .
+shell> scripts/mysql_install_db --user=mysql
+shell> chown -R root .
+shell> chown -R mysql data
+shell> bin/mysqld_safe --user=mysql &
+# Next command is optional
+shell> cp support-files/mysql.server /etc/init.d/mysql.server
+
+4.测试是否成功
+shell> cd bin/
+shell> ./mysql  -uroot -p;
+Enter password: 输入回车
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+
+
+
+5.在软件中心，找到workbench，点安装即可
+
+

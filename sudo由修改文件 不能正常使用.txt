@@ -1,0 +1,6 @@
+进入recovery模式，进入root
+1.mount -o remount rw /
+2.vi /etc/sudoers
+3.去掉导致错误的内容。
+4.进入冒号模式，:wq!
+5.restart

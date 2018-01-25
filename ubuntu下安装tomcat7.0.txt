@@ -1,0 +1,7 @@
+1.确保安装jdk，可见参考ubuntu安装jdk1.7.txt
+2.在/usr/tomcat7/bin下的setclasspath.sh的开头中，增加环境变量
+sudo gedit /usr/tomcat7/bin/setclasspath.sh
+export JRE_HOME="/usr/jdk1.7.0_71"
+3.cd /usr/tomcat7/bin
+4.开始tomcat，sudo ./startup.sh
+5.停止tomcat，sudo ./shutdown.sh

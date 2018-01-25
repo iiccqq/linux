@@ -1,0 +1,33 @@
+Linux下利用rsync进行图片增量备份
+
+一、linux配置双机信任
+
+1、[root@kvm ~]#ssh-keygen -t rsa  //执行后下面一路回车即可
+
+2、[root@kvm .ssh]# pwd
+
+/root/.ssh
+
+[root@kvm.ssh]# scp -r id_rsa.pub 192.168.1.162:/root/ //拷贝公钥到远程主机
+
+[root@testserver.ssh]# pwd                         //在远程主机上重命名文件
+
+/root/.ssh
+
+[root@testserver.ssh]# mv id_rsa.pub authorized_keys
+
+以上就是配置双机信任的步骤
+
+二、编写一个rsync脚本,以进行增量备份,假如要备份的目录为2012，目的目录是upload,那么可以这样写两句脚本
+
+vim rsync.sh
+
+rsync -a -v -z -e "ssh -p 22" root@192.168.1.162:/root/2012/root/test/upload/
+
+这样就完成了图片的增量的备份，然后把此脚本放置于crond中每周运行一次即可，如下
+
+00      02     *       *       0  /usr/bin/rsync -a -v -z -e "ssh -p 22" root@192.168.1.162:/root/2012/root/upload/
+
+以上表示周每星期日的凌晨2:00增量备份一次
+
+注：第一次备份的时候会进行一次全新的备份一次，并创建索引，以后备份时会依靠索引进行增量备份

@@ -1,0 +1,6 @@
+centos 7：
+systemctl stop firewalld.service #停止
+systemctl disable firewalld.service #禁用
+之前的版本：
+service iptables stop #停止
+chkconfig iptables off #禁用

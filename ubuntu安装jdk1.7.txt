@@ -1,0 +1,28 @@
+
+1.  卸载系统自带的openjdk :
+sudo apt-get purge openjdk*
+
+2.下载sun jdk1.7
+jdk-7u71-linux-i586.tar.gz
+
+3.解压jdk
+tar -xvzf jdk-7u71-linux-i586.tar.gz
+
+4.sudo mv jdk-7u71-linux-i586 /usr
+
+5.配置环境变量
+sudo gedit /etc/profile，文本最后面增加以下内容
+JAVA_HOME="/usr/jdk1.7.0_71"
+CLASSPATH="$JAVA_HOME/lib"
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$JAVA_HOME/bin"
+export JAVA_HOME
+export PATH
+export CLASSPATH
+
+6.注销即可。
+
+7.打开终端，测试 java -version,显示
+java version "1.7.0_71"
+Java(TM) SE Runtime Environment (build 1.7.0_71-b14)
+Java HotSpot(TM) Server VM (build 24.71-b01, mixed mode)
+

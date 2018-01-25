@@ -1,0 +1,28 @@
+
+1. git clone git://git.videolan.org/x264.git
+2. cd x264
+3. ./configure --disable-asm
+4. make
+5. sudo make install
+6. ./configure --enable-shared --disable-yasm --prefix=/usr/local/ffmpeg
+
+7.下载ffmpeg-2.5.tar.bz2，并解压，放到eclipse的workspace中
+8.终端下运行./configure --enable-shared --disable-yasm --prefix=/usr/local/ffmpeg
+生成.Makefile
+9.使用eclipse导入ffmpeg
+方法 ：File -> New -> Makefile Project with Existing Code
+选择源码目录，语言选择C语言。如果是 Linux 环境，则选中 Linux GCC。
+Project -> Make all 。
+
+10.使在终端下运行sudo make install
+
+11.  .so路径的设置 
+sudo gedit /etc/ld.so.conf
+在文件后面加入路径
+/usr/local/ffmpeg/lib
+
+12.生效
+ sudo /sbin/ldconfig
+
+
+

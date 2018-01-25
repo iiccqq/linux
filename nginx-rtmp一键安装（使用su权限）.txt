@@ -1,0 +1,90 @@
+
+cd lnmp/src
+
+yum -y install git
+
+wget http://www.tortall.net/projects/yasm/releases/yasm-1.2.0.tar.gz
+tar xzf yasm-1.2.0.tar.gz
+cd yasm-1.2.0
+./configure
+make && make install
+cd ..
+
+git clone git://git.videolan.org/x264.git
+cd x264
+./configure --enable-shared
+make && make install
+cd ..
+
+wget http://downloads.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gz
+tar xzf lame-3.99.5.tar.gz
+cd lame-3.99.5
+./configure --enable-nasm
+make && make install
+cd ..
+
+wget http://downloads.xiph.org/releases/ogg/libogg-1.3.1.tar.gz
+tar xzf libogg-1.3.1.tar.gz
+cd libogg-1.3.1
+./configure
+make && make install
+cd ..
+
+wget http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.3.tar.gz
+tar xzf libvorbis-1.3.3.tar.gz
+cd libvorbis-1.3.3
+ldconfig
+./configure
+make && make install
+cd ..
+
+git clone http://git.chromium.org/webm/libvpx.git
+cd libvpx
+./configure --enable-shared
+make && make install
+cd ..
+
+wget http://downloads.sourceforge.net/faac/faad2-2.7.tar.gz
+tar xzf faad2-2.7.tar.gz
+cd faad2-2.7
+./configure
+make && make install
+cd ..
+
+wget http://downloads.sourceforge.net/faac/faac-1.28.tar.gz
+tar xzf faac-1.28.tar.gz
+cd faac-1.28
+sed -i 's@^char \*strcasestr@//char *strcasestr@' ./common/mp4v2/mpeg4ip.h
+./configure
+make && make install
+cd ..
+
+wget http://downloads.xvid.org/downloads/xvidcore-1.3.2.tar.gz
+tar xzf xvidcore-1.3.2.tar.gz
+cd xvidcore/build/generic
+./configure
+make && make install
+cd ../../../
+
+git clone git://source.ffmpeg.org/ffmpeg.git
+cd ffmpeg
+./configure --prefix=/usr --enable-version3  --enable-libvpx --enable-libfaac --enable-libmp3lame  --enable-libvorbis --enable-libx264 --enable-libxvid --enable-shared --enable-gpl --enable-postproc --enable-nonfree  --enable-avfilter --enable-pthreads
+make && make install
+ldconfig
+ffmpeg
+cd ..
+
+wget http://h264.code-shop.com/download/nginx_mod_h264_streaming-2.2.7.tar.gz
+git clone git://github.com/arut/nginx-rtmp-module.git
+tar xzf nginx_mod_h264_streaming-2.2.7.tar.gz
+sed -i '158,161s@^@//@g' nginx_mod_h264_streaming-2.2.7/src/ngx_http_streaming_module.c
+cd nginx-1.4.4
+make clean
+
+./configure --prefix=/usr/local/nginx --user=www --group=www --with-http_stub_status_module --with-http_ssl_module --with-http_flv_module --with-http_gzip_static_module --with-ld-opt=-ljemalloc --with-http_mp4_module --add-module=../nginx_mod_h264_streaming-2.2.7 --add-module=../nginx-rtmp-module
+make
+if [ -e "objs/nginx" ];then
+        /bin/mv /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx$(date +%m%d)
+        /bin/cp objs/nginx /usr/local/nginx/sbin/nginx
+        service nginx restart
+fi
