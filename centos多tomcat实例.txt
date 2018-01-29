@@ -1,0 +1,36 @@
+centos多tomcat实例
+
+1 tomcat目录安装（略）/opt/apache-tomcat-8.0.47
+2 cd /opt/
+3 mkdir tomcat-1
+4 mkdir tomcat-2
+5 cd apache-tomcat-8.0.47
+6 cp  bin/ conf/ webapps/ temp/ logs/ work/ -R  ../tomcat-1
+7 cp  bin/ conf/ webapps/ temp/ logs/ work/ -R  ../tomcat-2
+分别修改catalina.sh
+tomcat-1：
+CATALINA_HOME=/opt/apache-tomcat-8.0.47
+CATALINA_BASE=/opt/tomcat-1
+tomcat-2：
+CATALINA_HOME=/opt/apache-tomcat-8.0.47
+CATALINA_BASE=/opt/tomcat-2
+
+8 cd ../tomcat-2/conf
+9 vi server.xml
+修改端口，只要不冲突就行
+Server Port
+Connector Port=8081
+AJP Port
+
+
+分别在
+vi webapps/ROOT/index.html
+
+tomcat-1内容为1，tomcat-2内容为2
+
+分别在tomcat-1/bin,tomcat-2/bin下启动./start.sh
+
+curl 127.0.0.1:8080
+1
+curl 127.0.0.1:8081
+2
