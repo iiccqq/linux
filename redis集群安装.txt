@@ -91,6 +91,8 @@ get a
 cluster nodes
 cluster info
 
+java访问使用jedis，demo在：
+https://github.com/iiccqq/demo-redis.git
 
 扩容篇
 
