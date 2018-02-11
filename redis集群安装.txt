@@ -1,0 +1,119 @@
+redis集群安装(redis4.0.8) 目前最新版本
+
+sudo yum install -y wget
+wget http://download.redis.io/releases/redis-4.0.8.tar.gz
+tar xzf redis-4.0.8.tar.gz
+sudo yum install -y gcc tcl
+cd redis-4.0.8/
+make
+sudo make install
+make test
+
+
+
+sudo yum -y install ruby ruby-devel rubygems rpm-build
+//安装rvm、ruby
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+\curl -sSL https://get.rvm.io | bash
+source ~/.rvm/scripts/rvm
+rvm list known
+rvm install 2.4
+
+
+gem install redis -v 4.0.1
+//目前最新
+
+
+mkdir cluster-info
+cd cluster-info
+mkdir 7000 7001 7002 7003 7004 7005
+
+
+
+
+daemonize yes                          #redis后台运行
+pidfile   /var/run/redis_7000.pid      #pidfile文件对应7000, 7001, 7002
+port 7000                              #端口7000, 7001, 7002
+cluster-enabled  yes                   #开启集群  把注释#去掉
+cluster-config-file  nodes_7000.conf   #集群的配置  配置文件首次启动自动生成 7000,7001,7002，存在redis-3.2.4/src目录
+cluster-node-timeout  5000             #请求超时，设置5秒即可
+appendonly  yes                        #aof日志开启，有需要就开启，它会每次写操作都记录一条日志
+logfile "redis_7000.log"
+bind 192.168.56.102 #绑定当前服务器的IP，否则的话在集群通信的时候会出现：[ERR] Sorry, can't connect to node 192.168.200.140:7001
+dbfilename dump_7000.rdb #存在redis-3.2.4/src目录
+appendfilename "appendonly_7000.aof" #存在redis-3.2.4/src目录
+
+#requirepass 123456 #设置密码，每个节点的密码都必须一致的
+#masterauth 123456
+
+//防止上面的复制过去有中文乱码，复制以下内容
+daemonize yes
+pidfile   /var/run/redis_7000.pid
+port 7000
+cluster-enabled  yes
+cluster-config-file  nodes_7000.conf
+cluster-node-timeout  5000
+appendonly  yes
+logfile "redis_7000.log"
+bind 192.168.56.102
+dbfilename dump_7000.rdb
+appendfilename "appendonly_7000.aof"
+
+requirepass 123456
+masterauth 123456
+
+./redis-server ../../cluster-info/7000/redis.conf &
+./redis-server ../../cluster-info/7001/redis.conf &
+./redis-server ../../cluster-info/7002/redis.conf &
+./redis-server ../../cluster-info/7003/redis.conf &
+./redis-server ../../cluster-info/7004/redis.conf &
+./redis-server ../../cluster-info/7005/redis.conf &
+
+
+
+./redis-trib.rb create --replicas 1 192.168.56.102:7000 192.168.56.102:7001 192.168.56.102:7002 192.168.56.103:7003 192.168.56.103:7004 192.168.56.103:7005
+//备注如果按照下面配置密码，则需要
+find / -name "client.rb"
+vi /home/vagrant/.rvm/gems/ruby-2.4.3/gems/redis-4.0.1/lib/redis/client.rb
+
+个性连接的内容：增加密码
+  :password => "123456",
+
+
+
+
+./redis-cli -h 192.168.56.102 -p 7002 -a 123456 -c
+./redis-cli -h 192.168.56.103 -p 7003 -a 123456 -c
+-a密码，-c自动重定向到对应的节点
+set a 1
+get a
+
+cluster nodes
+cluster info
+
+
+扩容篇
+
+./redis-server ../../cluster-info/7006/redis.conf &
+./redis-server ../../cluster-info/7007/redis.conf &
+
+
+./redis-trib.rb add-node 192.168.56.103:7006 192.168.56.103:7003
+./redis-trib.rb add-node 新节点ip：新节点port 已经存在的节点ip:已经存在节点port
+或者登录到任意一台
+./redis-cli -h 192.168.56.103 -p 7003 -a 123456 -c
+cluster meet 192.168.56.103:7006
+
+./redis-trib.rb reshard 192.168.56.103:7006
+执行命令如上图所示：问你是否从原有的1-16384个槽中分配多少到新的主节点我们这里分配4000为例回车
+	2：然后紧接着会询问你给id为谁的主节点分配，我们这里copy这个id就行
+	3：询问你是从所有的空间去给这个节点分配空间还是从某一个节点分配
+我这里输入all  回车继续
+	4：然后会给你分配出一个分配计划，输入yes开始分配。完成ok
+
+
+./redis-trib.rb add-node 192.168.56.103:7007 192.168.56.103:7003
+./redis-cli -h 192.168.56.103 -p 7007 -a 123456 -c
+cluster meet 192.168.56.103:7006
+设置为从节点，9f..为7006的实例
+cluster replicate 9fb5d9a4a41f05f23ba2d2668e230fead5be90cb
