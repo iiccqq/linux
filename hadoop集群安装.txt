@@ -9,11 +9,11 @@ wget http://apache.website-solution.net/hadoop/common/hadoop-2.9.0/hadoop-2.9.0.
 sudo yum install -y rsync
 
 环境变量
-vi  etc/hadoop/hadoop-env.sh 
+sudo vi  etc/hadoop/hadoop-env.sh 
 export JAVA_HOME=/opt/jdk1.8.0_144
 
-cd /etc/profile.d
-vi hadoop.sh
+
+sudo vi /etc/profile.d/hadoop.sh
 
 export HADOOP_HOME=/opt/hadoop-2.9.0
 HADOOP_PREFIX=/opt/hadoop-2.9.0
