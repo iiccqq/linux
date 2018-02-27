@@ -53,8 +53,8 @@ Configurations for DataNode:
         <value>/user/datanodedir</value>
     </property>
 	
-	mkdir -p /user/namenodedir 
-	mkdir -p /user/datanodedir 
+	sudo mkdir -p /user/namenodedir 
+	sudo mkdir -p /user/datanodedir 
 
 Configurations for ResourceManager and NodeManager:
 vi etc/hadoop/yarn-site.xml
