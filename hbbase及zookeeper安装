@@ -1,0 +1,25 @@
+hbase安装
+一、安装zookeeper、及hbase环境已经制作成Vagrantfile
+二、vagrant up启动虚拟机
+三、vagrant ssh master
+1 确保hdfs已经启动
+2 启动zookeeper
+cd zookeeper-3.4.10
+bin/zkServer.sh start
+bin/zkCli.sh -server master  //可以不连接，这里为了验证
+3 启动hbase
+cd ../hbase-1.2.6
+./bin/hbase shell
+create 'test', 'cf'
+list 'test'
+put 'test', 'row1', 'cf:a', 'value1'
+put 'test', 'row2', 'cf:b', 'value2'
+put 'test', 'row3', 'cf:c', 'value3'
+scan 'test'
+get 'test', 'row1'
+
+
+4.访问hbase的web端
+http://master:16010
+
+
