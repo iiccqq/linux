@@ -1,19 +1,27 @@
 
 
-¹Ù·½ÎÄµµ£º
+å®˜æ–¹æ–‡æ¡£ï¼š
 http://hadoop.apache.org/docs/r2.9.0/hadoop-project-dist/hadoop-common/ClusterSetup.html
 
 
-ÏÂÔØhadoop
+ä¸‹è½½hadoop
 wget http://apache.website-solution.net/hadoop/common/hadoop-2.9.0/hadoop-2.9.0.tar.gz
-yum install -g rsync
+sudo yum install -y rsync
 
-»·¾³±äÁ¿
-vi  etc/hadoop/hadoop-env.sh 
+ä¿®æ”¹hosts
+sudo vi /etc/hosts
+192.168.56.101 NameNode
+192.168.56.102 ResourceManager
+192.168.56.103 Slave1
+192.168.56.104 Slave2
+
+
+ç¯å¢ƒå˜é‡
+sudo vi  etc/hadoop/hadoop-env.sh 
 export JAVA_HOME=/opt/jdk1.8.0_144
 
-cd /etc/profile.d
-vi hadoop.sh
+
+sudo vi /etc/profile.d/hadoop.sh
 
 export HADOOP_HOME=/opt/hadoop-2.9.0
 HADOOP_PREFIX=/opt/hadoop-2.9.0
@@ -24,19 +32,28 @@ export PATH=$PATH:$HADOOP_PREFIX/bin
 
 source /etc/profile
 
+vi etc/hadoop/core-site.xml
+
+ <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://NameNode:9000</value>
+    </property>
+    <property>
+        <name>io.file.buffer.size</name>
+        <value>131072</value>
+    </property>
+    
+
 vi etc/hadoop/hdfs-site.xml
 
 
 Configurations for NameNode:
 Configurations for DataNode:
 
+   
     <property>
         <name>dfs.namenode.name.dir</name>
-        <value>/user/namenodedir</value>
-    </property>
-    <property>
-        <name>dfs.namenode.name.dir</name>
-        <value>/user/namenodedir</value>
+        <value>/home/vagrant/namenodedir</value>
     </property>	
     
 	 <property>
@@ -50,11 +67,11 @@ Configurations for DataNode:
 	
 	 <property>
         <name>dfs.datanode.data.dir</name>
-        <value>/user/datanodedir</value>
+        <value>/home/vagrant/datanodedir</value>
     </property>
 	
-	mkdir -p /user/namenodedir 
-	mkdir -p /user/datanodedir 
+	 mkdir -p /home/vagrant/namenodedir 
+	 mkdir -p /home/vagrant/datanodedir 
 
 Configurations for ResourceManager and NodeManager:
 vi etc/hadoop/yarn-site.xml
@@ -75,14 +92,14 @@ vi etc/hadoop/yarn-site.xml
         <name>yarn.resourcemanager.hostname</name>
         <value>ResourceManager</value>
     </property>
-Èç¹ûÌáÊ¾¡£¡£ĞéÄâ»úÄÚ´æĞ¡¡£¿ÉÒÔÔö¼ÓÒÔÏÂÅäÖÃ
+å¦‚æœæç¤ºã€‚ã€‚è™šæ‹Ÿæœºå†…å­˜å°ã€‚å¯ä»¥å¢åŠ ä»¥ä¸‹é…ç½®
 	<property>
     <name>yarn.nodemanager.vmem-check-enabled</name>
     <value>false</value>
 </property>
 
 	
-  ÔÚNameNodeºÍResourceManagerÉÏÖ´ĞĞ
+  åœ¨NameNodeå’ŒResourceManagerä¸Šæ‰§è¡Œ
   $ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
   $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
   $ chmod 0600 ~/.ssh/authorized_keys
@@ -91,14 +108,14 @@ vi etc/hadoop/yarn-site.xml
   $	ssh-copy-id -i ~/.ssh/id_rsa.pub Slave1
   $	ssh-copy-id -i ~/.ssh/id_rsa.pub Slave2  
   
-  ÔÚNameNode»úÆ÷ÉÏÔËĞĞ£º
+  åœ¨NameNodeæœºå™¨ä¸Šè¿è¡Œï¼š
 	
 	 [hdfs]$ $HADOOP_PREFIX/bin/hdfs namenode -format fc	 
 	 [hdfs]$ $HADOOP_PREFIX/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start namenode
 	 [hdfs]$ $HADOOP_PREFIX/sbin/hadoop-daemons.sh --config $HADOOP_CONF_DIR --script hdfs start datanode
 	 [hdfs]$ $HADOOP_PREFIX/sbin/start-dfs.sh
 	 
-  ÔÚResourceManager»úÆ÷ÉÏÔËĞĞ£º
+  åœ¨ResourceManageræœºå™¨ä¸Šè¿è¡Œï¼š
 	[yarn]$ $HADOOP_YARN_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start resourcemanager
 	[yarn]$ $HADOOP_YARN_HOME/sbin/yarn-daemons.sh --config $HADOOP_CONF_DIR start nodemanager
 	[yarn]$ $HADOOP_YARN_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start proxyserver
@@ -117,4 +134,4 @@ vi etc/hadoop/yarn-site.xml
 	[mapred]$ $HADOOP_PREFIX/sbin/mr-jobhistory-daemon.sh --config $HADOOP_CONF_DIR stop historyserver
 	
 	
-	²é¿´ÈÕÖ¾Î»ÖÃ£º$HADOOP_PREFIX/logsÏÂ
+	æŸ¥çœ‹æ—¥å¿—ä½ç½®ï¼š$HADOOP_PREFIX/logsä¸‹
