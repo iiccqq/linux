@@ -1,0 +1,133 @@
+1.安装nginx.
+官方网站
+http://nginx.org/en/linux_packages.html
+
+sudo vi /etc/yum.repos.d/nginx.repo
+
+[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/centos/7/$basearch/
+gpgcheck=0
+enabled=1
+
+若需要验证包
+gpgcheck=1
+
+sudo yum install -y wget
+wget http://nginx.org/keys/nginx_signing.key
+sudo rpm --import nginx_signing.key
+
+
+sudo yum install -y nginx
+
+
+增加两个虚拟服务器配置
+
+cd /etc/nginx/conf.d
+sudo cp default.conf www.conf
+sudo cp default.conf mobile.conf
+vi www.conf
+server {
+    listen       80;
+    server_name  www.lnsycg.com;
+
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
+
+    location / {
+    proxy_set_header X-Real-IP $remote_addr;
+        if ($http_user_agent ~* '(Android|webOS|iPhone|iPod|BlackBerry)') {
+        set $mobile_request '1';
+        }
+        if ($http_cookie ~ 'mobile_request=full') {
+        set $mobile_request '';
+        }
+        if ($mobile_request = '1') {
+        rewrite ^.+ http://m.lnsycg.com$uri;
+        }
+        root   /usr/share/nginx/www;
+        index  index.html index.htm;
+    }
+   :
+   :
+
+vi mobile.conf
+server {
+    listen       80;
+    server_name  m.lnsycg.com;
+
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
+
+    location / {
+        if ($http_user_agent ~* '(Android|webOS|iPhone|iPod|BlackBerry)') {
+        set $mobile_request '1';
+        }
+        if ($http_cookie ~ 'mobile_request=full') {
+        set $mobile_request '';
+        }
+        if ($mobile_request != '1') {
+        rewrite ^.+ http://www.lnsycg.com$uri;
+        }
+        root   /usr/share/nginx/mobile;
+        index  index.html index.htm;
+    }
+  :
+  :
+
+
+cd /usr/share/nginx/
+cp -r html www
+cp -r html mobile
+cd mobile
+vi index.html
+修改网页内容
+Welcome to mobile nginx
+
+vi /etc/hosts
+192.168.56.101 www.lnsycg.com m.lnsycg.com
+
+pc:
+http://www.lnsycg.com
+mobile:
+http://m.lnsycg.com
+
+
+提供浏览器误判时的修正
+cookie-util.js
+function setCookie(name, value, days, domain, path) {
+  var expires = '';
+  if (days) {
+    var d = new Date();
+    d.setTime(d.getTime() + (days*2460601000));
+    expires = '; expires=' + d.toGMTString();
+  }
+  domain = domain ? '; domain=' + domain : '';
+  path = '; path=' + (path ? path : '/');
+  document.cookie = name + '=' + value + expires + path + domain;
+}
+
+function readCookie(name) {
+  var n = name + '=';
+  var cookies = document.cookie.split(';');
+  for (var i = 0; i < cookies.length; i++) {
+    var c = cookies[i].replace(/^s+/, '');
+    if (c.indexOf(n) == 0) {
+      return c.substring(n.length);
+    }
+  }
+  return null;
+}
+
+function eraseCookie(name, domain, path) {
+  setCookie(name, '', -1, domain, path);
+}
+
+<script type="text/javascript" src="cookie-util.js"></script>
+pc页面里增加
+<a onclick="eraseCookie('mobile_request', 'lnsycg.com');"  href="http://m.lnsycg.com">mobile</a>
+mobile页面里增加
+<a onclick="setCookie('mobile_request', 'full', 1, 'lnsycg.com')" href="http://www.lnsycg.com">pc</a>
+
+
+已经做好的内容已经打包，wwww+mobile.tar
