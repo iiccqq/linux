@@ -1,0 +1,83 @@
+[root@mail named]# yum install -y bind-utils    //安装nslookup命令测试dns能否解析成功
+
+如果配置了dns，将改dns服务器
+[root@mail named]# vi /etc/resolv.conf        //给本机的DNS指向自己的dns服务器
+
+nameserver 192.168.80.181
+
+[root@mail named]# nslookup mail.test.com      //解析邮件服务器地址，显示如下则表示成功
+
+Server:         192.168.80.181
+
+Address:        192.168.80.181#53
+
+Name:   mail.test.com
+
+Address: 192.168.80.181
+
+-------------3.安装postfix服务器并进行配置------------
+
+由于postfix服务器问题较多，一般即便你是最小化安装的CentOS系统，也是默认自动安装postfix服务器的。
+
+[root@mail named]# rpm -q postfix        //检查系统是否已经安装了postfix服务器
+
+postfix-2.10.1-6.el7.x86_64
+
+[root@mail named]# postconf -a          //检查postfix是否支持cyrus dovecot功能，如果不支持需重新安装更新的版本
+
+[root@mail named]# vi /etc/postfix/main.cf     //编辑postfix的配置文件，查找并修改对应配置项
+
+myhostname = mail.test.com                    //本机主机名
+
+mydomain = test.com                          //服务器域名
+
+myorigin = $mydomain                        //初始域名
+
+inet_interfaces = 192.168.80.181, 127.0.0.1        //监听接口
+
+inet_protocols = ipv4                      //监听网络版本，可以不改
+
+mydestination = $myhostname, $mydomain      //目标域
+
+home_mailbox = Maildir/                    //邮件目录，在用户家目录下
+
+[root@mail named]# postfix check            //检查配置文件是否有语法错误
+
+[root@mail named]# systemctl start postfix      //启动postfix服务器
+
+                                             //postconf -n该命令可查看postfix非默认配置
+
+-----------4.邮件服务器简单发信测试----------
+
+[root@mail named]# groupadd mailusers          //添加邮件账号组
+
+[root@mail named]# useradd -g mailusers -s /sbin/nologin jack
+
+[root@mail named]# passwd jack
+
+[root@mail named]# useradd -g mailusers -s /sbin/nologin tom
+
+[root@mail named]# passwd tom                   //添加jack、tom邮件服务测试账号
+
+[root@mail named]# yum install -y telnet      //安装远程登录插件，用于登录25端口测试
+
+[root@mail named]# telnet mail.test.com 25   //远程登录25端口，如报错连接不上，重启postfix
+
+
+表明登陆成功
+
+输入如下命令测试
+
+helo mail.aa.com                           //声明本机的主机名
+
+mail from:jack@aa.com                     //声明发件人地址
+
+rcpt to:tom@aa.com                      //声明收件人地址
+
+data                                  //写正文
+
+i am jack!!
+
+.                                   //以.结尾
+
+quit                                 // 退出
