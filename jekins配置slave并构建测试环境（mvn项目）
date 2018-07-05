@@ -1,0 +1,144 @@
+jekins配置slave并构建测试环境（mvn项目）
+
+
+官方地址：
+https://jenkins.io/doc/pipeline/tour/getting-started/
+
+下载通用war包
+https://jenkins.io/download/
+
+
+下载长期支持版本：Long-term Support (LTS)
+Generic Java package (.war)
+
+java -jar jenkins.war --httpPort=8080
+
+访问：
+http://localhost:8080.
+
+
+
+安装方法二：
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
+yum install jenkins
+systemctl start jenkins
+
+
+控制台打印密码，用于登录用的
+f9074e21dca944748e87c1b919a4ca27
+
+
+增加管理节点：
+jekins->系统管理->节点管理->新建节点
+
+名称:slave2
+描述:slave2
+并发构建数:1
+远程工作目录:/home/vagrant/jenkins
+标签:slave2
+用法:只允许运行绑定到这台机器的Job/尽可能的使用这个节点(根据个人)
+启动方式：Launch agent via execution of command on the master
+  主机：192.168.31.104
+  Credentials ：vagrant
+  Host Key Verification Strategy：Known hosts file Verification Strategy
+这里是用的公钥私钥，上传私钥即可
+ 	可用性：尽量保持代理在线
+   环境变量
+键：PATH
+值： $PATH:/home/vagrant/apache-maven-3.5.4/bin
+
+jekins->全局工具配置
+git路径配置:/usr/bin/git
+
+
+jenkins->节点列表->slave2->脚本命令行
+println "sudo yum install -y git".execute().text
+也可以直接登录节点上运行：sudo yum install -y git
+
+安装完成后在jekins里配置git路径：
+
+
+官方下载地址：https://maven.apache.org/download.cgi
+或者：
+wget http://mirrors.hust.edu.cn/apache/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
+tar -xvzf apache-maven-3.5.4-bin.tar.gz
+
+export PATH=$PATH:/home/vagrant/apache-maven-3.5.4/bin
+source /etc/profile
+
+docker pull airdock/oracle-jdk
+cd /home/vagrant/jenkins/workspace/
+git clone https://github.com/iiccqq/sample.git
+
+构建里选择shell
+mvn install
+cd target
+jarname='sample-0.0.1-SNAPSHOT'
+pid=`ps aux | grep $jarname | grep -v grep | awk '{print $2}'`
+echo $pid
+if [ $pid  ]; then
+   kill -9 $pid
+else 
+   echo " program is not running before "
+fi
+BUILD_ID=dontKillMe  nohup java -jar $jarname.jar&
+echo "start successed!!!"
+
+可选：
+有自己的maven私服，可以设置settings,在~/.m/setting.xml。后面docker mvn构建也可用。
+
+
+sudo yum install -y yum-utils \
+  device-mapper-persistent-data \
+  lvm2
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum install -y docker-ce
+sudo systemctl start docker
+sudo rm -rf target/*
+sudo docker run --rm -v "$PWD":/usr/src/mymaven -v "$HOME/.m2":/root/.m2 -v "$PWD/target:/usr/src/mymaven/target" -w /usr/src/mymaven maven:3.5.4-jdk-8  mvn  package 
+sudo docker stop sample
+sudo docker run  -d  --rm --name sample  -p 8081:8080 -v "$PWD/target/sample-0.0.1-SNAPSHOT.jar:/root/app.jar"  airdock/oracle-jdk:1.8 java -jar /root/app.jar
+sudo docker start sample
+echo "start successed!!!"
+
+镜像使用出处：
+https://hub.docker.com/_/maven/
+https://hub.docker.com/r/airdock/oracle-jdk/
+
+首次docker环境安装完了，第二次构建时，安装docker的命令可以删除了
+
+可选：
+配置docker镜像加速，这里使用阿里云的,阿里云产品里的容器镜像服务
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://mg1zu58h.mirror.aliyuncs.com"]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+
+
+
+gitlab安装
+官方安装文档地址
+https://about.gitlab.com/installation/#centos-7
+
+1.安装依赖
+sudo yum install -y curl policycoreutils-python openssh-server
+sudo systemctl enable sshd
+sudo systemctl start sshd
+sudo firewall-cmd --permanent --add-service=http
+sudo systemctl reload firewalld
+
+2.增加repository，并且安装
+curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
+
+sudo EXTERNAL_URL="http://gitlab.example.com" yum install -y gitlab-ee
+
+
+
+sudo EXTERNAL_URL="http://192.168.31.103" yum install -y gitlab-ee
