@@ -1,0 +1,607 @@
+Message-ID: <1776220154.7395156.1516872313205.JavaMail.admin@A01-R04-I227-89.JD.LOCAL>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_7395155_831057605.1516872313205"
+
+------=_Part_7395155_831057605.1516872313205
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>DC/OS=E5=BC=80=E6=BA=90=E7=89=88=E5=AE=89=E8=A3=85=E6=AD=A5=E9=
+=AA=A4</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        font-size: 10pt;
+        line-height: 1.2;
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: #fff !important;
+        color: #000 !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: #000;
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        page-break-after: avoid;
+    }
+
+    pre {
+        font-family: Monaco, "Courier New", monospace;
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>DC/OS=E5=BC=80=E6=BA=90=E7=89=88=E5=AE=89=E8=A3=85=E6=AD=A5=E9=AA=
+=A4</h1>
+    <div class=3D"Section1">
+        <h1 id=3D"DC/OS=E5=BC=80=E6=BA=90=E7=89=88=E5=AE=89=E8=A3=85=E6=AD=
+=A5=E9=AA=A4-1.=E6=9C=BA=E5=99=A8=E5=87=86=E5=A4=87">1.=E6=9C=BA=E5=99=A8=
+=E5=87=86=E5=A4=87</h1>
+<ul>
+<li>=E5=90=AF=E5=8A=A8=E8=8A=82=E7=82=B9=EF=BC=9A</li>
+</ul>
+<p><span style=3D"color: rgb(64,64,64);">1=E4=B8=AA=E8=8A=82=E7=82=B9=EF=BC=
+=8C2=E4=B8=AA=E5=86=85=E6=A0=B8=EF=BC=8C16 GB RAM=EF=BC=8C60 GB=E7=A1=AC=E7=
+=9B=98</span></p>
+<ul>
+<li>=E4=B8=BB=E8=8A=82=E7=82=B9=EF=BC=9A</li>
+</ul>
+<div class=3D"table-wrap">
+<table class=3D"confluenceTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">RHEL / CentOS=E7=9A=84</th>
+<th class=3D"confluenceTh">7.2=EF=BC=8C7.3</th>
+<th class=3D"confluenceTh">7.2=EF=BC=8C7.3</th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">CoreOS</td>
+<td class=3D"confluenceTd">1235.9.0</td>
+<td class=3D"confluenceTd">1235.9.0</td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">=E8=8A=82=E7=82=B9</td>
+<td class=3D"confluenceTd">1</td>
+<td class=3D"confluenceTd">3=E6=88=965</td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">=E5=A4=84=E7=90=86=E5=99=A8</td>
+<td class=3D"confluenceTd">4=E4=B8=AA=E6=A0=B8=E5=BF=83</td>
+<td class=3D"confluenceTd">4=E4=B8=AA=E6=A0=B8=E5=BF=83</td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">=E8=AE=B0=E5=BF=86</td>
+<td class=3D"confluenceTd">32 GB RAM</td>
+<td class=3D"confluenceTd">32 GB RAM</td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">=E7=A1=AC=E7=9B=98</td>
+<td class=3D"confluenceTd">120 GB</td>
+<td class=3D"confluenceTd">120 GB</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>=E4=BB=A3=E7=90=86=E8=8A=82=E7=82=B9</li>
+</ul>
+<div class=3D"table-wrap">
+<table class=3D"confluenceTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">RHEL / CentOS=E7=9A=84</th>
+<th class=3D"confluenceTh">7.2=EF=BC=8C7.3</th>
+<th class=3D"confluenceTh">7.2=EF=BC=8C7.3</th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">CoreOS</td>
+<td class=3D"confluenceTd">1235.9.0</td>
+<td class=3D"confluenceTd">1235.9.0</td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">=E8=8A=82=E7=82=B9</td>
+<td class=3D"confluenceTd">1</td>
+<td class=3D"confluenceTd">6=E4=BB=A5=E4=B8=8A</td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">=E5=A4=84=E7=90=86=E5=99=A8</td>
+<td class=3D"confluenceTd">2=E4=B8=AA=E6=A0=B8=E5=BF=83</td>
+<td class=3D"confluenceTd">2=E4=B8=AA=E6=A0=B8=E5=BF=83</td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">=E8=AE=B0=E5=BF=86</td>
+<td class=3D"confluenceTd">16 GB RAM</td>
+<td class=3D"confluenceTd">16 GB RAM</td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">=E7=A1=AC=E7=9B=98</td>
+<td class=3D"confluenceTd">60 GB</td>
+<td class=3D"confluenceTd">60 GB</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>=E5=AE=89=E8=A3=85docker</li>
+</ul>
+<p><a href=3D"/download/attachments/85841290/pre-req.sh?version=3D1&amp;mod=
+ificationDate=3D1497321819000&amp;api=3Dv2" data-linked-resource-id=3D"8584=
+1409" data-linked-resource-version=3D"1" data-linked-resource-type=3D"attac=
+hment" data-linked-resource-default-alias=3D"pre-req.sh" data-linked-resour=
+ce-content-type=3D"application/x-sh" data-linked-resource-container-id=3D"8=
+5841290" data-linked-resource-container-version=3D"9">pre-req.sh</a></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"brush: java; gutter: false; theme: Confluence" style=3D"font-=
+size:12px;">sudo setenforce 0 &amp;&amp; \
+sudo sed -i --follow-symlinks 's/^SELINUX=3D.*/SELINUX=3Ddisabled/g' /etc/s=
+ysconfig/selinux
+sudo tee /etc/yum.repos.d/docker.repo &lt;&lt;-'EOF'
+[dockerrepo]
+name=3DDocker Repository
+baseurl=3Dhttps://yum.dockerproject.org/repo/main/centos/7
+enabled=3D1
+gpgcheck=3D1
+gpgkey=3Dhttps://yum.dockerproject.org/gpg
+EOF
+sudo yum -y update --exclude=3D"docker-engine*"
+sudo mkdir -p /etc/systemd/system/docker.service.d
+sudo tee /etc/systemd/system/docker.service.d/override.conf &lt;&lt;- EOF
+[Service]
+Restart=3Dalways
+StartLimitInterval=3D0
+RestartSec=3D15
+ExecStartPre=3D-/sbin/ip link del docker0
+ExecStart=3D
+ExecStart=3D/usr/bin/dockerd --storage-driver=3Doverlay
+EOF
+sudo yum install -y docker-engine-1.13.1 docker-engine-selinux-1.13.1
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo yum install -y wget
+sudo yum install -y git
+sudo yum install -y unzip
+sudo yum install -y curl
+sudo yum install -y xz
+sudo yum install -y ipset
+sudo getent group nogroup || sudo groupadd nogroup</pre>=20
+</div>
+</div>
+<ul>
+<li>=E5=90=AF=E7=94=A8NTP</li>
+</ul>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);">=E6=9F=A5=E7=9C=8Bntp=E6=9C=8D=E5=8A=A1=E6=98=AF=E5=90=A6=E5=BC=80=E5=
+=90=AF</span>=EF=BC=9A<span style=3D"color: rgb(51,51,51);">timedatectl</sp=
+an></span></p>
+<p><span style=3D"color: rgb(51,51,51);">=E5=AE=89=E8=A3=85ntp=E6=9C=8D=E5=
+=8A=A1=EF=BC=9A<br></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);">yum -y install ntp</span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);">systemctl restart ntpd(CentOS7.X)</span></span></p>
+<p><span style=3D"color: rgb(51,51,51);">timedatectl set-ntp yes</span></p>
+<p><span style=3D"color: rgb(51,51,51);">&nbsp;</span></p>
+<h1 id=3D"DC/OS=E5=BC=80=E6=BA=90=E7=89=88=E5=AE=89=E8=A3=85=E6=AD=A5=E9=AA=
+=A4-2.DC/OSGUI=E5=AE=89=E8=A3=85"><span style=3D"color: rgb(51,51,51);">&nb=
+sp;</span>2.<span style=3D"text-decoration: none;">DC / OS GUI=E5=AE=89=E8=
+=A3=85</span></h1>
+<ul>
+<li>=E4=B8=8B=E8=BD=BDDC/OS=E5=AE=89=E8=A3=85=E7=A8=8B=E5=BA=8F=E5=88=B0=E5=
+=BC=95=E5=AF=BC=E8=8A=82=E7=82=B9</li>
+</ul>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);">curl&nbsp;<span style=3D"color: rgb(51,51,51);">-O</span> <span class=
+=3D"nolink">https://downloads.dcos.io/dcos/stable/dcos_generate_config.sh</=
+span></span></span></p>
+<ul>
+<li><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,5=
+1);"><span style=3D"color: rgb(64,64,64);">=E4=BD=BF=E7=94=A8=E6=AD=A4=E5=
+=91=BD=E4=BB=A4=E5=90=AF=E5=8A=A8DC / OS GUI=E5=AE=89=E8=A3=85=E7=A8=8B=E5=
+=BA=8F=E3=80=82</span></span></span></li>
+</ul>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(64,64,64);"><span style=3D"color: rgb(51,51,5=
+1);">sudo bash dcos_generate_config.sh --web</span></span></span></span></p=
+>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(64,64,64);">=E5=9C=A8=E6=B5=8F=E8=A7=88=E5=99=
+=A8=E4=B8=AD=E5=90=AF=E5=8A=A8DC / OS Web=E5=AE=89=E8=A3=85=E7=A8=8B=E5=BA=
+=8F=EF=BC=9A<code style=3D"text-align: left;">http://&lt;bootstrap-node-pub=
+lic-ip&gt;:9000</code>=E3=80=82</span></span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(64,64,64);"><span>=E5=AE=89=E8=A3=85=E5=9B=BE=
+=E5=BD=A2=E6=AD=A5=E9=AA=A4=E9=85=8D=E7=BD=AE=E8=AF=B4=E6=98=8E=E8=AF=A6=E8=
+=A7=81=EF=BC=9A&nbsp;&nbsp;<a href=3D"https://dcos.io/docs/1.9/installing/c=
+ustom/gui/" class=3D"external-link" rel=3D"nofollow">https://dcos.io/docs/1=
+.9/installing/custom/gui/</a></span></span></span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(64,64,64);"><span><br></span></span></span></=
+span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(64,64,64);">&nbsp;</span></span></span></p>
+<h1 id=3D"DC/OS=E5=BC=80=E6=BA=90=E7=89=88=E5=AE=89=E8=A3=85=E6=AD=A5=E9=AA=
+=A4-3.DC/OS=E9=AB=98=E7=BA=A7=E5=AE=89=E8=A3=85">3.<span style=3D"text-deco=
+ration: none;">DC / OS =E9=AB=98=E7=BA=A7=E5=AE=89=E8=A3=85</span></h1>
+<ul>
+<li><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,5=
+1);"><span style=3D"color: rgb(64,64,64);"><span>=E5=9C=A8=E5=AE=89=E8=A3=
+=85=E8=8A=82=E7=82=B9=E4=B8=8A=E5=88=9B=E5=BB=BA=E7=9B=AE=E5=BD=95<span sty=
+le=3D"color: rgb(51,51,51);">genconf</span></span></span></span></span></li=
+>
+</ul>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"> mkdir -p genconf</span></span></p>
+<ul>
+<li><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,5=
+1);">=E5=88=9B=E5=BB=BA=E9=85=8D=E7=BD=AE=E6=96=87=E4=BB=B6<code style=3D"t=
+ext-align: left;">genconf/config.yaml</code></span></span></li>
+</ul>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);">=E9=9C=80=E4=BF=AE=E6=94=B9agent_list=E3=80=81bootstrap_url=E3=80=81mas=
+ter_list<br></span></span></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"brush: java; gutter: false; theme: Confluence" style=3D"font-=
+size:12px;">agent_list:
+- 192.168.180.8
+- 192.168.180.9
+- 192.168.180.10
+bootstrap_url: http://192.168.180.6
+cluster_name: 'fc_dcos'
+exhibitor_storage_backend: static
+ip_detect_filename: /genconf/ip-detect
+master_discovery: static=20
+master_list:
+- 192.168.180.7
+resolvers:
+- 8.8.4.4
+- 8.8.8.8
+oauth_enabled: 'false'
+telemetry_enabled: 'false'</pre>=20
+</div>
+</div>
+<ul>
+<li>=E5=88=9B=E5=BB=BA<code style=3D"text-align: left;">ip-detect</code>=E8=
+=84=9A=E6=9C=AC</li>
+</ul>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"brush: java; gutter: false; theme: Confluence" style=3D"font-=
+size:12px;">#!/usr/bin/env bash
+set -o nounset -o errexit
+export PATH=3D/usr/sbin:/usr/bin:$PATH
+echo $(ip addr show eth0 | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0=
+-9]{1,3}' | head -1)</pre>=20
+</div>
+</div>
+<p>&nbsp;</p>
+<ul>
+<li><span style=3D"color: rgb(51,51,51);"><br></span></li>
+<li><span style=3D"color: rgb(51,51,51);">=E4=B8=8B=E8=BD=BDDC/OS=E5=AE=89=
+=E8=A3=85=E7=A8=8B=E5=BA=8F=E5=88=B0=E5=BC=95=E5=AF=BC=E8=8A=82=E7=82=B9(=
+=E5=BD=93=E5=89=8D=E8=B7=AF=E5=BE=84=EF=BC=9A../<span>genconf</span>)</span=
+></li>
+</ul>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(51,51,51);">curl&nbsp;<span style=3D"color: r=
+gb(51,51,51);">-O</span>&nbsp;<span class=3D"nolink"><span class=3D"nolink"=
+><a href=3D"https://downloads.dcos.io/dcos/stable/dcos_generate_config.sh" =
+class=3D"external-link" rel=3D"nofollow">https://downloads.dcos.io/dcos/sta=
+ble/dcos_generate_config.sh</a></span></span></span></span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(51,51,51);"><span class=3D"nolink"><span clas=
+s=3D"nolink"><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rg=
+b(51,51,51);">sudo bash dcos_generate_config.sh</span></span></span></span>=
+</span></span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(51,51,51);"><span class=3D"nolink"><span clas=
+s=3D"nolink"><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rg=
+b(51,51,51);">=E6=AD=A4=E6=97=B6=E7=9A=84=E7=9B=AE=E5=BD=95=E7=BB=93=E6=9E=
+=84=EF=BC=9A<br></span></span></span></span></span></span></span></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"brush: java; gutter: false; theme: Confluence" style=3D"font-=
+size:12px;">=E2=94=9C=E2=94=80=E2=94=80 dcos-genconf.&lt;HASH&gt;.tar
+=E2=94=9C=E2=94=80=E2=94=80 dcos_generate_config.sh
+=E2=94=9C=E2=94=80=E2=94=80 genconf
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 config.yaml
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 ip-detect</pre>=20
+</div>
+</div>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(51,51,51);"><span class=3D"nolink"><span clas=
+s=3D"nolink"><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rg=
+b(51,51,51);">sudo docker run </span><span class=3D"hljs-_" style=3D"color:=
+ rgb(51,51,51);">-d</span><span style=3D"color: rgb(51,51,51);"> -p &lt;you=
+r-port&gt;:80 -v </span><span class=3D"hljs-variable" style=3D"color: rgb(2=
+23,80,0);">$PWD</span><span style=3D"color: rgb(51,51,51);">/genconf/<a hre=
+f=3D"http://serve/usr/share/nginx/html:ro" class=3D"external-link" rel=3D"n=
+ofollow">serve:/usr/share/nginx/html:ro</a> nginx</span></span></span></spa=
+n></span></span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(51,51,51);"><span class=3D"nolink"><span clas=
+s=3D"nolink"><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rg=
+b(51,51,51);">=E4=BE=8B=E5=A6=82=EF=BC=9Asudo docker run -d -p 80:80 -v $PW=
+D/genconf/<a href=3D"http://serve/usr/share/nginx/html:ro" class=3D"externa=
+l-link" rel=3D"nofollow">serve:/usr/share/nginx/html:ro</a> nginx<br></span=
+></span></span></span></span></span></span></p>
+<ul>
+<li><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,5=
+1);"><span style=3D"color: rgb(51,51,51);"><span class=3D"nolink"><span cla=
+ss=3D"nolink"><span style=3D"color: rgb(51,51,51);"><span style=3D"color: r=
+gb(51,51,51);">=E4=B8=BB=E8=8A=82=E7=82=B9=EF=BC=9A</span></span></span></s=
+pan></span></span></span></li>
+</ul>
+<p><span style=3D"color: rgb(64,64,64);">1.SSH=E5=88=B0=E6=82=A8=E7=9A=84=
+=E4=B8=BB=E8=8A=82=E7=82=B9=EF=BC=9A</span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);">ssh &lt;master-ip&gt;</span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);">2.=E5=88=9B=E5=BB=BA=E7=9B=AE=E5=BD=95=EF=BC=9A</span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(51,51,51);">mkdir /tmp/dcos </span><span clas=
+s=3D"hljs-built_in" style=3D"color: rgb(51,51,51);"><br>cd</span><span styl=
+e=3D"color: rgb(51,51,51);"> /tmp/dcos</span></span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(51,51,51);">3.<span style=3D"color: rgb(64,64=
+,64);">=E4=BB=8ENGINX Docker=E5=AE=B9=E5=99=A8=E4=B8=8B=E8=BD=BDDC / OS=E5=
+=AE=89=E8=A3=85=E7=A8=8B=E5=BA=8F</span></span></span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,5=
+1);">curl -O http://&lt;bootstrap-ip&gt;:&lt;your_port&gt;/dcos_install.sh<=
+/span></span></span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,5=
+1);">=E4=BE=8B=E5=A6=82=EF=BC=9Acurl -O <a href=3D"http://192.168.0.3:80/dc=
+os_install.sh" class=3D"external-link" rel=3D"nofollow">http://192.168.0.3:=
+80/dcos_install.sh</a><br></span></span></span></span></p>
+<p>4.=E4=B8=BB=E8=8A=82=E7=82=B9=E6=89=A7=E8=A1=8C=E5=AE=89=E8=A3=85=E5=91=
+=BD=E4=BB=A4</p>
+<p><span style=3D"color: rgb(51,51,51);">sudo bash dcos_install.sh master</=
+span></p>
+<ul>
+<li><span style=3D"color: rgb(51,51,51);">=E4=BB=A3=E7=90=86=E8=8A=82=E7=82=
+=B9</span></li>
+</ul>
+<p><span style=3D"color: rgb(51,51,51);">1.<span style=3D"color: rgb(64,64,=
+64);">SSH=E5=88=B0=E6=82=A8=E7=9A=84=E4=BB=A3=E7=90=86=E8=8A=82=E7=82=B9=EF=
+=BC=9A</span><br></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);">ssh &lt;agent-ip&gt;</span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);">2.=E5=88=9B=E5=BB=BA=E7=9B=AE=E5=BD=95=EF=BC=9A</span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(51,51,51);">mkdir /tmp/dcos</span></span></sp=
+an></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span class=3D"hljs-built_in" style=3D"color: rgb(51,51,51);">cd</span>=
+<span style=3D"color: rgb(51,51,51);"> /tmp/dcos</span></span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,5=
+1);"><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,=
+51);">3.<span style=3D"color: rgb(64,64,64);">=E4=BB=8ENGINX Docker=E5=AE=
+=B9=E5=99=A8=E4=B8=8B=E8=BD=BDDC / OS=E5=AE=89=E8=A3=85=E7=A8=8B=E5=BA=8F</=
+span></span></span></span></span></span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,5=
+1);">curl -O http://&lt;bootstrap-ip&gt;:&lt;your_port&gt;/dcos_install.sh<=
+/span></span></span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,5=
+1);">=E4=BE=8B=E5=A6=82=EF=BC=9Acurl -O <a href=3D"http://192.168.0.3:80/dc=
+os_install.sh" class=3D"external-link" rel=3D"nofollow">http://192.168.0.3:=
+80/dcos_install.sh</a><br></span></span></span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,5=
+1);"><span style=3D"color: rgb(64,64,64);">=E7=A7=81=E4=BA=BA=E4=BB=A3=E7=
+=90=86=E8=8A=82=E7=82=B9=EF=BC=9A</span></span></span></span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,5=
+1);"><span style=3D"color: rgb(64,64,64);"><span style=3D"color: rgb(51,51,=
+51);">sudo bash dcos_install.sh slave</span></span></span></span></span></s=
+pan></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,5=
+1);"><span style=3D"color: rgb(64,64,64);">=E5=85=AC=E5=85=B1=E4=BB=A3=E7=
+=90=86=E8=8A=82=E7=82=B9=EF=BC=9A</span></span></span></span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,5=
+1);"><span style=3D"color: rgb(64,64,64);"><span style=3D"color: rgb(51,51,=
+51);">sudo bash dcos_install.sh slave_public</span></span></span></span></s=
+pan></span></p>
+<p>=E6=89=8B=E5=8A=A8=E9=AA=8C=E8=AF=81=EF=BC=9A</p>
+<p><span style=3D"color: rgb(147,81,229);"><span style=3D"color: rgb(147,81=
+,229);">http://&lt;master-ip&gt;:8181/exhibitor/v1/ui/index.html</span></sp=
+an></p>
+<p><span style=3D"color: rgb(147,81,229);">=E5=90=AF=E5=8A=A8DC / OS Web=E7=
+=95=8C=E9=9D=A2<code style=3D"text-align: left;">http://&lt;public-master-i=
+p&gt;/</code>=E5=B9=B6=E7=99=BB=E5=BD=95=E3=80=82</span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><br></span></span></p>
+<p><span style=3D"color: rgb(51,51,51);"><span style=3D"color: rgb(51,51,51=
+);"><br></span></span></p>
+    </div>
+</body>
+</html>
+------=_Part_7395155_831057605.1516872313205--

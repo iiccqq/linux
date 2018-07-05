@@ -1,0 +1,338 @@
+Message-ID: <862105633.7395158.1516872318082.JavaMail.admin@A01-R04-I227-89.JD.LOCAL>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_7395157_251067836.1516872318082"
+
+------=_Part_7395157_251067836.1516872318082
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>DCOS-UI=E7=BC=96=E8=AF=91=E3=80=81=E6=9E=84=E5=BB=BA=E4=B8=8E=E5=
+=8F=91=E5=B8=83</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        font-size: 10pt;
+        line-height: 1.2;
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: #fff !important;
+        color: #000 !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: #000;
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        page-break-after: avoid;
+    }
+
+    pre {
+        font-family: Monaco, "Courier New", monospace;
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>DCOS-UI=E7=BC=96=E8=AF=91=E3=80=81=E6=9E=84=E5=BB=BA=E4=B8=8E=E5=8F=
+=91=E5=B8=83</h1>
+    <div class=3D"Section1">
+        <h2 id=3D"DCOS-UI=E7=BC=96=E8=AF=91=E3=80=81=E6=9E=84=E5=BB=BA=E4=
+=B8=8E=E5=8F=91=E5=B8=83-1.=E6=9C=AC=E5=9C=B0=E5=8F=91=E5=B8=83">1.=E6=9C=
+=AC=E5=9C=B0=E5=8F=91=E5=B8=83</h2>
+<p>=E7=8E=AF=E5=A2=83=E5=87=86=E5=A4=87=EF=BC=88=E5=AE=89=E8=A3=85nodejs=E3=
+=80=81npm=E5=A6=82=E7=89=88=E6=9C=AC=E6=9F=A5=E7=9C=8B=E5=BC=82=E5=B8=B8=EF=
+=BC=8C=E9=87=8D=E6=96=B0=E6=96=B0=E5=BB=BA=E7=AA=97=E5=8F=A3=E6=9F=A5=E7=9C=
+=8B=EF=BC=89=EF=BC=9A</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"brush: java; gutter: false; theme: Confluence" style=3D"font-=
+size:12px;">curl --silent --location https://rpm.nodesource.com/setup_6.x |=
+ bash -
+sudo yum install -y nodejs
+npm install n -g
+n 4.4.6
+=E6=96=B0=E5=BC=80=E7=AA=97=E5=8F=A3
+node -v
+npm install npm@3.9.x -g
+yum install git -y
+git clone https://github.com/jcloud-shengtai/dcos-ui_CN.git
+npm preinstall
+npm i
+npm run scaffold</pre>=20
+</div>
+</div>
+<p>=E5=BA=95=E5=B1=82=E7=8E=AF=E5=A2=83=E9=85=8D=E7=BD=AE=E6=8C=87=E5=90=91=
+=EF=BC=9A</p>
+<p>=E4=BF=AE=E6=94=B9hosts=E6=96=87=E4=BB=B6=EF=BC=8C=E5=A2=9E=E5=8A=A0=E6=
+=96=B0=E9=85=8D=E7=BD=AE=E9=A1=B9=EF=BC=9A=E4=B8=BB=E6=9C=BAIP m1.dcos</p>
+<p>=E4=BE=8B=E5=A6=82=EF=BC=9A43.226.166.236&nbsp; m1.dcos</p>
+<p>=E7=9B=AE=E5=BD=95=E7=BB=93=E6=9E=84=EF=BC=9A/root/dcos-ui_CN</p>
+<p>=E6=9B=B4=E6=96=B0=E4=BB=A3=E7=A0=81=EF=BC=9Agit pull</p>
+<p>=E6=9E=84=E5=BB=BA=E5=90=AF=E5=8A=A8=EF=BC=9A</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"brush: java; gutter: false; theme: Confluence" style=3D"font-=
+size:12px;">npm start</pre>=20
+</div>
+</div>
+<p>=E8=AF=B7=E6=B1=82=E5=9C=B0=E5=9D=80=EF=BC=9A<a href=3D"http://localhost=
+:4200/" style=3D"text-decoration: none;text-align: left;" class=3D"external=
+-link" rel=3D"nofollow">http://localhost:4200</a></p>
+<h2 id=3D"DCOS-UI=E7=BC=96=E8=AF=91=E3=80=81=E6=9E=84=E5=BB=BA=E4=B8=8E=E5=
+=8F=91=E5=B8=83-2.=E7=BC=96=E8=AF=91=E9=83=A8=E7=BD=B2=EF=BC=88=E5=B0=86=E6=
+=B5=8B=E8=AF=95=E7=8E=AF=E5=A2=83ui=E4=BB=A3=E7=A0=81=E5=8F=91=E5=B8=83=E8=
+=87=B3=E7=94=9F=E4=BA=A7=E7=8E=AF=E5=A2=83=EF=BC=89">2.=E7=BC=96=E8=AF=91=
+=E9=83=A8=E7=BD=B2=EF=BC=88=E5=B0=86=E6=B5=8B=E8=AF=95=E7=8E=AF=E5=A2=83ui=
+=E4=BB=A3=E7=A0=81=E5=8F=91=E5=B8=83=E8=87=B3=E7=94=9F=E4=BA=A7=E7=8E=AF=E5=
+=A2=83=EF=BC=89</h2>
+<p>=E7=BC=96=E8=AF=91=EF=BC=9Anpm run build-assets</p>
+<p>=E7=BC=96=E8=AF=91=E5=A6=82=E6=9C=89=E5=BC=82=E5=B8=B8=EF=BC=8C=E9=9C=80=
+=E5=85=88=E5=AE=89=E8=A3=85=E4=B8=8B=E8=BF=B0=E5=B7=A5=E5=85=B7=EF=BC=9A</p=
+>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"brush: java; gutter: false; theme: Confluence" style=3D"font-=
+size:12px;">yum install -y gcc-c++.x86_64
+npm install -y  node-pre-gyp
+npm install -y  optipng-bin</pre>=20
+</div>
+</div>
+<p>=E7=BC=96=E8=AF=91=E5=AE=8C=E6=88=90=E5=90=8E=E7=94=9F=E6=88=90dist=E7=
+=9B=AE=E5=BD=95 /root/dcos-ui_CN/dist</p>
+<p>=E6=89=93=E5=8C=85=EF=BC=9Atar cvfz dcos-ui_CN.tar.gz dist/*</p>
+<p>ssh=E5=88=B0=E7=94=9F=E4=BA=A7=E7=8E=AF=E5=A2=83=E6=9C=BA=E5=99=A8=EF=BC=
+=8C=E6=9B=B4=E6=96=B0ui=E7=9B=AE=E5=BD=95=EF=BC=9A</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"brush: java; gutter: false; theme: Confluence" style=3D"font-=
+size:12px;">tar xvzf dcos-ui_CN.tar.gz
+mv /opt/mesosphere/active/dcos-ui/usr /opt/mesosphere/active/dcos-ui/usr-ba=
+k
+mkdir -p /opt/mesosphere/active/dcos-ui/usr
+cp dist/* /opt/mesosphere/active/dcos-ui/usr</pre>=20
+</div>
+</div>
+<p>JSSP=E5=B8=AE=E5=8A=A9=E6=96=87=E6=A1=A3=EF=BC=9A=E5=B0=86=E5=B8=AE=E5=
+=8A=A9=E6=96=87=E6=A1=A3=E4=B8=8A=E4=BC=A0=E8=87=B3/opt/mesosphere/active/d=
+cos-ui/usr=E7=9B=AE=E5=BD=95=E4=B8=8B=E3=80=82</p>
+<p><img height=3D"250" style=3D"margin: 2px; border: 1px solid #ddd; box-si=
+zing: border-box; vertical-align: text-bottom;" src=3D"0e8d0602445853bf2ad0=
+9bc58073e376" width=3D"250"></p>
+<p>&nbsp;</p>
+    </div>
+</body>
+</html>
+------=_Part_7395157_251067836.1516872318082
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Location: file:///C:/0e8d0602445853bf2ad09bc58073e376
+
+iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6CAMAAAC/MqoPAAADAFBMVEX19fXv7+98fHx1dXV9fX23
+t7eenp5wcHDn5+f09PTz8/Pd3d2SkpLY2Njt7e3Q0NCioqJycnKqqqq7u7uurq6CgoKGhobOzs7D
+w8PR0dGNjY3Hx8fj4+PGxsbS0tKoqKgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAABYhwFnAAADPklEQVR42u3cCW+iQBjG8bccDqKoPdS6Hsv3/1J7NWnc9NhW16ur
+rGhHaU1aTUQU/r+kk1Heio8z4AEqAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAn4Oww
+q3FmM3PL0qlhjFL0ADuW7WxdaxtOiqLn7F2q7dxB7pRxkLVsPdsXzFmKRl3FWn7Uo36UMhzdPMha
+rOn7a0rXubFxVQ3G25WnKLo3MIeTQKZ9b5xY9GR2c3XVWHYayktsN5dI9JLV0d2yWcrUHv688lN3
+n8rnSY2HlcRKB8N1f2xJqr2bwWbkTVPJ3Fye3gmft4L1hefERp1Xc0QnOtGJfhRv4Rl1ohOd6EQn
+OtGJTnSiH1d013WzFD0M+/J6JNm0B5J3sxJ9+OTMB7uyvODNRIKn7Ix6WQaVx2sJP5G/H4iUExn1
+RA48BcZInl2zYFw9esE8uj2cfVSepujFnvsiE/HMv0bvRaQwdMcJRE/mc4m2ipwu4xjNT8rTFF0u
+rYLueupSshRd2kal7uTzTr1iNSVb0aVkFy11bhXtM8la9D2W8xqe6EcWfbrTqZ/ONEXRjZ3CTI00
+RQ92OT34QNE5KRwAAAAAAAAAAJwI9fFBYv/TKzYXX6r9H3g+kSOt/Yv9R4/jG6Xj/d9k47ucxKiH
+M7SugqJu/Y4KVORndtrzi4uziC6U0t/cj9as+/N5rpqLW/T9k5id4b1UTTenW181xFOV1WLVcqtq
+Eazl1qrL+mjNqt9U9XnH/3x3cDQTfuF+tG4rt9JrPKwW5W6Wq+1bNyL6yHu0Rvfvil3pFeK6h3Ht
+5kqBvWqlO/+7nT8Ivr+Ytz2R5/BnOkZV36/pA8q65k0//HWDv6f05LaYnV/VF90uLrvqzeKwCdz1
+FdGaVX9ZENeEjy26tJRu/XDO2pvRVXhutPuaLVKz6qt2uMOMK3pcE77oGqtW/nnSNGobNYXHjnh6
+W9c14WsX3b/+3ZHOn1Pa1r+FzbR7tWpnk+Bu9muj7iHfDSb6EYnW6P6PoBt0aye0qZ+p3V6obtQc
+aMPe/5Nbyehn981L6/012/zXjvUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAdvEfJguq3PHy
+jV8AAAAASUVORK5CYII=
+------=_Part_7395157_251067836.1516872318082--
