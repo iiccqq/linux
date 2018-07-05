@@ -1,0 +1,41 @@
+一.安装centos7（略）
+二.安装docker
+参考https://docs.docker.com/engine/installation/linux/centos/#os-requirements
+1.$ sudo yum install -y yum-utils
+2.$ sudo yum-config-manager \
+--add-repo \
+https://download.docker.com/linux/centos/docker-ce.repo
+3.$ sudo yum-config-manager --enable docker-ce-edge
+4.$ sudo yum makecache fast
+5.$ sudo yum install docker-ce
+6.$ sudo systemctl start docker
+7.$ sudo docker run hello-world
+
+三、制作自己的镜像
+镜像内容为在tomcat8中增加自己的helloword程序
+1.编写Dockerfile文件
+$ vim Dockerfile
+FROM tomcat:8.0
+MAINTAINER iiccqq12345, feng.chuang@163.com
+RUN echo "<html><body>helloword!</body></html>" > /usr/local/tomcat/webapps/ROOT/1.html 
+CMD ["catalina.sh", "run"]
+
+2. $ docker build -t helloword .
+3.启动服务
+$ docker run -it -p 9999:8080 tomcat:8.0 
+9999为映射到机器上的端口号。8080为容器端口号。
+4.访问http://ip:9999/1.html 即能看到helloword页面。
+5. $ docker tag helloword iiccqq/helloword
+6. $ docker images 可以查看镜像
+7.访问https://hub.docker.com/ 注册账号，邮箱激活。以账号为iiccqq12345为例。邮箱为feng.chuang@163.com
+$ docker push iiccqq12345/helloword 
+上传完后可以在其它docker环境下docker pull iiccqq12345/helloword 拉取运行。
+注：过程中遇到以下问题
+docker 端口映射错误解决方法
+COMMAND_FAILED: '/sbin/iptables -t nat -A Docker -p tcp -d 0/0 --dport 8111 -j DNAT --to-destination 172.17.0.6:8111 ! -i docker0' failed: iptables: No chain/target/match by that name.
+解决方法：
+pkill docker
+iptables -t nat -F
+ifconfig docker0 down
+brctl delbr docker0
+重启docker后解决
