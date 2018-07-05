@@ -1,0 +1,20 @@
+查看java进程
+
+jps -m -l
+jps -v
+
+
+
+jmap -dump:format=b,file=1.dump pid
+
+jvisualvm
+启动图形界面
+ 文件-》装入-》文件格式，选择堆，并选择1.dump，可以观察内存
+
+
+线程情况：
+ jstack 62595 >thread.dump
+
+ 查看进程对应的线程
+ ps -T -p pid
+ top -H -p pid
