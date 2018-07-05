@@ -1,0 +1,49 @@
+centos7下安装jdk1.8
+以下分别为openjdk及oracle的jdk，只安装其中一个
+大多数安装的是oracle的jdk
+
+
+一、安装openjdk
+如果安装openjdk,可以直接安装
+1.查看可安装的jdk.
+yum list java-1.8*  
+2.安装jdk 
+yum install -y java-1.8.0-openjdk 
+
+验证：
+java -version
+openjdk version "1.8.0_171"
+OpenJDK Runtime Environment (build 1.8.0_171-b10)
+OpenJDK 64-Bit Server VM (build 25.171-b10, mixed mode)
+
+-----------------------------------------------------------------------------------------------
+
+
+二、安装oracle的jdk
+到官方下载jdk，找jdk1.8版本
+1。8的地址为：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+所有版本的下载地址引用：http://www.oracle.com/technetwork/java/javase/downloads/index.html
+接受协议后，下载文件
+
+jdk-8u161-linux-x64.tar.gz
+
+3.解压jdk
+tar -xvzf jdk-8u161-linux-x64.tar.gz
+
+4.sudo mv jdk-8u161-linux-x64 /opt
+
+5.配置环境变量
+vi /etc/profile，文本最后面增加以下内容
+export JAVA_HOME="/opt/jdk-8u161-linux-x64"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$JAVA_HOME/bin"
+export CLASSPATH="$JAVA_HOME/lib"
+
+
+6.source /etc/profile
+
+7.打开终端，测试 java -version,显示
+java -version
+java version "1.8.0_161"
+Java(TM) SE Runtime Environment (build 1.8.0_161-b12)
+Java HotSpot(TM) 64-Bit Server VM (build 25.161-b12, mixed mode)
+
