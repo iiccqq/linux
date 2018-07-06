@@ -8,6 +8,8 @@ https://jenkins.io/doc/pipeline/tour/getting-started/
 https://jenkins.io/download/
 
 
+wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+
 下载长期支持版本：Long-term Support (LTS)
 Generic Java package (.war)
 
@@ -142,3 +144,36 @@ sudo EXTERNAL_URL="http://gitlab.example.com" yum install -y gitlab-ee
 
 
 sudo EXTERNAL_URL="http://192.168.31.103" yum install -y gitlab-ee
+
+3.下载样例项目，下载后，删除.git隐藏目录。然后push到gitlab上.
+git clone https://github.com/iiccqq/sample.git
+
+cd sample
+git init
+git remote add origin http://192.168.31.103/root/sample.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
+
+4.jekins里增加插件,如果已经安装了，这里忽略
+GitLab/Gitlab Authentication/Gitlab Hook
+jekins选择要建构任务，->配置
+勾选，构建时触发器，会显示Build when a change is pushed to GitLab. GitLab webhook URL: http://namenode:8080/project/slavetest
+高级里生成Secret token
+
+5.在gitlab配置web hook
+在gitlab中操作：
+Settings -> Integrations
+里配置
+Url及Secret token.就是上面提到的url,和secret token.下面再提一下。
+是从jekins里拿到。你的jekins任务->构建时触发器->勾选：Build when a change is pushed to GitLab. GitLab webhook URL: http://namenode:8080/project/slavetest
+后面显示的地址，即为Url。
+Secret token是在高级里的生成的
+
+注：增加hook地址时，新版本的会报 Url is blocked,Requests to the local network are not allowed
+
+
+解决方法：
+Settings -> General -> Outbound requests -> Expand
+勾选：Allow requests to the local network from hooks and service

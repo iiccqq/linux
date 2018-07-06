@@ -1,0 +1,10 @@
+
+线上系统查看java进程是如何被杀掉的
+
+
+进入/var/log目录，看到了有如下的message日志：
+
+
+Out of memory: Kill process 2222 ..
+
+可以看到，是由于linux系统内存不足，从而把java进程杀掉了。
