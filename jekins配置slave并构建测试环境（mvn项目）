@@ -1,6 +1,8 @@
 jekins配置slave并构建测试环境（mvn项目）
 
 
+
+安装方法一：
 官方地址：
 https://jenkins.io/doc/pipeline/tour/getting-started/
 
@@ -8,11 +10,13 @@ https://jenkins.io/doc/pipeline/tour/getting-started/
 https://jenkins.io/download/
 
 
-wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
 
-下载长期支持版本：Long-term Support (LTS)
+1.下载长期支持版本：Long-term Support (LTS)
 Generic Java package (.war)
 
+wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+
+2.启动程序
 java -jar jenkins.war --httpPort=8080
 
 访问：
@@ -23,7 +27,7 @@ http://localhost:8080.
 安装方法二：
 sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
 sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
-yum install jenkins
+sudo yum install jenkins
 systemctl start jenkins
 
 
