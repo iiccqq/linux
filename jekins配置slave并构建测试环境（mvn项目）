@@ -139,10 +139,6 @@ sudo systemctl reload firewalld
 2.增加repository，并且安装
 curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
 
-sudo EXTERNAL_URL="http://gitlab.example.com" yum install -y gitlab-ee
-
-
-
 sudo EXTERNAL_URL="http://192.168.31.103" yum install -y gitlab-ee
 
 3.下载样例项目，下载后，删除.git隐藏目录。然后push到gitlab上.
