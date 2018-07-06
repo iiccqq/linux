@@ -44,7 +44,7 @@ jekins->系统管理->节点管理->新建节点
 远程工作目录:/home/vagrant/jenkins
 标签:slave2
 用法:只允许运行绑定到这台机器的Job/尽可能的使用这个节点(根据个人)
-启动方式：Launch agent via execution of command on the master
+启动方式：Launch slave agents via SSH
   主机：192.168.31.104
   Credentials ：vagrant
   Host Key Verification Strategy：Known hosts file Verification Strategy
