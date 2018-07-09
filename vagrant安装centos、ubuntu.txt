@@ -1,46 +1,48 @@
 
-°²×°virturlboxÂÔ
-°²×°chocolatey.²Î¿¼£ºhttps://chocolatey.org/install
-°²×°vagrant.²Î¿¼£ºhttps://www.vagrantup.com/docs/vagrantfile/
-²Î¿¼£ºhttps://www.vagrantup.com/downloads.htmlÏÂÔØ£¬Ë«»÷¼´¿É
+å®‰è£…virturlboxç•¥
+å®‰è£…chocolatey.å‚è€ƒï¼šhttps://chocolatey.org/install
+å®‰è£…vagrant.å‚è€ƒï¼šhttps://www.vagrantup.com/docs/vagrantfile/
+å‚è€ƒï¼šhttps://www.vagrantup.com/downloads.htmlä¸‹è½½ï¼ŒåŒå‡»å³å¯
 
 
 
-1.vagrant°²×°ubuntu
+1.vagrantå®‰è£…ubuntu
 https://www.vagrantup.com/docs/cli/init.html
-
+æ³¨ï¼šå¦‚æœæ˜¯ä½¿ç”¨å·²ä¸‹è½½çš„boxï¼Œå¯ä»¥æ‰§è¡Œvagrant box add CentOS-7-x86_64-Vagrant-1801_02.VirtualBox.box
 
 vagrant init hashicorp/precise64
 vagrant up
 vagrant ssh
 
-»áÌáÊ¾Ë½Ô¿ÔÚÄÄ£¬ºÍ·ÃÎÊ¶Ë¿Ú2222¡£¿´ÌáÊ¾¡£
-ÓÃ»§Ãû£ºvagrant
-Ë½Ô¿£º.vagrant\machines\default\virtualbox\private_key
+i
+
+ä¼šæç¤ºç§é’¥åœ¨å“ªï¼Œå’Œè®¿é—®ç«¯å£2222ã€‚çœ‹æç¤ºã€‚
+ç”¨æˆ·åï¼švagrant
+ç§é’¥ï¼š.vagrant\machines\default\virtualbox\private_key
 
 
 
-1.vagrant°²×°centos7
+1.vagrantå®‰è£…centos7
 
 choco install rsync
 vagrant init centos/7 
 
-ÔÚVagrantfileÖĞĞŞ¸Ä£¬²¢ÔÚµ±Ç°Ä¿Â¼ÖĞÔö¼ÓdataÄ¿Â¼¡£
+åœ¨Vagrantfileä¸­ä¿®æ”¹ï¼Œå¹¶åœ¨å½“å‰ç›®å½•ä¸­å¢åŠ dataç›®å½•ã€‚
   config.vm.network "private_network", ip: "192.168.33.10"
   config.vm.network "public_network"
   config.vm.synced_folder "./data", "/vagrant"
 vagrant up
 vagrant ssh
 
-»áÌáÊ¾Ë½Ô¿ÔÚÄÄ
-ÓÃ»§Ãû£ºvagrant
-Ë½Ô¿£º.vagrant\machines\default\virtualbox\private_key
+ä¼šæç¤ºç§é’¥åœ¨å“ª
+ç”¨æˆ·åï¼švagrant
+ç§é’¥ï¼š.vagrant\machines\default\virtualbox\private_key
 
 
-virualboxÉèÖÃ-´æ´¢-¿ØÖÆÆ÷IDE-Ôö¼ÓĞÂ¹âÅÌ
+virualboxè®¾ç½®-å­˜å‚¨-æ§åˆ¶å™¨IDE-å¢åŠ æ–°å…‰ç›˜
 
 D:\Program Files\Oracle\VirtualBox\VBoxGuestAdditions.iso
-virualboxÉèÖÃ-¹²ÏíÎÄ¼ş¼Ğ-Ñ¡ÔñÒª¹²ÏíµÄÄ¿Â¼ data d:\virtualbox\data
+virualboxè®¾ç½®-å…±äº«æ–‡ä»¶å¤¹-é€‰æ‹©è¦å…±äº«çš„ç›®å½• data d:\virtualbox\data
 sudo mkdir /mnt/cdrom
 sudo mount /dev/cdrom /mnt/cdrom
 sudo yum install -y "kernel-devel-uname-r == $(uname -r)"
