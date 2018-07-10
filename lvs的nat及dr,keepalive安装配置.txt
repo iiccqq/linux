@@ -1,0 +1,183 @@
+一、实践LVS的NAT模式
+
+参考：
+https://blog.csdn.net/Ki8Qzvka6Gz4n450m/article/details/79119665
+
+
+三台服务器，一台作为 director，两台作为 real server，director 有一个外网网卡(172.16.254.200，因为是实验直接用相同的内网ip192.168.56.101) 和一个内网ip(192.168.56.101)，
+两个 real server 上只有内网 ip (192.168.56.102) 和 (192.168.56.103)，并且需要把两个 real server 的内网网关设置为 director 的内网 ip(192.168.56.101)
+
+
+两个 real server 上都安装 nginx 服务(192.168.56.102\192.168.56.103)
+yum install -y nginx
+
+ 
+Director 上安装 ipvsadm   （192.168.56.101）
+vi /etc/yum.repos.d/nginx.repo
+[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/centos/7/$basearch/
+gpgcheck=0
+enabled=1
+
+yum install -y ipvsadm
+
+
+
+Director 上编辑 nat 实现脚本
+
+#! /bin/bash
+# director服务器上开启路由转发功能:
+echo 1 > /proc/sys/net/ipv4/ip_forward
+# 关闭 icmp 的重定向
+echo 0 > /proc/sys/net/ipv4/conf/all/send_redirects
+echo 0 > /proc/sys/net/ipv4/conf/default/send_redirects
+echo 0 > /proc/sys/net/ipv4/conf/eth0/send_redirects
+echo 0 > /proc/sys/net/ipv4/conf/eth1/send_redirects
+# director设置 nat 防火墙
+iptables -t nat -F
+iptables -t nat -X
+iptables -t nat -A POSTROUTING -s 192.168.56.0/24 -j MASQUERADE
+# director设置 ipvsadm
+IPVSADM='/sbin/ipvsadm'
+$IPVSADM -C
+$IPVSADM -A -t 192.168.56.101:80 -s wrr
+$IPVSADM -a -t 192.168.56.101:80 -r 192.168.56.102:80 -m -w 1
+$IPVSADM -a -t 192.168.56.101:80 -r 192.168.56.103:80 -m -w 1
+
+
+
+保存后，在 Director 上直接运行这个脚本就可以完成 lvs/nat 的配置
+
+/bin/bash /usr/local/sbin/lvs_nat.sh
+
+
+查看ipvsadm设置的规则
+ipvsadm -ln
+
+
+在 RS1 上执行
+
+echo "rs1rs1" >/usr/share/nginx/html/index.html
+nginx
+
+在 RS2 上执行
+
+echo "rs2rs2" >/usr/share/nginx/html/index.html
+nginx
+
+curl  192.168.56.101
+
+
+
+二、实践LVS的DR模式
+
+三台机器：
+
+
+Director节点:  (eth1 192.168.56.101  vip eth1:0 192.168.56.38)
+Real server1： (eth1 192.168.56.102 vip lo:0 192.168.56.38)
+Real server2： (eth1 192.168.56.103 vip lo:0 192.168.56.38)
+
+
+Director 上配置脚本
+vi /usr/local/sbin/lvs_dr.sh
+
+#! /bin/bash
+echo 1 > /proc/sys/net/ipv4/ip_forward
+ipv=/sbin/ipvsadm
+vip=192.168.56.38
+rs1=192.168.56.102
+rs2=192.168.56.103
+ifconfig eth1:0 down
+ifconfig eth1:0 $vip broadcast $vip netmask 255.255.255.255 up
+route add -host $vip dev eth1:0
+$ipv -C
+$ipv -A -t $vip:80 -s wrr
+$ipv -a -t $vip:80 -r $rs1:80 -g -w 3
+$ipv -a -t $vip:80 -r $rs2:80 -g -w 1
+
+
+
+yum install -y net-tools
+bash /usr/local/sbin/lvs_dr.sh
+
+如果配置错误了，可以删除
+ipvsadm -d  -t $vip:80 -r 192.168.56.101
+
+
+复用之前的两个real server
+
+vi /usr/local/sbin/lvs_dr_rs.sh
+
+#! /bin/bash
+vip=192.168.56.38
+ifconfig lo:0 $vip broadcast $vip netmask 255.255.255.255 up
+route add -host $vip lo:0
+echo "1" >/proc/sys/net/ipv4/conf/lo/arp_ignore
+echo "2" >/proc/sys/net/ipv4/conf/lo/arp_announce
+echo "1" >/proc/sys/net/ipv4/conf/all/arp_ignore
+echo "2" >/proc/sys/net/ipv4/conf/all/arp_announce
+
+bash /usr/local/sbin/lvs_dr_rs.sh
+
+
+vi /etc/keepalived/keepalived.conf
+
+vrrp_instance VI_1 {
+    state MASTER
+    interface eth1
+    virtual_router_id 51
+    priority 100
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
+    virtual_ipaddress {
+        192.168.56.38
+    }
+
+}
+
+ 
+
+virtual_server 192.168.56.38 80 {
+
+    delay_loop 6
+    lb_algo wrr
+    lb_kind DR
+    persistence_timeout 0
+    protocol TCP
+    real_server 192.168.56.102 80 {
+        weight 3
+        TCP_CHECK {
+            connect_timeout 10
+            nb_get_retry 3
+            delay_before_retry 3
+            connect_port 80
+        }
+    }
+    real_server 192.168.56.103 80 {
+        weight 1
+        TCP_CHECK {
+            connect_timeout 10
+            nb_get_retry 3
+            delay_before_retry 3
+            connect_port 80
+        }
+    }
+}
+
+
+高可用验证：
+1.关掉rs1服务，访问到rs2。
+2.再启动rs1服务,按正常wrr策略。
+3.关掉ds的机器，也正常提供服务。
+
+
+查看ip切换的过程
+tail -f  /var/log/messages
+可以看到主备切换的日志
+
+
