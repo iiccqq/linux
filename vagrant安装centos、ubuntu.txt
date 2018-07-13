@@ -54,5 +54,10 @@ sudo umount /mnt/data
 
 
 
-
+如果要重建box文件 
+vagrant box list   
+显示镜像及版本
+centos/7        (virtualbox, 0)
+ubuntu/trusty64 (virtualbox, 20180201.0.1)
+vagrant box repackage centos/7 virtualbox  0
 
