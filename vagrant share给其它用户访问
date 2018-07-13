@@ -14,7 +14,7 @@ vagrant share --http 80
 
 
 会在终端显示外网可访问的地址。
-外网访问即可
+外网访问即可,如：http://ebbad2f0.ngrok.io
 
 
 二、将虚拟机ssh给其它用用户局域网远程使用
