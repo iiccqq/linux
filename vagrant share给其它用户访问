@@ -1,0 +1,33 @@
+vagrant share给其它用户访问
+
+一、将虚拟机里的http服务，内网穿透到外网
+这里使用的mac系统
+
+
+vagrant plugin install vagrant-share
+
+安装ngrok,略，见本目录下的，安装ngrok文档
+目前是nat网络，这里将虚机里的80->80映射，本机ip可以访问
+vagrant share --http 80
+暂时没有发现与ngrok http 80的区别
+
+
+
+会在终端显示外网可访问的地址。
+外网访问即可
+
+
+二、将虚拟机ssh给其它用用户局域网远程使用
+
+vagrant share --ssh 
+设置远程访问的密码
+
+终端有提示怎么访问
+
+局域网其它机器上可以访问
+ip对应那台share的机器
+vagrant connect --ssh export_echo:diet_tommy --static-ip 127.0.0.1
+
+
+也可以同时使用
+vagrant share --http 8080 --ssh
