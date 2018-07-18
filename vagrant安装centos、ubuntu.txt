@@ -61,3 +61,9 @@ centos/7        (virtualbox, 0)
 ubuntu/trusty64 (virtualbox, 20180201.0.1)
 vagrant box repackage centos/7 virtualbox  0
 
+
+
+如果要将当前虚拟机打包成box
+将虚拟机停止，然后再打包,然后会生成package.box
+vagrant halt
+vagrant package

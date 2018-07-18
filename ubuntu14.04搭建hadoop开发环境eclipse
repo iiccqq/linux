@@ -67,3 +67,66 @@ Create a local staging version of the website (in /tmp/hadoop-site)
   $ mvn clean site; mvn site:stage -DstagingDirectory=/tmp/hadoop-site
 
 
+
+
+Pseudo-Distributed Operation
+
+etc/hadoop/core-site.xml:
+
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://localhost:9000</value>
+    </property>
+</configuration>
+
+etc/hadoop/hdfs-site.xml:
+
+
+<configuration>
+    <property>
+        <name>dfs.replication</name>
+        <value>1</value>
+    </property>
+</configuration>
+
+
+  $ ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
+  $ cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
+  $ export HADOOP\_PREFIX=/home/vagrant/opt/hadoop-2.7.1
+
+
+
+  $ ssh localhost
+/etc/ssh/ssh_config: line 55: Bad configuration option: usedns
+/etc/ssh/ssh_config: terminating, 1 bad configuration options
+
+
+注释掉 UseDNS no行。
+
+配置hadoop环境变量PATH
+sudo vi /etc/profile
+export PATH=$PATH:/home/vagrant/opt/hadoop-2.7.1/bin
+
+
+hdfs namenode -format
+start-dfs.sh
+
+  $ hdfs dfs -mkdir /user
+  $ hdfs dfs -mkdir /user/vagrant
+
+  $ hdfs dfs -put etc/hadoop input
+  $ hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.1.jar grep input output 'dfs[a-z.]+'
+
+  $ hdfs dfs -get output output
+  $ cat output/*
+  或者
+  hdfs dfs -cat output/*
+
+配置hadoop环境变量PATH
+sudo vi /etc/profile
+export PATH=$PATH:/home/vagrant/opt/hadoop-2.7.1/sbin
+
+export PATH=$PATH:/home/vagrant/opt/hadoop-2.7.1/sbin
+
+start-yarn.sh
