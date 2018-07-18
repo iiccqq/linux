@@ -1,0 +1,69 @@
+
+
+
+
+Installing required packages for clean install of Ubuntu 14.04 LTS Desktop:
+
+* Oracle JDK 1.7 (preferred)
+  $ sudo apt-get purge openjdk*
+  $ sudo apt-get install software-properties-common
+  $ sudo add-apt-repository ppa:webupd8team/java
+  $ sudo apt-get update
+  $ sudo apt-get install oracle-java8-installer
+  //原文档是写的7，不过目前没有7了，只有8.sudo apt-get install oracle-java7-installer
+* Maven
+  $ sudo apt-get -y install maven
+* Native libraries
+  $ sudo apt-get -y install build-essential autoconf automake libtool cmake zlib1g-dev pkg-config libssl-dev
+* ProtocolBuffer 2.5.0 (required)
+  $ sudo apt-get -y install libprotobuf-dev protobuf-compiler
+
+
+Optional packages:
+
+* Snappy compression
+  $ sudo apt-get install snappy libsnappy-dev
+* Bzip2
+  $ sudo apt-get install bzip2 libbz2-dev
+* Jansson (C Library for JSON)
+  $ sudo apt-get install libjansson-dev
+* Linux FUSE
+  $ sudo apt-get install fuse libfuse-dev
+
+
+
+When you import the project to eclipse, install hadoop-maven-plugins at first.
+  $ cd hadoop-maven-plugins
+  $ mvn install
+
+Then, generate eclipse project files.
+  $ mvn eclipse:eclipse -DskipTests
+
+
+At last, import to eclipse by specifying the root directory of the project via
+[File] > [Import] > [Existing Projects into Workspace].
+
+
+Building distributions:
+
+Create binary distribution without native code and without documentation:
+
+  $ mvn package -Pdist -DskipTests -Dtar
+
+Create binary distribution with native code and with documentation:
+
+  $ mvn package -Pdist,native,docs -DskipTests -Dtar
+
+Create source distribution:
+
+  $ mvn package -Psrc -DskipTests
+
+Create source and binary distributions with native code and documentation:
+
+  $ mvn package -Pdist,native,docs,src -DskipTests -Dtar
+
+Create a local staging version of the website (in /tmp/hadoop-site)
+
+  $ mvn clean site; mvn site:stage -DstagingDirectory=/tmp/hadoop-site
+
+
