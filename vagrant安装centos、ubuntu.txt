@@ -67,3 +67,7 @@ vagrant box repackage centos/7 virtualbox  0
 将虚拟机停止，然后再打包,然后会生成package.box
 vagrant halt
 vagrant package
+
+vagrant snapshot save master1 basesoft
+vagrant snapshot pop
+
