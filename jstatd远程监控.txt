@@ -1,0 +1,18 @@
+
+cd $JAVA_HOME/bin
+vi jstatd.all.policy
+输入以下内容
+grant codebase"file:${java.home}/../lib/tools.jar"{ permission java.security.AllPermission; };
+
+在远程服务器上启动服务
+默认不指定端口为1099
+jstatd -J-Djava.security.policy=jstatd.all.policy -J-Djava.rmi.server.hostname=192.16.31.101 -p2021
+
+
+在本地打开jvisualvm
+
+远程->右键->添加远程主机
+输入主机名。192.16.31.101
+选择主机后->右键->修改端口为2021。
+
+这里批定端口是为了安全
