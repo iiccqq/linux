@@ -135,3 +135,6 @@ vi etc/hadoop/yarn-site.xml
 	
 	
 	查看日志位置：$HADOOP_PREFIX/logs下
+	
+	hdfs dfs -rmr /tmp/*
+	hdfs dfs -expunge
