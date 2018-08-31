@@ -133,8 +133,11 @@ vi etc/hadoop/yarn-site.xml
 	[yarn]$ $HADOOP_YARN_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR stop proxyserver
 	[mapred]$ $HADOOP_PREFIX/sbin/mr-jobhistory-daemon.sh --config $HADOOP_CONF_DIR stop historyserver
 	
-	
 	查看日志位置：$HADOOP_PREFIX/logs下
+	
+	hadoop dfsadmin -refreshNodes
+	
+        删除文件 
 	hdfs dfs -rm -skipTrash /tmp/*
 	hdfs dfs -rmr /tmp/*
 	hdfs dfs -expunge
