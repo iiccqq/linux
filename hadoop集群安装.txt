@@ -135,8 +135,57 @@ vi etc/hadoop/yarn-site.xml
 	
 	查看日志位置：$HADOOP_PREFIX/logs下
 	
-	hadoop dfsadmin -refreshNodes
 	
+增加slave的ip到配置
+vi conf/hadoop/slaves
+
+一、增加datanode
+增加白名单 
+增加节点配置
+<property>
+    <name>dfs.hosts</name>
+    <value>/XXXXXXX/hadoop-2.7.1/etc/hadoop/hosts/datanode_hosts</value>
+</property>
+删除节点配置
+<property>
+    <name>dfs.hosts.exclude</name>
+    <value>/XXXXXXX/hadoop-2.7.1/etc/hadoop/hosts/exclude_datanode_hosts</value>
+</property>
+
+/XXXXXXX/hadoop-2.7.1/etc/hadoop/hosts/datanode_hosts
+每行放的主机名，是能ping的地址，每台机器上需要配置etc/host。
+
+
+软件包及配置同步到增加的slave节点上
+启动增加的datanode
+sbin/hadoop-daemon.sh start datanode
+
+更新节点
+bin/hadoop dfsadmin -refreshNodes
+
+
+bin/hadoop dfsadmin -report 
+
+
+二、增加nodemanager
+
+    <property>
+        <name>yarn.resourcemanager.nodes.include-path</name>
+        <value>/XXXXXXX/hadoop-2.7.1/etc/hadoop/hosts/mapred_hosts</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.nodes.exclude-path</name>
+        <value>/XXXXXXX/hadoop-2.7.1/etc/hadoop/hosts/exclude_mapred_hosts</value>
+    </property>
+
+软件包及配置同步到增加的slave节点上
+sbin/yarn-daemon.sh start nodemanager
+
+集群负载均衡
+bin/start-balancer.sh
+
+
+常用操作：
         删除文件 
 	hdfs dfs -rm -skipTrash /tmp/*
 	hdfs dfs -rmr /tmp/*
