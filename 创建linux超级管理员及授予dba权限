@@ -1,0 +1,26 @@
+
+登录root用户
+增加用户并设置密码：
+adduser fc
+passwd fc 
+
+保证有写权限，没有chomd 744 /etc/sudoers
+vi /etc/sudoers
+
+找到这行，并在下面追加用户fc,如下
+root    ALL=(ALL)       ALL
+fc      ALL=(ALL)       ALL
+
+保证有写权限，没有chomd 744 /etc/passwd
+vi /etc/passwd
+定位到fc那行，将后面的用户组改成跟root一致，如下
+fc:x:0:0::/home/duyang:/bin/bash
+
+
+如果该用户需要操作数据库，可能会遇到访问权限的问题。
+
+授权fc用户
+mysql -uroot -p
+
+grant all privileges on *.*  to  'fc'@'%';
+flush privileges; 
