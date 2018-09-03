@@ -22,5 +22,9 @@ fc:x:0:0::/home/duyang:/bin/bash
 授权fc用户
 mysql -uroot -p
 
-grant all privileges on *.*  to  'fc'@'%';
+grant all privileges on *.*  to  'fc'@'%' identified by 'Feng123456';
+flush privileges; 
+
+
+grant all privileges on *.* to 'root'@'112.46.54.255' identified by 'Feng123456';
 flush privileges; 
