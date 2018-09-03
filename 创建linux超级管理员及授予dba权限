@@ -28,3 +28,6 @@ flush privileges;
 
 grant all privileges on *.* to 'root'@'112.46.54.255' identified by 'Feng123456';
 flush privileges; 
+
+use mysql;
+select User,Host,Password  from user;
