@@ -1,0 +1,10 @@
+
+
+磁盘监控
+yum install -y iotop
+iotop
+
+yum install -y sysstat
+iostat -d -x  -k 1 10
+
+
