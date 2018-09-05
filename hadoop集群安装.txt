@@ -190,3 +190,13 @@ bin/start-balancer.sh
 	hdfs dfs -rm -skipTrash /tmp/*
 	hdfs dfs -rmr /tmp/*
 	hdfs dfs -expunge
+	
+修改yarn的队列
+ <property>
+        <name>yarn.scheduler.fair.allocation.file</name>
+        <value>/XXXX/hadoop-2.7.1/etc/hadoop/fair-scheduler.xml</value>
+    </property>
+
+fair-scheduler.xml配置队列内容后
+
+yarn rmadmin -refreshQueues
