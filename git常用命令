@@ -1,0 +1,6 @@
+
+ git remote -v
+拉取别人的分支
+ git fetch upstream trunk-hello
+
+ git checkout -b fix-87 upstream/trunk-hello
