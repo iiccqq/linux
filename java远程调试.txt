@@ -1,14 +1,23 @@
 
-Ô¶³Ìµ÷ÊÔ±¾µØ³ÌĞò°æ
+è¿œç¨‹è°ƒè¯•æœ¬åœ°ç¨‹åºç‰ˆ
 java -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=7899,suspend=n -cp "./*" Test1 
 
 
 
 "# linux"
-1.catalina.shÎÄ¼şÊ×ĞĞÖĞÌí¼ÓÈçÏÂÓï¾ä JAVA_OPTS="$JAVA_OPTS -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"
+1.catalina.shæ–‡ä»¶é¦–è¡Œä¸­æ·»åŠ å¦‚ä¸‹è¯­å¥ JAVA_OPTS="$JAVA_OPTS -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"
 
 
-Ô¶³Ìµ÷ÊÔtomcatÈİÆ÷°æ±¾
+è¿œç¨‹è°ƒè¯•tomcatå®¹å™¨ç‰ˆæœ¬
+linux
+catalina.sh  (tomcat8)
+export CATALINA_OPTS="-server -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8899"
+
+
+
+
+window
+
 set JPDA_TRANSPORT=dt_socket
 set JPDA_ADDRESS=9000
 set JPDA_SUSPEND=n
