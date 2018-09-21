@@ -1,0 +1,19 @@
+
+
+常用命令
+bin/hdfs --daemon start namenode
+bin/hdfs --daemon start datanode
+
+
+bin/hdfs --daemon stop namenode
+bin/hdfs --daemon stop datanode
+
+
+
+开启远程调度
+
+HADOOP_DEBUG_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,"
+
+# Command specific options appended to HADOOP_OPTS when specified
+export HDFS_NAMENODE_OPTS="${HADOOP_DEBUG_OPTS}suspend=n,address=9655 -Dhadoop.security.logger=${HADOOP_SECURITY_LOGGER:-INFO,RFAS} -Dhdfs.audit.logger=${HDFS_AUDIT_LOGGER:-INFO,NullAppender} " # $HADOOP_NAMENODE_OPTS"
+export HDFS_NAMENODE_OPTS="${HADOOP_DEBUG_OPTS}suspend=n,address=9652 -Dhadoop.security.logger=ERROR,RFAS " # $HADOOP_DATANODE_OPTS"
