@@ -203,7 +203,7 @@ yarn rmadmin -refreshQueues
 
 开启远程调试
 hadoop-2.7.1
-vi hadoop-evn.sh
+vi etc/hadoop/hadoop-env.sh
 增加以下内容
 HADOOP_DEBUG_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,"
 # Command specific options appended to HADOOP_OPTS when specified
