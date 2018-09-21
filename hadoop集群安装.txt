@@ -200,3 +200,15 @@ bin/start-balancer.sh
 fair-scheduler.xml配置队列内容后
 
 yarn rmadmin -refreshQueues
+
+开启远程调试
+hadoop-2.7.1
+vi hadoop-evn.sh
+增加以下内容
+HADOOP_DEBUG_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,"
+# Command specific options appended to HADOOP_OPTS when specified
+export HADOOP_NAMENODE_OPTS="${HADOOP_DEBUG_OPTS}suspend=n,address=9555 -Dhadoop.security.logger=${HADOOP_SECURITY_LOGGER:-INFO,RFAS} -Dhdfs.audit.logger=${HDFS_AUDIT_LOGGER:-INFO,NullAppender} " # $HADOOP_NAMENODE_OPTS"
+export HADOOP_DATANODE_OPTS="${HADOOP_DEBUG_OPTS}suspend=n,address=9552 -Dhadoop.security.logger=ERROR,RFAS " # $HADOOP_DATANODE_OPTS"
+
+
+
