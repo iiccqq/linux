@@ -177,3 +177,25 @@ Secret token是在高级里的生成的
 解决方法：
 Settings -> General -> Outbound requests -> Expand
 勾选：Allow requests to the local network from hooks and service
+
+备注：如果是tomcat项目，对应的脚本为
+
+mvn clean install
+cd target
+jarname='tomcat'
+pid=`ps aux | grep $jarname | grep -v grep | awk '{print $2}'`
+echo $pid
+if [ $pid  ]; then
+   kill -9 $pid
+else 
+   echo " program is not running before "
+fi
+rm -rf /root/apache-tomcat-8.0.53/webapps/*
+rm -rf /root/apache-tomcat-8.0.53/work/Catalina/localhost/*
+cp ROOT.war /root/apache-tomcat-8.0.53/webapps/ROOT.war
+cd /root/apache-tomcat-8.0.53/bin
+BUILD_ID=dontKillMe  ./startup.sh&
+echo "start successed!!!"
+
+
+
