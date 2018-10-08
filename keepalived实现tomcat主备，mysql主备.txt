@@ -1,0 +1,83 @@
+keepalived实现tomcat主备，mysql主备(待完善)
+
+官方网址：http://www.keepalived.org/
+
+yum install -y keepalived
+
+
+健康检测脚本
+#!/bin/bash
+JAVA_PROCESS=`ps -C java --no-heading| wc -l`
+if [ $JAVA_PROCESS -eq 0 ];then
+echo "tomcat is stop"
+if [ `ps -C java --no-heading| wc -l` -eq 0 ];then
+exit 11
+fi
+fi
+
+配置主机
+vi /etc/keepalived/keepalived.conf
+
+! Configuration File for keepalived
+global_defs {
+}
+
+vrrp_script chk_mysql {
+    script "/etc/keepalived/chk_tomcat.sh"
+    interval 2
+    weight -2
+    fall 3
+    rise 2
+}
+
+vrrp_instance VI_1 {
+    state MASTER
+    interface eth1
+    virtual_router_id 51
+    priority 100
+    advert_int 1
+    #nopreempt
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
+    virtual_ipaddress {
+        192.168.56.201
+    }
+    track_script {
+       chk_tomcat
+    }
+}
+
+配置备机
+vi /etc/keepalived/keepalived.conf
+! Configuration File for keepalived
+global_defs {
+}
+
+vrrp_script chk_mysql {
+    script "/etc/keepalived/chk_tomcat.sh"
+    interval 2
+    weight -2
+    fall 3
+    rise 2
+}
+
+vrrp_instance VI_1 {
+    state BACKUP
+    interface eth1
+    virtual_router_id 51
+    priority 99
+    advert_int 1
+    #nopreempt
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
+    virtual_ipaddress {
+        192.168.56.201
+    }
+    track_script {
+       chk_tomcat
+    }
+}
