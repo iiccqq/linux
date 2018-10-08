@@ -29,6 +29,8 @@ crontab -e
 每天凌晨0点执行一次
 0 0 * * * /root/mysql_backup.sh
 
+查看定时器执行内容
+crontab -l
 
 gz文件解压
 gunzip $File
