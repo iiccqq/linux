@@ -1,0 +1,34 @@
+mysql数据库定时备份
+
+数据库备份脚本如下
+vi mysql_backup.sh
+
+#!/bin/sh
+echo "set init var "
+Now=$(date +"%d-%m-%Y")
+Mysqlpd="Feng123456"
+BakDb="test"
+File=bakmysql-$Now.sql.gz
+RemoteHost=192.168.56.103
+echo "start dump database..."
+mysqldump -uroot -p$Mysqlpd $BakDb | gzip > $File
+echo "dump success!"
+echo "start scp to remote host"
+scp $File  $RemoteHost:/root/
+echo "scp success!"
+
+
+
+创建定时器
+crontab -e
+* * * * * /root/mysql_backup.sh
+0 0 * * * /root/mysql_backup.sh
+
+每分钟一次
+* * * * * /root/mysql_backup.sh
+每天凌晨0点执行一次
+0 0 * * * /root/mysql_backup.sh
+
+
+gz文件解压
+gunzip $File
