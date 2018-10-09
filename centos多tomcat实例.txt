@@ -1,36 +1,45 @@
-centos¶àtomcatÊµÀı
+centoså¤štomcatå®ä¾‹
 
-1 tomcatÄ¿Â¼°²×°£¨ÂÔ£©/opt/apache-tomcat-8.0.47
+1 tomcatç›®å½•å®‰è£…ï¼ˆç•¥ï¼‰/opt/apache-tomcat-8.0.47
 2 cd /opt/
 3 mkdir tomcat-1
 4 mkdir tomcat-2
 5 cd apache-tomcat-8.0.47
 6 cp  bin/ conf/ webapps/ temp/ logs/ work/ -R  ../tomcat-1
 7 cp  bin/ conf/ webapps/ temp/ logs/ work/ -R  ../tomcat-2
-·Ö±ğĞŞ¸Äcatalina.sh
-tomcat-1£º
+åˆ†åˆ«ä¿®æ”¹catalina.sh
+tomcat-1ï¼š
 CATALINA_HOME=/opt/apache-tomcat-8.0.47
 CATALINA_BASE=/opt/tomcat-1
-tomcat-2£º
+tomcat-2ï¼š
 CATALINA_HOME=/opt/apache-tomcat-8.0.47
 CATALINA_BASE=/opt/tomcat-2
 
 8 cd ../tomcat-2/conf
 9 vi server.xml
-ĞŞ¸Ä¶Ë¿Ú£¬Ö»Òª²»³åÍ»¾ÍĞĞ
+ä¿®æ”¹ç«¯å£ï¼Œåªè¦ä¸å†²çªå°±è¡Œ
 Server Port
 Connector Port=8081
 AJP Port
 
 
-·Ö±ğÔÚ
+åˆ†åˆ«åœ¨
 vi webapps/ROOT/index.html
 
-tomcat-1ÄÚÈİÎª1£¬tomcat-2ÄÚÈİÎª2
+tomcat-1å†…å®¹ä¸º1ï¼Œtomcat-2å†…å®¹ä¸º2
 
-·Ö±ğÔÚtomcat-1/bin,tomcat-2/binÏÂÆô¶¯./start.sh
+åˆ†åˆ«åœ¨tomcat-1/bin,tomcat-2/binä¸‹å¯åŠ¨./start.sh
 
 curl 127.0.0.1:8080
 1
 curl 127.0.0.1:8081
 2
+
+
+é˜²ç«å¢™å¼€æ”¾httpçš„80ç«¯å£
+sudo firewall-cmd --add-service=http --permanent
+sudo firewall-cmd --add-port=80/tcp --permanent
+ç„¶åé‡å¯é˜²ç«å¢™ï¼š
+sudo firewall-cmd --reload
+å†æ¬¡æŸ¥çœ‹ç«¯å£çš„å¼€æ”¾æƒ…å†µï¼š
+sudo firewall-cmd --list-all
