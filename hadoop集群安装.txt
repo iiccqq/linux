@@ -211,4 +211,15 @@ export HADOOP_NAMENODE_OPTS="${HADOOP_DEBUG_OPTS}suspend=n,address=9555 -Dhadoop
 export HADOOP_DATANODE_OPTS="${HADOOP_DEBUG_OPTS}suspend=n,address=9552 -Dhadoop.security.logger=ERROR,RFAS " # $HADOOP_DATANODE_OPTS"
 
 
+ha主备环境搭建，配置后续补
+启备与主同步
+hdfs namenode -bootstrapStandby
+将nn2变为备，nn1变成主
+hdfs haadmin -failover nn2 nn1
+
+
+
+
+
+
 
