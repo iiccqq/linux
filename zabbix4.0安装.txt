@@ -3,6 +3,10 @@ zabbix4.0安装
 官方安装地址
 https://www.zabbix.com/download
 
+主机ip
+server:192.168.56.102
+agent:192.168.56.103
+
 
 Choose your platform
   版本4.0LTS->CentOS->7->mysql
@@ -39,6 +43,8 @@ vi /etc/selinux/config
 SELINUX=disabled
 
 更新完成之后重新启动zabbix即可
+systemctl restart httpd
+
 
 日志默认配置位置：LogFile=/var/log/zabbix/zabbix_server.log
 
@@ -58,3 +64,32 @@ This is the Zabbix “Welcome” screen. Enter the user name Admin with password
 Admin/zabbix
 
 https://www.zabbix.com/documentation/4.0/manual/installation/install#installing_frontend
+
+
+
+在其它要被监控的机器上安装agent
+
+
+rpm -i https://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm
+yum install zabbix-agent
+
+启动时日志报active check configuration update from [127.0.0.1:10051] started to fail (cannot connect to [[127.0.0.1]:10051]: [111] Connection refused)
+可以注释掉以下一行
+#ServerActive=127.0.0.1
+
+Server=192.168.56.102
+
+systemctl start zabbix-agent
+
+
+在web里操作Configuration->Hosts->Create host
+Host name:centos73
+Visible name:vagrant56103
+Groups:Linux servers
+Agent interfaces:
+  IP address:192.168.56.103
+  Port:10050
+
+  update即可
+
+Monitoring-Graphs就可以查询各种机器指标
