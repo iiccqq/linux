@@ -34,7 +34,7 @@ vi /etc/httpd/conf.d/zabbix.conf
 遇到问题：zabbix启动报cannot set resource limit: [13] Permission denied问题解决
 yum update selinux-policy.noarch selinux-policy-targeted.noarch
 
-
+sestatus查看状态
 vi /etc/selinux/config
 SELINUX=disabled
 
