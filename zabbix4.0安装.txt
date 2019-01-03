@@ -4,8 +4,9 @@ zabbix4.0安装
 https://www.zabbix.com/download
 
 主机ip
-server:192.168.56.102
-agent:192.168.56.103
+zabbix-server:192.168.56.102
+zabbix-java-gateway:192.168.56.103
+zabbix-agent:192.168.56.103
 
 
 Choose your platform
@@ -93,3 +94,21 @@ Agent interfaces:
   update即可
 
 Monitoring-Graphs就可以查询各种机器指标
+
+
+对jmx监控的支持
+在 192.168.56.103上安装JavaGateway
+yum install zabbix-java-gateway
+systemctl start zabbix-java-gateway
+在java程序中开启jmx,如git clone git@github.com:iiccqq/jmx-demo.git
+java -server -Dcom.sun.management.jmxremote.port=12345 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Djava.rmi.server.hostname=192.168.56.103 -cp "./jmx-demo-0.0.1-SNAPSHOT.jar" com.demo.jmx.Main
+
+
+在192.168.56.102修改配置后重启zabbix-server服务
+vi /etc/zabbix/zabbix_server.conf
+JavaGateway=192.168.56.103
+StartJavaPollers=5
+
+systemctl restart zabbix-server
+配置主机中增加，方法在上面提到过Configuration->Hosts->Create host
+JMX interfaces:192.168.56.103    12345
