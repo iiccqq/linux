@@ -1,0 +1,60 @@
+zabbix4.0安装
+
+官方安装地址
+https://www.zabbix.com/download
+
+
+Choose your platform
+  版本4.0LTS->CentOS->7->mysql
+
+
+rpm -i https://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm
+yum install zabbix-server-mysql zabbix-web-mysql zabbix-agent
+
+最好在本机上安装数据库。在其它机器上实验没有成功，报connect faild
+# mysql -uroot -p
+password
+mysql> create database zabbix character set utf8 collate utf8_bin;
+mysql> grant all privileges on zabbix.* to zabbix@localhost identified by 'password';
+mysql> quit;
+
+zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -uzabbix -p zabbix（需要安装yum install -y mariadb略）
+  或者
+解压文件 /usr/share/doc/zabbix-server-mysql*/create.sql.gz，并将create.sql导入msyql
+
+vi /etc/zabbix/zabbix_server.conf
+DBPassword=Feng123456
+
+vi /etc/httpd/conf.d/zabbix.conf
+ #php_value date.timezone Europe/Riga
+ ->
+ php_value date.timezone Asia/Shanghai
+
+
+遇到问题：zabbix启动报cannot set resource limit: [13] Permission denied问题解决
+yum update selinux-policy.noarch selinux-policy-targeted.noarch
+
+
+vi /etc/selinux/config
+SELINUX=disabled
+
+更新完成之后重新启动zabbix即可
+
+日志默认配置位置：LogFile=/var/log/zabbix/zabbix_server.log
+
+
+
+systemctl restart zabbix-server zabbix-agent httpd
+systemctl enable zabbix-server zabbix-agent httpd
+
+systemctl start zabbix-server
+systemctl start zabbix-agent
+
+http://server_ip_or_name/zabbix
+
+
+https://www.zabbix.com/documentation/4.0/manual/quickstart/login
+This is the Zabbix “Welcome” screen. Enter the user name Admin with password zabbix to log in as a Zabbix superuser.
+Admin/zabbix
+
+https://www.zabbix.com/documentation/4.0/manual/installation/install#installing_frontend
