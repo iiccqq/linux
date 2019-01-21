@@ -1,0 +1,29 @@
+
+官网
+https://www.postgresql.org/download/linux/redhat/
+参考
+https://blog.csdn.net/chuckchen1222/article/details/83186756
+https://blog.csdn.net/love_lixr/article/details/83989111
+
+yum install https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x86_64/pgdg-centos11-11-2.noarch.rpm
+yum install postgresql11
+yum install postgresql11-server
+
+
+useradd postgres
+chown -R postgres:postgres /usr/pgsql-11
+chown -R postgres:postgres /var/lib/pgsql/11/data/
+
+cd /var/lib/pgsql/11/data/
+vi postgresql.conf
+listen_addresses = '*'
+vi  pg_hba.conf
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            trust
+host    all             all             0.0.0.0/0               password
+
+/usr/pgsql-11/bin/postgresql-11-setup initdb
+#systemctl stop postgresql-11
+systemctl start postgresql-11
+
+systemctl stop firewalld
