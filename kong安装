@@ -1,0 +1,35 @@
+kong安装
+官方安装文档
+https://docs.konghq.com/install/centos/?_ga=2.27484863.2083257988.1548232151-657650664.1547875032
+
+从官方下载文件包，点页面或者运行命令
+
+wget https://docs.konghq.com/install/centos/?_ga=2.27484863.2083257988.1548232151-657650664.1547875032#packages -o  kong-community-edition-1.0.2.el7.noarch.rpm
+yum install kong-community-edition-1.0.2.el7.noarch.rpm
+
+
+cp kong.conf.default kong.conf
+vi kong.conf
+
+放开注释，并修改对应的数据库
+database = postgres             # Determines which of PostgreSQL or Cassandra
+                                 # this node will use as its datastore.
+                                 # Accepted values are `postgres` and
+                                 # `cassandra`.
+
+pg_host = 192.168.56.102             # The PostgreSQL host to connect to.
+pg_port = 5432                  # The port to connect to.
+pg_timeout = 5000               # Defines the timeout (in ms), for connecting,
+                                 # reading and writing.
+
+pg_user = kong                  # The username to authenticate if required.
+pg_password = kong                   # The password to authenticate if required.
+pg_database = kong              # The database name to connect to.
+
+kong migrations bootstrap -c /etc/kong/kong.conf
+kong start
+kong stop
+kong reload
+
+
+curl -i http://192.168.56.102:8001/
