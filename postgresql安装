@@ -27,3 +27,9 @@ host    all             all             0.0.0.0/0  
 systemctl start postgresql-11
 
 systemctl stop firewalld
+
+设置用户密码
+su postgres
+psql
+ALTER USER postgres WITH PASSWORD 'postgres' 
+ALTER USER kong WITH PASSWORD 'kong' 
