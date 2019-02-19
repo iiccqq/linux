@@ -1,0 +1,33 @@
+python3安装
+
+参考
+https://www.cnblogs.com/Trees/p/7497482.html
+
+一、yum安装方法
+# yum install epel-release
+# yum search python //先查下yum源支持的python安装版本
+# yum install python36
+# python36
+
+可选创建软链接
+# cd /usr/bin/
+# ln -s python3.6 python3
+
+源码安装
+官方下载页面，当前最新版本
+https://www.python.org/downloads/
+https://www.python.org/downloads/release/python-372/
+
+# wget https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tgz
+# yum install -y openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel
+# yum install libffi-devel -y
+# tar xvf  Python-3.7.2.tgz
+# ./configure --prefix=/usr/local/
+# make
+# make altinstall
+
+可选创建软链接
+# cd /usr/bin/
+# ln -s /usr/local/bin/python3.7 /usr/bin/python3
+# python3
+# pip37
