@@ -69,3 +69,6 @@ cd /home && mkdir /nfs
 mount -t nfs 192.168.56.101:/home/nfs /home/nfs
 
 df -h 查看是否挂载成功。
+
+在主机的目录上vi 1.txt
+在从机上可以看到1.txt文件
