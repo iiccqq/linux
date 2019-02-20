@@ -7,11 +7,14 @@ https://www.cnblogs.com/Trees/p/7497482.html
 # yum install epel-release
 # yum search python //先查下yum源支持的python安装版本
 # yum install python36
-# python36
+# yum install python36-pip
+# python3.6
+# pip3.6
 
 可选创建软链接
 # cd /usr/bin/
 # ln -s python3.6 python3
+# ln -s pip3.6 pip3
 
 源码安装
 官方下载页面，当前最新版本
@@ -25,9 +28,12 @@ https://www.python.org/downloads/release/python-372/
 # ./configure --prefix=/usr/local/
 # make
 # make altinstall
+# python3.7
+# pip3.7
 
 可选创建软链接
 # cd /usr/bin/
 # ln -s /usr/local/bin/python3.7 /usr/bin/python3
+# ln -s /usr/local/bin/pip3.7 /usr/bin/pip3
 # python3
-# pip37
+# pip3
