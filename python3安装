@@ -6,8 +6,9 @@ https://www.cnblogs.com/Trees/p/7497482.html
 一、yum安装方法
 # yum install epel-release
 # yum search python //先查下yum源支持的python安装版本
-# yum install python36
-# yum install python36-pip
+# yum install -y python36
+# yum install -y python36-pip
+# python36
 # python3.6
 # pip3.6
 
