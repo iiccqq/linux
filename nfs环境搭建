@@ -72,3 +72,38 @@ df -h 查看是否挂载成功。
 
 在主机的目录上vi 1.txt
 在从机上可以看到1.txt文件
+
+以上目录的权限受用户会有限制。
+
+参考
+https://www.cnblogs.com/xiaotengyi/p/7478957.html
+如果想控制权限，将nfs设置匿名用户id
+
+在主机上操作
+cat  /etc/passwd
+查看用户对应的id,如
+vagrant:x:1000:1000:vagrant:/home/vagrant:/bin/bash
+
+vi /etc/exports
+/home/nfs/ 192.168.56.0/24(rw,sync,all_squash,anonuid=1000,anongid=1000)
+
+exportfs -r
+cd /home/nfs
+mkdir /home/nfs/vagrantdir
+chown vagant:vagrant /home/nfs/vagrantdir
+
+在从机上
+# umonut /home/nfs
+mount -t nfs 192.168.56.101:/home/nfs /home/nfs
+su vagrant
+cd /home/nfs/vagrantdir
+vi my.txt
+mkdir subdir
+
+
+
+
+
+
+
+
