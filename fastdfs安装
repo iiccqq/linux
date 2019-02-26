@@ -124,3 +124,7 @@ fdfs_upload_file /etc/fdfs/client.conf /usr/local/src/nginx-1.15.4.tar.gz
 group1/M00/00/00/wKg4ZVx0sZeAA2aTAA-itrfn0m4.tar.gz
 
 wget http://192.168.56.101:8888/group1/M00/00/00/wKg4ZVx0sZeAA2aTAA-itrfn0m4.tar.gz
+
+java操作sdk样例
+https://github.com/iiccqq/FastdfsClientDemo
+
