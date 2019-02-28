@@ -1,0 +1,31 @@
+nginx4层负载mysql验证
+
+yum install  -y wget
+wget http://nginx.org/download/nginx-1.14.2.tar.gz
+tar xvf nginx-1.14.2.tar.gz
+nginx-1.14.2
+./configure --prefix=/usr/local/nginx-1.14.2 --user=www --group=www --with-http_ssl_module --with-http_stub_status_module --with-file-aio --with-stream
+vi conf/nginx.conf
+
+worker_processes  1;
+events {
+    worker_connections  1024;
+}
+stream {
+        upstream tcp_proxy {
+        hash $remote_addr consistent;  #远程地址做个hash
+        server 10.12.138.175:3306;#mysql服务器
+   }
+      server {
+        listen 2222;
+        proxy_connect_timeout 1s;
+        proxy_timeout 10s;  #后端连接超时时间
+        proxy_pass tcp_proxy;
+     }
+  }
+
+useradd -s /sbin/nologin -M www
+sbin/nginx -c conf/nginx.conf
+
+telnet 127.0.0.1  2222
+  
