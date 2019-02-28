@@ -1,5 +1,8 @@
 nginx4层负载mysql验证
 
+参考：
+https://www.cnblogs.com/w787815/p/6682824.html
+
 yum install  -y wget
 wget http://nginx.org/download/nginx-1.14.2.tar.gz
 tar xvf nginx-1.14.2.tar.gz
