@@ -1,0 +1,113 @@
+纠错码存储压缩、及运行性能对比
+方案对比
+
+一、验证 du 第二列就是实际占用存储的大小
+1. 生成测试文件
+dd if=‘/dev/zero’ of=‘/home/hadp/test.big2’ bs=200M count=1
+hdfs dfs -put test.big2 /ectest/testbig-3-2
+2. 查看块存储的位置
+hdfs fsck /ectest/testbig-3-2 -files -blocks -locations
+[blk_-9223372036854775712:DatanodeInfoWithStorage[172.19.152.14:9866,DS-9ef8832b-f19b-494d-b494-935efb393302,DISK],
+blk_-9223372036854775711:DatanodeInfoWithStorage[172.19.152.20:9866,DS-3f20b8ba-f360-44d4-97e0-e8dd6009b81c,DISK],
+blk_-9223372036854775710:DatanodeInfoWithStorage[172.19.152.15:9866,DS-fe8af7d5-29a7-4f55-9b66-86ec1fe2977a,DISK],
+blk_-9223372036854775709:DatanodeInfoWithStorage[172.19.152.17:9866,DS-7052a9bb-376d-4256-a9e5-d4f39e0ef75e,DISK],
+blk_-9223372036854775708:DatanodeInfoWithStorage[172.19.152.21:9866,DS-f92622fc-fcb6-4a9e-8724-f84ea03e4925,DISK]]
+
+查看存储占用的空间
+tree /data*/dfs |grep blk_-9223372036854775712 -B 100
+找到位置，ll 命令查看文件大小
+70254592
+tree /data*/dfs |grep blk_-9223372036854775711 -B 100
+70254592
+tree /data*/dfs |grep blk_-9223372036854775710 -B 100
+69206016
+tree /data*/dfs |grep blk_-9223372036854775709 -B 100
+70254592
+tree /data*/dfs |grep blk_-9223372036854775708 -B 100
+70254592
+
+将 5 个 blocks 加起来 =70254592*4+69206016=350224384
+
+hdfs dfs -du /ectest/testbig-3-2
+209715200 350224384 /ectest/testbig-3-2
+
+结论 1：hdfs dfs -du 的第二列就是物理占用的空间大小
+
+前三个 blocks 数据块加一起 =70254592*2+69206016=209715200
+ll test.big2
+-rw-r—– 1 hadp hadp 209715200 6 月 27 19:10 test.big2
+结论 2：说明前三个 blocks 数据块加一起正好等于文件的实际大小。
+
+二、纠错码存储压缩、及运行性能对比
+
+环境准备
+生成测试文件，8M、128M、256M、10G
+dd if=‘/dev/zero’ of=‘/data3/test8M’ bs=8M count=1
+dd if=‘/dev/zero’ of=‘/data3/test128M’ bs=128M count=1
+dd if=‘/dev/zero’ of=‘/data3/test256M’ bs=256M count=1
+dd if=‘/dev/zero’ of=‘/data3/test10G’ bs=2G count=5
+
+hdfs dfs -mkdir -p /fctest/noec
+hdfs dfs -mkdir -p /fctest/ec/RS-6-3-1024k
+
+hdfs ec -listPolicies
+确保 ec 策略开启
+RS-6-3-1024k
+
+hdfs ec -setPolicy -path /fctest/ec/RS-6-3-1024k -policy RS-6-3-1024k
+hdfs ec -getPolicy -path /fctest/noec
+hdfs ec -getPolicy -path /fctest/ec/RS-6-3-1024k
+
+非 ec 路径测试数据
+time hdfs dfs -put /data3/test8M /fctest/noec/test8M
+记录运行时间 t0=0m1.859s
+hdfs dfs -du /fctest/noec/test8M
+记录文件占用大小 u0=25165824
+
+time hdfs dfs -put /data3/test128M /fctest/noec/test128M
+记录运行时间 t1=0m3.366s
+hdfs dfs -du /fctest/noec/test128M
+记录文件占用大小 u1=402653184
+
+time hdfs dfs -put /data3/test256M /fctest/noec/test256M
+记录运行时间 t2=0m4.490s
+hdfs dfs -du /fctest/noec/test256M
+记录文件占用大小 u2=805306368
+
+time hdfs dfs -put /data3/test10G /fctest/noec/test10G
+记录运行时间 t3=1m43.929s
+hdfs dfs -du /fctest/noec/test10G
+记录文件占用大小 u3=32212193280
+
+ec 路径测试数据
+time hdfs dfs -put /data3/test8M /fctest/ec/RS-6-3-1024k/test8M
+记录运行时间 t10=0m2.384s
+hdfs dfs -du /fctest/ec/RS-6-3-1024k/test8M
+记录文件占用大小 u10=14680064
+
+time hdfs dfs -put /data3/test128M /fctest/ec/RS-6-3-1024k/test128M
+记录运行时间 t11=0m3.734s
+hdfs dfs -du /fctest/ec/RS-6-3-1024k/test128M
+记录文件占用大小 u11=203423744
+
+time hdfs dfs -put /data3/test256M /fctest/ec/RS-6-3-1024k/test256M
+记录运行时间 t12=0m5.266s
+hdfs dfs -du /fctest/ec/RS-6-3-1024k/test256M
+记录文件占用大小 u12=403701760
+
+time hdfs dfs -put /data3/test10G /fctest/ec/RS-6-3-1024k/test10G
+记录运行时间 t13=2m4.718s
+hdfs dfs -du /fctest/ec/RS-6-3-1024k/test10G
+记录文件占用大小 u13=16107155456
+
+结论
+ec 压缩空间比值如下，压缩 50%
+8M 空间比值 u10/u0=14680064/25165824=0.583333333333333
+128M 空间占用 u11/u1=203423744/402653184=0.505208333333333
+256M 空间占用 u12/u2=403701760/805306368=0.501302083333333
+10G 空间占用 u13/u3=16107155456/32212193280=0.500032870037467
+ec 运行时间比值如下
+8M 时间比值 t10/t0=0.2384/0.1859=1.282409897794513
+128M 时间比值 t11/t1=0.3734/0.3366=1.109328579916815
+256M 时间比值 t12/t2=0.5266/0.4490=1.1728285077951
+10G 时间比值 t13/t3=2.4718/1.43929=1.71737453883512
