@@ -42,7 +42,8 @@ curl 192.168.56.103
 在192.168.56.102上能访问192.168.56.103
 curl 192.168.56.103
 
-Proxifier软件是全局的,浏览器代理软件SwitchyOmega类似设置
+1).ssh -o ProxyCommand='nc -x 92.168.56.101:7070 %h %p' root@192.168.56.103 (使用代理访问ssh的方式)
+2).Proxifier软件是全局的,浏览器代理软件SwitchyOmega类似设置
 在宿主机上使用proxifier配置proxiees增加ip:192.168.56.101 port:7070 type:SOCKS5
 配置rules,target hosts为192.168.56.*  action:proxy SOCKS5  192.168.56.101:7070
 这样，宿主机就可以访问国外网站（192.168.56.103）
