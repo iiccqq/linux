@@ -18,3 +18,7 @@ jvisualvm
  查看进程对应的线程
  ps -T -p pid
  top -H -p pid
+ 
+ 
+ 
+ export HADOOP_DATANODE_OPTS=" -Xmx10g -Xms10g -Xmn4g -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=70 -XX:+UseCMSCompactAtFullCollection -XX:+CMSParallelRemarkEnabled -XX:CMSFullGCsBeforeCompaction=0 -XX:CMSMaxAbortablePrecleanTime=1000 -XX:+CMSClassUnloadingEnabled -XX:+DisableExplicitGC -XX:MaxTenuringThreshold=10  -Xloggc:/data0/hadoop-logs/gc_datanode_${timestamp}.log  -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime -XX:+PrintTenuringDistribution -Dhadoop.security.logger=ERROR,RFAS $HADOOP_DATANODE_OPTS"
