@@ -19,9 +19,9 @@ jvisualvm
  top -H -p pid
  
  
- 
  查看gc情况
  参考：
+ https://docs.oracle.com/javase/8/docs/technotes/tools/unix/jstat.html
  
  1s采样，10次
  结果的单位：容量大小为:KB,时间为:s
