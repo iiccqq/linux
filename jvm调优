@@ -1,9 +1,8 @@
 查看java进程
 
+
 jps -m -l
 jps -v
-
-
 
 jmap -dump:format=b,file=1.dump pid
 
@@ -21,4 +20,22 @@ jvisualvm
  
  
  
+ 查看gc情况
+ 参考：
+ 
+ 1s采样，10次
+ 结果的单位：容量大小为:KB,时间为:s
+
+ jstat -gc 61721 1s 10
+ jstat -gcutil 61721 1s 10
+ jstat -gcnew 61721 1s 10
+ jstat -gcnewcapacity 61721 1s 10
+ jstat -gcold 61721  1s 10
+ jstat -gcoldcapacity 61721 1s 10
+ jstat -printcompilation 61721 1s 10
+ jstat -compiler 61721 1s 10
+ 
+ 
  export HADOOP_DATANODE_OPTS=" -Xmx10g -Xms10g -Xmn4g -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=70 -XX:+UseCMSCompactAtFullCollection -XX:+CMSParallelRemarkEnabled -XX:CMSFullGCsBeforeCompaction=0 -XX:CMSMaxAbortablePrecleanTime=1000 -XX:+CMSClassUnloadingEnabled -XX:+DisableExplicitGC -XX:MaxTenuringThreshold=10  -Xloggc:/data0/hadoop-logs/gc_datanode_${timestamp}.log  -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime -XX:+PrintTenuringDistribution -Dhadoop.security.logger=ERROR,RFAS $HADOOP_DATANODE_OPTS"
+
+
