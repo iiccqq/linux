@@ -17,13 +17,13 @@ curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install >> 
 第二步，更改脚本中的资源链接，替换成清华大学的镜像
 就是把这两句 ,不一定有地址CORE_TAP_REPO
 BREW_REPO = “https://github.com/Homebrew/brew“.freeze 
-CORE_TAP_REPO = “https://github.com/Homebrew/homebrew-core“.freeze 
 更改为这两句 
 BREW_REPO = “https://mirrors.ustc.edu.cn/brew.git “.freeze 
-CORE_TAP_REPO = “https://mirrors.ustc.edu.cn/homebrew-core.git“.freeze 
-当然如果这个镜像有问题的话，可以换成别的
-
 
 第三步，执行脚本
 /usr/bin/ruby brew_install
 
+git clone https://mirrors.ustc.edu.cn/homebrew-core.git /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core --depth=1
+
+
+brew install wget
