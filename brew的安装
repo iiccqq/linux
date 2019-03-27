@@ -7,6 +7,7 @@ https://brew.sh/
 
 如果遇到比较慢，参考以下
 https://blog.csdn.net/zhxuan30/article/details/81517446
+https://my.oschina.net/Rayn/blog/2876725
 
 原理：修改install文件，替换源
 
@@ -25,5 +26,9 @@ BREW_REPO = “https://mirrors.ustc.edu.cn/brew.git “.freeze 
 
 git clone https://mirrors.ustc.edu.cn/homebrew-core.git /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core --depth=1
 
+echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles'>>   ~/.bash_profile
+source ~/.bash_profile
 
 brew install wget
+
+
