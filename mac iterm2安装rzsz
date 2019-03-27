@@ -1,0 +1,21 @@
+
+官方参考
+https://github.com/mmastrac/iterm2-zmodem
+
+安装brew
+
+brew install lrzsz
+
+在虚拟机中安装
+yum install -y lrzsz
+
+在iterm2中配置trigger
+
+文件下载位置 
+\*\*B0100
+run silent coprocess...
+ /usr/local/bin/iterm2-send-zmodem.sh
+ 
+\*\*B00000000000000
+run silent coprocess...
+ /usr/local/bin/iterm2-recv-zmodem.sh
