@@ -1,0 +1,23 @@
+安装gitlab
+
+参考官网
+https://about.gitlab.com
+最下方install
+https://about.gitlab.com/install/
+
+centos6上的安装
+参考：https://about.gitlab.com/install/#centos-6
+
+sudo yum install -y curl policycoreutils-python openssh-server cronie
+sudo lokkit -s http -s ssh
+
+sudo yum install postfix
+sudo service postfix start
+sudo chkconfig postfix on
+
+curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
+
+
+sudo EXTERNAL_URL="https://git.fc.com" yum -y install gitlab-ee
+
+open https://git.fc.com
