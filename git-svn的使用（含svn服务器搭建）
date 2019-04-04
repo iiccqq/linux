@@ -1,0 +1,92 @@
+git-svn的使用含svn服务器搭建
+
+centos7服务器
+
+一、svn服务器的搭建
+参考：
+https://www.cnblogs.com/-mrl/p/8980244.html
+https://www.cnblogs.com/h2zZhou/p/6136948.html
+
+
+yum -y install subversion
+rpm -ql subversion\
+
+mkdir /var/svnrepos
+svnadmin create /var/svnrepos/repos1
+cd /var/svnrepos/repos1/
+vi authz
+[/]：表示根目录，即 /var/svnrepos
+vagrant = rw：表示用户luo对根目录具有读写权限。
+
+vi passwd
+[users]
+vagrant = 123456
+
+vi svnserve.conf
+anon-access = none：表示禁止匿名用户访问。
+auth-access = write：表示授权用户拥有读写权限。
+password-db = passswd：指定用户名口令文件，即 passwd 文件。
+authz-db = authz：指定权限配置文件，即 authz 文件。
+realm = /var/svnrepos：指定认证域，即 /var/svnrepos 目录。
+
+systemctl stop firewalld
+svnserve -d -r /var/svnrepos
+
+svn验证
+ps -ef |grep 'svnserve'
+svn默认端口3690
+svn co svn://192.168.56.101/repos1
+vi 1.txt
+svn add 1.txt
+svn commit -m "1 commit"
+
+二、git-svn的安装及验证
+yum install -y git-svn
+yum install -y git
+
+目录工作区
+/home/vagrant/svnwork   （svn工作区）
+             /gitwork    (git工作区）
+             
+进入到svn工作区           
+cd /home/vagrant/svnwork
+假设已经有了svn的代码，如
+svn co svn://192.168.56.101/repos1
+cd repos1
+echo "1">>1.txt
+svn add 1.txt
+svn commit -m "svn commit 1"
+
+切换到git工作区
+cd /home/vagrant/gitwork
+git svn clone svn://192.168.56.101/repos1
+cd repos1
+这时master已经作为git的remote上游
+git checkout -b b1
+echo "2">>1.txt
+git add 1.txt
+git commit -m "git commit 2"
+git rebase master
+
+
+切换到svn工作区
+这时为了制造冲突的情况
+在svn目录下
+cd /home/vagrant/svnwork
+cd repos1
+echo "3">>1.txt
+svn add 1.txt
+svn commit -m "svn commit 3"
+
+切换到git工作区
+echo "4">>1.txt
+git add 1.txt
+git commit -m "git commit 4"
+git svn rebase master
+rebase后会提示冲突，解决冲突并提交，如下
+vi 1.txt
+git add 1.txt
+git rebase --continue
+git svn dcommit
+
+
