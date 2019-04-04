@@ -66,8 +66,6 @@ git checkout -b b1
 echo "2">>1.txt
 git add 1.txt
 git commit -m "git commit 2"
-git rebase master
-
 
 切换到svn工作区
 这时为了制造冲突的情况
