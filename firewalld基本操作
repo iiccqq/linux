@@ -1,0 +1,10 @@
+
+
+
+防火墙开放http的80端口
+sudo firewall-cmd --add-service=http --permanent
+sudo firewall-cmd --add-port=80/tcp --permanent
+然后重启防火墙：
+sudo firewall-cmd --reload
+再次查看端口的开放情况：
+sudo firewall-cmd --list-all
