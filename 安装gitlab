@@ -17,10 +17,18 @@ sudo chkconfig postfix on
 
 curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
 
-
 sudo EXTERNAL_URL="https://git.fc.com" yum -y install gitlab-ee
+若下载缓慢，从国内源下载
+https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el6/
 
-open https://git.fc.com
+wget https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el6/gitlab-ce-11.9.9-ce.0.el6.x86_64.rpm
+sudo EXTERNAL_URL="https://gitlab.example.com" yum -y install gitlab-ce-11.9.9-ce.0.el6.x86_64.rpm
+
+
+vi /etc/hosts
+127.0.0.1 gitlab.example.com 
+
+open https://gitlab.example.com
 
 
 centos7上的安装
