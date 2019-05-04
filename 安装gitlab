@@ -17,7 +17,7 @@ sudo chkconfig postfix on
 
 curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
 
-sudo EXTERNAL_URL="https://git.fc.com" yum -y install gitlab-ee
+sudo EXTERNAL_URL="https://gitlab.example.com" yum -y install gitlab-ee
 若下载缓慢，从国内源下载
 https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el6/
 
