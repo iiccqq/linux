@@ -21,3 +21,44 @@ curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rp
 sudo EXTERNAL_URL="https://git.fc.com" yum -y install gitlab-ee
 
 open https://git.fc.com
+
+
+centos7上的安装
+参考：https://about.gitlab.com/install/#centos-7
+
+sudo yum install -y curl policycoreutils-python openssh-server
+sudo systemctl enable sshd
+sudo systemctl start sshd
+sudo firewall-cmd --permanent --add-service=http
+sudo systemctl reload firewalld
+
+sudo yum install postfix
+sudo systemctl enable postfix
+sudo systemctl start postfix
+
+curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
+sudo EXTERNAL_URL="https://gitlab.example.com" yum install -y gitlab-ee
+
+open https://gitlab.example.com
+
+若官方下载缓慢，可以使用国内的源
+
+https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/
+
+https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/gitlab-ce-11.9.9-ce.0.el7.x86_64.rpm
+sudo EXTERNAL_URL="https://gitlab.example.com" yum install -y gitlab-ce-11.9.9-ce.0.el7.x86_64.rpm
+
+vi /etc/hosts
+127.0.0.1 gitlab.example.com 
+
+open https://gitlab.example.com
+
+
+
+
+
+
+
+
+
+
