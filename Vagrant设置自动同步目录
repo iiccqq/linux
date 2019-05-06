@@ -1,0 +1,9 @@
+vi Vagrantfile
+找到这行， # config.vm.synced_folder "../data", "/vagrant_data"
+在下面增加   config.vm.synced_folder "/Users/fengchuang/ideawork/project1","/project1", type: "rsync"
+
+重新加载配置
+vagrant reload
+
+开启自动同步
+vagrant rsync-auto
