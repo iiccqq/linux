@@ -2,6 +2,7 @@ mvn常用命令
 
 mvn dependency:copy-dependencies
 
-mvn dependency:tree -Dincludes=jline
+
 mvn dependency:tree
+mvn dependency:tree -Dincludes=jline
 mvn dependency:tree -Dverbose -Dincludes=jline:jline
