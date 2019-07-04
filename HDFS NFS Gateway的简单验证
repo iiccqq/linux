@@ -1,0 +1,120 @@
+
+HDFS NFS Gateway的简单验证
+在mac下对nfs3的简单验证
+
+使用hadoop的最新版本3.3.0-SNAPSHOT
+
+一.编译
+安装docker(略）
+./start-build-env.sh
+
+二.配置
+hadoop/hadoop-dist/target/hadoop-3.3.0-SNAPSHOT/etc/hadoop
+core-site.xml
+<configuration>
+ <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://ns1/</value>
+    </property>
+    <property>
+        <name>io.file.buffer.size</name>
+        <value>131072</value>
+    </property>
+</configuration>
+
+hdfs-site.xml
+<configuration>
+  <property>
+        <name>dfs.namenode.name.dir</name>
+	<value>/Users/fengchuang/hdfs/nn</value>
+    </property>	
+	 <property>
+        <name>dfs.blocksize</name>
+        <value>268435456</value>
+    </property>
+	 <property>
+        <name>dfs.namenode.handler.count</name>
+        <value>100</value>
+    </property>	
+	 <property>
+        <name>dfs.datanode.data.dir</name>
+	<value>/Users/fengchuang/hdfs/dfs</value>
+    </property>
+
+    <property>
+        <name>dfs.nameservices</name>
+        <value>ns1</value>
+    </property>
+    <property>
+        <name>dfs.ha.namenodes.ns1</name>
+        <value>nn1</value>
+    </property>
+    <property>
+        <name>dfs.namenode.rpc-address.ns1.nn1</name>
+        <value>localhost:9000</value>
+    </property>
+    <property>
+     <name>dfs.namenode.http-address.ns1.nn1</name>
+       <value>localhost:50070</value>
+       </property>
+    <property>
+        <name>dfs.client.failover.proxy.provider.ns1</name>
+        <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+    </property>
+
+    <property>
+        <name>hadoop.proxyuser.root.groups</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.root.hosts</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>nfs.exports.allowed.hosts</name>
+        <value>* rw</value>
+    </property>
+    <property>
+        <name>nfs.export.point</name>
+        <value>/</value>
+    </property>
+    <property>
+        <name>nfs.port.monitoring.disabled</name>
+        <value>true</value>
+    </property>
+    <property>
+        　　<name>dfs.access.time.precision</name>
+        　　<value>3600000</value>
+    </property>
+    <property>
+        <name>nfs.superuser</name>
+        <value>fengchuang</value>
+    </property>
+</configuration>
+
+三、启动服务
+sudo bin/hdfs --daemon start namenode
+sudo bin/hdfs --daemon start datanode
+sudo bin/hdfs --daemon start portmap
+sudo bin/hdfs --daemon start nfs3
+四、验证
+rpcinfo -p localhost
+showmount -e localhost
+
+mount -t nfs -o vers=3,proto=tcp,nolock  127.0.0.1:/  ~/nfstest
+ls  ~/nfstest
+mkdir ~/nfstest/fc1
+ls  ~/nfstest
+echo "aaa" >  /Users/fengchuang/ideawork/hadoop/nfstest1/111.txt
+cat   /Users/fengchuang/ideawork/hadoop/nfstest1/111.txt
+ ./hdfs dfs -ls /
+ ./hdfs dfs -cat /111.txt
+
+
+
+
+
+
+
+
+
