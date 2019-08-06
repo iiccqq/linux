@@ -24,4 +24,8 @@ PubkeyAuthentication yes
 #service sshd start
 或者#/usr/sbin/sshd  
 
+centos7
+systemctl restart sshd
+
+
 测试即可　
