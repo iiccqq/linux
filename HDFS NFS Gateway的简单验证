@@ -97,6 +97,9 @@ hdfs-site.xml
 </configuration>
 
 三、启动服务
+service nfs stop
+service rpcbind stop
+
 sudo bin/hdfs --daemon start namenode
 sudo bin/hdfs --daemon start datanode
 sudo bin/hdfs --daemon start portmap
