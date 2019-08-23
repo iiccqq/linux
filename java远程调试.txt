@@ -2,6 +2,8 @@
 远程调试本地程序版
 java -agentlib:jdwp=transport=dt_socket,server=y,address=7899,suspend=y  -cp "./*" Test1 
 
+export HADOOP_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,address=7899,suspend=y
+
 mvn单元测试的远程调试
 mvn test
 开启远程调试后
