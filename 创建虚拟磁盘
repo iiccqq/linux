@@ -1,0 +1,11 @@
+创建虚拟磁盘
+
+mkdir -p /home/dn
+dd if=/dev/zero of=/home/dn/vol1_10G.img bs=1M count=10240
+mkfs.ext3 -q /home/dn/vol1_10G.img
+
+df -lh
+mkdir /mnt/vol1
+mount -o loop /home/dn/vol1_10G.img  /mnt/vol1
+
+df -lh
