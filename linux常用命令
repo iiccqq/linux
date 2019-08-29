@@ -1,0 +1,3 @@
+
+断点续传
+rsync -P --rsh=ssh root@dn1:/opt/1.dump ./1.dump
