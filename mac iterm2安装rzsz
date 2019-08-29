@@ -19,3 +19,21 @@ run silent coprocess...
 \*\*B00000000000000
 run silent coprocess...
  /usr/local/bin/iterm2-recv-zmodem.sh
+
+
+如果yum install -y lrzsz失败，
+yum安装时出现：Cannot retrieve metalink for repository: epel. Please verify its path and try again
+检查下面
+打开/etc/yum.repos.d/epel.repo，将
+1. [epel]
+2. name=Extra Packages for Enterprise Linux 6 - $basearch
+3. #baseurl=http://download.fedoraproject.org/pub/epel/6/$basearch
+4. mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-6&arch=$basearch
+修改为
+1. [epel]
+2. name=Extra Packages for Enterprise Linux 6 - $basearch
+3. baseurl=http://download.fedoraproject.org/pub/epel/6/$basearch
+4. #mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-6&arch=$basearch
+再清理源，重新安装
+1. yum clean all
+2. yum install -y 需要的包
