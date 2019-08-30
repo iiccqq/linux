@@ -18,6 +18,11 @@ jvisualvm
  ps -T -p pid
  top -H -p pid
  
+ 将十进制的进程ip转成十六进制
+ print "%x" pid
+ 
+ 在thread.dump中使用十六进制搜索到对应的线程。
+ 
  
  查看gc情况
  参考：
