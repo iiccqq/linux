@@ -33,4 +33,9 @@ smbclient -U hdfs //localhost/hdfs
 smb: \> ls
 
 
-可以将nfs的挂载路径通过samba共享给window
+可以将nfs的挂载路径通过samba共享给window和mac
+
+mac下在finder中 command+k,输入smb://ip
+点击连接，即可
+
+
