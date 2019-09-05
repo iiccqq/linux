@@ -15,7 +15,9 @@ vagrant init hashicorp/precise64
 vagrant up
 vagrant ssh
 
+vagrant box add XXX.box --name centos/7
 vagrant box add centos/7 CentOS-7-x86_64-Vagrant-1801_02.VirtualBox.box
+
 
 会提示私钥在哪，和访问端口2222。看提示。
 用户名：vagrant
