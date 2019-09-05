@@ -125,7 +125,7 @@ lsof -n|awk '{print $2}'|sort|uniq -c|sort -nr|more |grep  15090
 umount /home/console/nfs3test/a  -f
 
 
-
+可以将nfs的挂载路径通过samba共享给window
 
 
 
