@@ -1,0 +1,33 @@
+
+centos6安装samba服务器
+
+环境中是否已安装Samba及相关套件
+rpm -qa samba samba-client cifs-utils
+
+yum -y install samba
+
+
+vi /etc/samba/smb.conf
+
+[dcfs]
+path = /home/samba/hdfs
+public = yes
+read only = yes
+write list = hdfs
+
+useradd hdfs
+pdbedit -a hdfs
+
+[root@woon samba]# setfacl -d -m u:hdfs:rwx /home/samba/hdfs
+
+4)重启samba服务；
+
+service smb restart
+service nmb restart
+
+pdbedit -L
+
+echo "aa">/home/samba/hdfs/aa.txt
+
+smbclient -U hdfs //localhost/hdfs
+smb: \> ls
