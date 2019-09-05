@@ -31,6 +31,8 @@ echo "aa">/home/samba/hdfs/aa.txt
 
 smbclient -U hdfs //localhost/hdfs
 smb: \> ls
+smb: \> put xxx.txt
+smb: \> get xxx.txt
 
 
 可以将nfs的挂载路径通过samba共享给window和mac
