@@ -39,5 +39,5 @@ smb: \> get xxx.txt
 
 mac下在finder中 command+k,输入smb://ip
 点击连接，即可
-
+win7在运行窗口直接输入\\ip  即可
 
