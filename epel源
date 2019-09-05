@@ -1,0 +1,20 @@
+
+vi /etc/yum.repos.d/epel.repo
+
+
+打开/etc/yum.repos.d/epel.repo，将
+
+[epel]
+name=Extra Packages for Enterprise Linux 6 - $basearch
+#baseurl=http://download.fedoraproject.org/pub/epel/6/$basearch
+mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-6&arch=$basearch
+修改为
+
+[epel]
+name=Extra Packages for Enterprise Linux 6 - $basearch
+baseurl=http://download.fedoraproject.org/pub/epel/6/$basearch
+#mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-6&arch=$basearch
+再清理源，重新安装
+
+yum clean all
+yum install -y 需要的包
