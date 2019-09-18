@@ -117,6 +117,7 @@ cat   /Users/fengchuang/ideawork/hadoop/nfstest1/111.txt
  ./hdfs dfs -ls /
  ./hdfs dfs -cat /111.txt
 
+df -h可以查看挂载点
 
 jps查看Nfs3的pid,用于下面查看占用的句柄
 lsof -n|awk '{print $2}'|sort|uniq -c|sort -nr|more |grep  15090
