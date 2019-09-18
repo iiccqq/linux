@@ -1,0 +1,22 @@
+
+centos6安装nfs
+
+rpm -qa | grep nfs
+rpm -qa | grep rpcbind
+
+
+yum -y install nfs-utils rpcbind
+
+mkdir -p /export/nfs
+chmod 666 /export/nfs/
+
+vi/etc/exports
+/export/nfs 192.168.66.0/24(rw,no_root_squash,no_all_squash,sync)
+
+exportfs -r
+
+mkdir /mnt/test
+mount -t  nfs -o vers=3,proto=tcp,nolock  192.168.66.102:/ /mnt/test
+
+cd  /mnt/test
+echo "1">1.txt
