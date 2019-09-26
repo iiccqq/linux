@@ -19,7 +19,10 @@ yum install -y nethogs
 yum install iptraf 
 
 
-
+查找最消耗cpu的java线程
+jps
+找到java进程PID
+命令：ps -mp pid -o THREAD,tid,time   或者  ps -Lfp pid
 
 
 
