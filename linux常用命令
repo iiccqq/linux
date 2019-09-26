@@ -5,6 +5,10 @@ rsync -P --rsh=ssh root@dn1:/opt/1.dump ./1.dump
 查看某进程占用的文件句柄
 lsof -p 19611 
 
+
+网络方面
+yum install epel-release
+ethtool eth0
 yum install iftop -y 
 iftop -n
 
