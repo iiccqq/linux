@@ -6,6 +6,8 @@ rsync -P --rsh=ssh root@dn1:/opt/1.dump ./1.dump
 lsof -p 19611 
 
 yum install iftop -y 
+iftop -n
+
 yum install nload -y 
 yum install -y nethogs
 
