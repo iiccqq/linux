@@ -4,3 +4,6 @@ rsync -P --rsh=ssh root@dn1:/opt/1.dump ./1.dump
 
 查看某进程占用的文件句柄
 lsof -p 19611 
+
+
+yum install -y nethogs
