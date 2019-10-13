@@ -24,7 +24,7 @@ jps
 找到java进程PID
 命令：ps -mp pid -o THREAD,tid,time   或者  ps -Lfp pid
 
-CPU负载高的处理过程，但是cpu利用率不高。cpu队列等待资源多。
+CPU负载高的处理过程，但是cpu利用率不高。cpu队列等待资源多。sleeping大概有1、2k多。
 查看僵尸进程,里面包括 D的
  ps -axjf 
  参考：https://cloud.tencent.com/developer/news/378225
