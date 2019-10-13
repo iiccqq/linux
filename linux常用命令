@@ -27,6 +27,10 @@ jps
 CPU负载高的处理过程，但是cpu利用率不高。cpu队列等待资源多。sleeping大概有1、2k多。
 查看僵尸进程,里面包括 D的
  ps -axjf 
+ 由于当时df -h查询有问题，导致一直卡住。df -lh命令可以，所以设置了别名，再把以前的进程kill掉。
+ vi ~/.bashrc
+ alias df='df -l'
+ ps -ef|grep "df -h" |awk '{print $2}' |xargs kill -9
  参考：https://cloud.tencent.com/developer/news/378225
 
 
