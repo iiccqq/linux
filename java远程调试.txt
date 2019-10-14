@@ -10,7 +10,9 @@ mvn test
 mvn -Dmaven.surefire.debug="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000 -Xnoagent -Djava.compiler=NONE" test
 
 在要执行单元测试的项目目录下运行，在子模块的pom.xml的位置执行。
-mvn -Dtest=YourPackage.YourClass* test
+mvn -Dtest=YourClass test
+mvn -Dtest=YourClass#method test
+mvn -Dtest=YourPackage.YourClass test
 
 
 
