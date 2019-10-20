@@ -52,5 +52,21 @@ jhat 1.dump
 -verbose:class 
 
 
+jvisualvm监控jmx
+远程程序增加参数：
+java -Dcom.sun.management.jmxremote.port=12345 \
+-Dcom.sun.management.jmxremote.ssl=false \
+-Dcom.sun.management.jmxremote.authenticate=false  \
+-cp "test1-1.0-SNAPSHOT.jar" Test
+
+jvisualvm-远程-增加远程主机
+选择刚加入的主机，右键-添加jmx连接。
+ip:12345
+不要求ssl连接
+
+
+
+
+
 
 
