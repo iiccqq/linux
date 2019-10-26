@@ -6,3 +6,52 @@ mvn dependency:copy-dependencies
 mvn dependency:tree
 mvn dependency:tree -Dincludes=jline
 mvn dependency:tree -Dverbose -Dincludes=jline:jline
+
+显示当前激活的profile
+mvn help:active-profiles
+
+如下配置，如果是mac系统，The following profiles are active:
+ - unix (source: test:test:3.0.0)
+ - mac (source: test:test:3.0.0)
+想去掉某一个profile,
+idea里通过右边maven工具栏，勾选或者取消。
+命令行：mvn help:active-profiles -P-unix
+
+    <profiles>
+        <profile>
+            <id>unix</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <os>
+                    <family>unix</family>
+                </os>
+            </activation>
+            <properties>
+                <test-artifactId>test</test-artifactId>
+            </properties>
+        </profile>
+        <profile>
+            <id>mac</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <os>
+                    <family>Mac</family>
+                </os>
+            </activation>
+            <properties>
+                <test-artifactId>test-mac</test-artifactId>
+            </properties>
+        </profile>
+        <profile>
+            <id>win</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <os>
+                    <family>Windows</family>
+                </os>
+            </activation>
+            <properties>
+                <test-artifactId>test-win</test-artifactId>
+            </properties>
+        </profile>
+    </profiles>
