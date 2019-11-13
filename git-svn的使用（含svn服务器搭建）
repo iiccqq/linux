@@ -88,3 +88,21 @@ git rebase --continue
 git svn dcommit
 
 
+
+mac下报过
+git svn
+Can't locate SVN/Core.pm in @INC (you may need to install the SVN::Core module) (@INC contains: /usr/local/Cellar/git/2.24.0/share/perl5 /Applications/Xcode.app/Contents/Developer/Library/Perl/5.18/darwin-thread-multi-2level /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-multi-2level /Library/Perl/5.18/darwin-thread-multi-2level /Library/Perl/5.18 /Network/Library/Perl/5.18/darwin-thread-multi-2level /Network/Library/Perl/5.18 /Library/Perl/Updates/5.18.4 /System/Library/Perl/5.18/darwin-thread-multi-2level /System/Library/Perl/5.18 /System/Library/Perl/Extras/5.18/darwin-thread-multi-2level /System/Library/Perl/Extras/5.18 .) at /usr/local/Cellar/git/2.24.0/share/perl5/Git/SVN/Utils.pm line 6.
+BEGIN failed--compilation aborted at /usr/local/Cellar/git/2.24.0/share/perl5/Git/SVN/Utils.pm line 6.
+Compilation failed in require at /usr/local/Cellar/git/2.24.0/share/perl5/Git/SVN.pm line 25.
+BEGIN failed--compilation aborted at /usr/local/Cellar/git/2.24.0/share/perl5/Git/SVN.pm line 32.
+Compilation failed in require at /usr/local/Cellar/git/2.24.0/libexec/git-core/git-svn line 22.
+BEGIN failed--compilation aborted at /usr/local/Cellar/git/2.24.0/libexec/git-core/git-svn line 22.
+通过以下解决：
+xcode-select --install
+sudo mkdir /Library/Perl/5.18/auto
+sudo ln -s /Applications/Xcode.app/Contents/Developer/Library/Perl/5.18/darwin-thread-multi-2level/SVN /Library/Perl/5.18/darwin-thread-multi-2level
+sudo ln -s /Applications/Xcode.app/Contents/Developer/Library/Perl/5.18/darwin-thread-multi-2level/auto/SVN /Library/Perl/5.18/auto/
+brew install git svn
+解决了
+
+引：https://www.cnblogs.com/mantoudev/p/8506543.html
