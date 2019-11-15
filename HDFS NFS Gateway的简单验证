@@ -123,7 +123,12 @@ jps查看Nfs3的pid,用于下面查看占用的句柄
 lsof -n|awk '{print $2}'|sort|uniq -c|sort -nr|more |grep  15090
 
 强制umount
-umount /home/console/nfs3test/a  -f
+umount -f /home/console/nfs3test/a  
+
+df -h不返回时
+mount查看
+umount -l  /home/console/nfs3test/a
+https://blog.csdn.net/xyz846/article/details/81086417
 
 
 可以将nfs的挂载路径通过samba共享给window
