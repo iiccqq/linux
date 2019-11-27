@@ -55,3 +55,33 @@ idea里通过右边maven工具栏，勾选或者取消。
             </properties>
         </profile>
     </profiles>
+
+Maven deploy功能
+引用：https://blog.csdn.net/qq442270636/article/details/78272648
+
+setting.xml
+<server>  
+    <id>releases</id>  
+    <username>admin</username>  
+    <password>admin123</password>  
+  </server>  
+ <server>  
+  <id>snapshots</id>  
+  <username>admin</username>  
+  <password>admin123</password>  
+  </server>  
+</servers>
+pom.xml
+<distributionManagement>  
+        <repository>  
+            <id>releases</id>  
+            <name>Nexus Release Repository</name>  
+            <url>http://10.1.81.199:8081/nexus/content/repositories/releases/</url>  
+        </repository>  
+        <snapshotRepository>  
+            <id>snapshots</id>  
+            <name>Nexus Snapshot Repository</name>  
+            <url>http://10.1.81.199:8081/nexus/content/repositories/snapshots/</url>  
+        </snapshotRepository>  
+ </distributionManagement> 
+mvn deploy
