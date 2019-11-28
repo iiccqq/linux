@@ -5,6 +5,9 @@ rsync -P --rsh=ssh root@dn1:/opt/1.dump ./1.dump
 查看某进程占用的文件句柄
 lsof -p 19611 
 
+清除缓存
+echo 3 > /proc/sys/vm/drop_caches
+
 
 网络方面
 yum install epel-release
