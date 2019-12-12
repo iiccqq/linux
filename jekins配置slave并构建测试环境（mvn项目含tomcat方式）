@@ -199,3 +199,11 @@ echo "start successed!!!"
 
 
 
+
+==============
+如果svn源码管理，Jenkins服务器的时间要比svn服务器的早，导致检出的代码是旧的代码，
+将url后加上@HEAD
+https://blog.csdn.net/weixin_33713707/article/details/92051302
+https://blog.csdn.net/baidu_38432732/article/details/90449940
+
+
