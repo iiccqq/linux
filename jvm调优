@@ -42,6 +42,10 @@ jhat 1.dump
  jstat -printcompilation 61721 1s 10
  jstat -compiler 61721 1s 10
  
+ 
+ 手动gc
+ jcmd 61721 GC.run
+ 
  jvisualvm gc插件安装
  jvisualvm->工具->插件->安装Visual GC插件，安装完重启
  
