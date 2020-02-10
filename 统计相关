@@ -1,0 +1,4 @@
+
+计算每秒的平均值
+采集时采集增量，计算时，求导数，derivative
+https://docs.influxdata.com/influxdb/v0.13/query_language/functions/#derivative
