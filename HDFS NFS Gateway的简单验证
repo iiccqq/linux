@@ -108,7 +108,7 @@ sudo bin/hdfs --daemon start nfs3
 rpcinfo -p localhost
 showmount -e localhost
 
-mount -t nfs -o vers=3,proto=tcp,nolock  127.0.0.1:/  ~/nfstest
+mount -t nfs -o vers=3,proto=tcp,nolock,noacl,sync 127.0.0.1:/  ~/nfstest
 ls  ~/nfstest
 mkdir ~/nfstest/fc1
 ls  ~/nfstest
