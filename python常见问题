@@ -1,0 +1,17 @@
+mac下使用python报权限问题提示--user
+在命令后面增加 --user
+
+
+
+MAC 解决OSError: [Errno 1] Operation not permitted
+
+[Errno 1] Operation not permitted: '/tmp/pip-jI1Qog-uninstall/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/pytz'")]
+
+
+1.  $ pip install --upgrade pip --user
+
+2.  $ sudo pip install numpy --upgrade --ignore-installed  --user
+
+3.  $ sudo pip install scipy --upgrade --ignore-installed  --user
+
+4.  $ sudo pip install scikit-learn --upgrade --ignore-installed --user
