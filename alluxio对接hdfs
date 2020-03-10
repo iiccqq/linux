@@ -1,0 +1,23 @@
+编译alluxio 3.0.0-cdh6.1.1版本
+git clone https://github.com/Alluxio/alluxio.git
+git checkout v2.1.2
+
+mvn -T 4C clean install -Dmaven.javadoc.skip=true -DskipTests -Dlicense.skip=true -Dcheckstyle.skip=true -Dfindbugs.skip=true -Pufs-hadoop-3 -Dufs.hadoop.version=3.0.0-cdh6.1.1
+
+cp conf/alluxio-site.properties.template conf/alluxio-site.properties
+cp conf/alluxio-site.properties.template alluxio-site.properties
+alluxio-site.properties
+alluxio.master.hostname=localhost
+alluxio.underfs.hdfs.configuration=/Users/fengchuang/ideawork/alluxio/conf/core-site.xml:/Users/fengchuang/ideawork/alluxio/conf/hdfs-site.xml
+alluxio.underfs.version=3.0.0-cdh6.1.1
+alluxio.master.mount.table.root.ufs=hdfs://nameservice1/
+将hadoop_client的conf/core-site.xml、conf/hdfs-site.xml放到/Users/fengchuang/ideawork/alluxio/conf
+
+./bin/alluxio fs mount \
+  --option alluxio.underfs.version=3.0.0-cdh6.1.1 \
+  /mnt_tmp hdfs://172.16.161.72:8020/tmp
+./bin/alluxio fs mount \
+   --option alluxio.underfs.version=3.0.0-cdh6.1.1 \
+  /mnt_user hdfs://172.16.161.72:8020/user/
+
+
