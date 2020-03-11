@@ -20,4 +20,15 @@ alluxio.master.mount.table.root.ufs=hdfs://nameservice1/
    --option alluxio.underfs.version=3.0.0-cdh6.1.1 \
   /mnt_user hdfs://172.16.161.72:8020/user/
 
+./bin/alluxio fs mount \
+   --option fs.oss.accessKeyId=xxxx_id \
+   --option fs.oss.accessKeySecret=xxxx_secret \
+   --option fs.oss.endpoint=oss-cn-shanghai.aliyuncs.com \
+    /oss  oss://<OSS_BUCKET>/<OSS_DIRECTORY>/
+    
+bin/alluxio fs mkdir /oss/aaa
+bin/alluxio fs copyFromLocal bin/alluxio /oss/aa/
+然后可以在阿里云的oss中查看到目录和文件。
+
+
 
