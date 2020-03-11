@@ -1,9 +1,11 @@
 
 
 参考
-https://www.cnblogs.com/jicki/p/5801712.html
-https://wiki.centos.org/SpecialInterestGroup/Storage/gluster-Quickstart
 
+https://wiki.centos.org/SpecialInterestGroup/Storage/gluster-Quickstart
+https://www.cnblogs.com/jicki/p/5801712.html
+
+两台机器都要安装
 yum install centos-release-gluster
 yum install -y glusterfs glusterfs-server glusterfs-fuse glusterfs-rdma
 systemctl start glusterd.service
@@ -13,12 +15,16 @@ vi /etc/hosts
 192.168.71.101 server1
 192.168.71.102 server2
 
+在192.168.71.101执行
 gluster peer probe server1
 gluster peer probe server2
 
 gluster peer status
 
+两台机器创建目录
 mkdir /bricks/brick1/gv0
+
+在任意一个上执行
 gluster volume create gv0 replica 2 server1:/bricks/brick1/gv0 server2:/bricks/brick1/gv0
 gluster volume info
 gluster volume start gv0
