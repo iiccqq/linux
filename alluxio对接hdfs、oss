@@ -13,6 +13,14 @@ alluxio.underfs.version=3.0.0-cdh6.1.1
 alluxio.master.mount.table.root.ufs=hdfs://nameservice1/
 将hadoop_client的conf/core-site.xml、conf/hdfs-site.xml放到/Users/fengchuang/ideawork/alluxio/conf
 
+./bin/alluxio format
+./bin/alluxio-start.sh local
+or
+./bin/alluxio-start.sh local SudoMount
+
+http://localhost:19999
+
+
 ./bin/alluxio fs mount \
   --option alluxio.underfs.version=3.0.0-cdh6.1.1 \
   /mnt_tmp hdfs://172.16.161.72:8020/tmp
