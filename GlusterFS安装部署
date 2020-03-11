@@ -1,0 +1,32 @@
+
+
+参考
+https://www.cnblogs.com/jicki/p/5801712.html
+https://wiki.centos.org/SpecialInterestGroup/Storage/gluster-Quickstart
+
+yum install centos-release-gluster
+yum install -y glusterfs glusterfs-server glusterfs-fuse glusterfs-rdma
+systemctl start glusterd.service
+systemctl enable glusterd.service
+
+vi /etc/hosts
+192.168.71.101 server1
+192.168.71.102 server2
+
+gluster peer probe server1
+gluster peer probe server2
+
+gluster peer status
+
+mkdir /bricks/brick1/gv0
+gluster volume create gv0 replica 2 server1:/bricks/brick1/gv0 server2:/bricks/brick1/gv0
+gluster volume info
+gluster volume start gv0
+
+
+mkdir -p /mnt/gfsmnt
+mount -t glusterfs server1:gv0 /mnt/gfsmnt/
+df -h
+
+
+./bin/alluxio fs mount /gfsmnt /mnt/gfsmnt/
