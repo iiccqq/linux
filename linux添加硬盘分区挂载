@@ -1,0 +1,24 @@
+
+
+在虚拟机中增加SATA接口，创建一块新的磁盘。
+在linux中
+fdisk -l
+可以看到新增加的磁盘
+ls /dev/sd*
+
+fdisk /dev/sdb
+进行分区
+m打印菜单
+p创建分区
+w保存
+
+保存退出后可以看到已经产生/dev/sdb1分区。
+fdisk -l
+
+# mkfs.xfs -i size=512 /dev/sdb1
+# mkdir -p /bricks/brick1
+# vi /etc/fstab
+/dev/sdb1 /bricks/brick1 xfs defaults 1 2
+mount -a && mount
+
+可以看到新增加的分区
