@@ -22,3 +22,7 @@ fdisk -l
 mount -a && mount
 
 可以看到新增加的分区
+df -h
+
+df -T
+可以看到磁盘类型。
