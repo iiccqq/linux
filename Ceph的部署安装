@@ -108,4 +108,72 @@ rgw_frontends = "civetweb port=80"
 ceph-deploy --overwrite-conf config push server4
 
 使用s3接口
+sudo radosgw-admin user create --uid="testuser" --display-name="First User"
+{
+    "user_id": "testuser",
+    "display_name": "First User",
+    "email": "",
+    "suspended": 0,
+    "max_buckets": 1000,
+    "subusers": [],
+    "keys": [
+        {
+            "user": "testuser",
+            "access_key": "B3U292QGFNN4DCFZ1VHL",
+            "secret_key": "5laE0KKS4EayifTwptcVkya1y5PH70a2jAiiAKH1"
+        }
+    ],
+    "swift_keys": [],
+    "caps": [],
+    "op_mask": "read, write, delete",
+    "default_placement": "",
+    "default_storage_class": "",
+    "placement_tags": [],
+    "bucket_quota": {
+        "enabled": false,
+        "check_on_raw": false,
+        "max_size": -1,
+        "max_size_kb": 0,
+        "max_objects": -1
+    },
+    "user_quota": {
+        "enabled": false,
+        "check_on_raw": false,
+        "max_size": -1,
+        "max_size_kb": 0,
+        "max_objects": -1
+    },
+    "temp_url_keys": [],
+    "type": "rgw",
+    "mfa_ids": []
+}
+
+sudo yum install python-boto
+vi s3test.py
+import boto.s3.connection
+
+access_key = 'B3U292QGFNN4DCFZ1VHL'
+secret_key = '5laE0KKS4EayifTwptcVkya1y5PH70a2jAiiAKH1'
+conn = boto.connect_s3(
+        aws_access_key_id=access_key,
+        aws_secret_access_key=secret_key,
+        host='server4', port=7480,
+        is_secure=False, calling_format=boto.s3.connection.OrdinaryCallingFormat(),
+       )
+
+#bucket = conn.create_bucket('my-new-bucket')
+for bucket in conn.get_all_buckets():
+    print "{name} {created}".format(
+        name=bucket.name,
+        created=bucket.creation_date)
+    for key in bucket.list():
+    	print "{name}\t{size}\t{modified}".format(
+            name=key.name,
+            size=key.size,
+            modified=key.last_modified,
+    )
+python s3test.py
+之后已经创建完my-new-bucket。
+这里可以打印出my-new-bucket下的文件。
+
 
