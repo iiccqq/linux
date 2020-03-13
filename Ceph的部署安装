@@ -34,12 +34,18 @@ sudo yum install ceph-deploy
 sudo yum install ntp ntpdate ntp-doc
 sudo yum install openssh-server
 
+ssh user@ceph-server 登录到各个安装节点
+sudo useradd -d /home/ceph-deploy -m ceph-deploy
+sudo passwd ceph-deploy
+
 echo "ceph-deploy ALL = (root) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/ceph-deploy
 sudo chmod 0440 /etc/sudoers.d/ceph-deploy
 
 然后将管理节点，控制其它节点，设置免密
 ssh-keygen
 
+su ceph-deploy
+vi ~/.ssh/config
 Host server1
    Hostname server1
    User ceph-deploy
