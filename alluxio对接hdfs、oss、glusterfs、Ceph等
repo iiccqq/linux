@@ -45,6 +45,33 @@ bin/alluxio fs copyFromLocal bin/alluxio /oss/aa/
   --option alluxio.underfs.s3.disable.dns.buckets=true \
   --option alluxio.underfs.s3.inherit.acl=false \
   /mnt_ceph s3://my-new-bucket/
+bin/alluxio fs copyFromLocal bin/alluxio /mnt_ceph/
 
+sudo yum install python-boto
+vi s3test.py
+import boto.s3.connection
+
+access_key = 'B3U292QGFNN4DCFZ1VHL'
+secret_key = '5laE0KKS4EayifTwptcVkya1y5PH70a2jAiiAKH1'
+conn = boto.connect_s3(
+        aws_access_key_id=access_key,
+        aws_secret_access_key=secret_key,
+        host='server4', port=7480,
+        is_secure=False, calling_format=boto.s3.connection.OrdinaryCallingFormat(),
+       )
+
+#bucket = conn.create_bucket('my-new-bucket')
+for bucket in conn.get_all_buckets():
+    print "{name} {created}".format(
+        name=bucket.name,
+        created=bucket.creation_date)
+    for key in bucket.list():
+    	print "{name}\t{size}\t{modified}".format(
+            name=key.name,
+            size=key.size,
+            modified=key.last_modified,
+    )
+    
+python s3test.py
 
 
