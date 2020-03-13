@@ -38,5 +38,13 @@ bin/alluxio fs mkdir /oss/aaa
 bin/alluxio fs copyFromLocal bin/alluxio /oss/aa/
 然后可以在阿里云的oss中查看到目录和文件。
 
+./bin/alluxio fs mount \
+  --option aws.accessKeyId=B3U292QGFNN4DCFZ1VHL \
+  --option aws.secretKey=5laE0KKS4EayifTwptcVkya1y5PH70a2jAiiAKH1 \
+  --option alluxio.underfs.s3.endpoint=server4:7480 \
+  --option alluxio.underfs.s3.disable.dns.buckets=true \
+  --option alluxio.underfs.s3.inherit.acl=false \
+  /mnt_ceph s3://my-new-bucket/
+
 
 
