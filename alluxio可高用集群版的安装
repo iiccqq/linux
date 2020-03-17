@@ -1,0 +1,116 @@
+参考官方地址
+
+https://docs.alluxio.io/os/user/stable/en/deploy/Running-Alluxio-On-a-HA-Cluster.html
+
+一.前提准备
+
+一共三台机器
+
+vi /etc/hosts
+
+192.168.71.107 server7
+192.168.71.108 server8
+192.168.71.109 server9
+
+注意不要配置127.0.01对应本机，容易导致监听端口其它机器不能访问。
+
+下载地址
+
+https://www.alluxio.io/download/
+
+这里下载目前最新稳定版本2.1.2版本
+
+将安装包放在/opt下alluxio-2.1.2-bin.tar.gz
+
+cd /opt
+
+tar xvf alluxio-2.1.2-bin.tar.gz
+
+ln -s alluxio-2.1.2 alluxio
+
+cd alluxio
+
+
+
+编译alluxio 3.0.0-cdh6.1.1版本
+git clone https://github.com/Alluxio/alluxio.git
+git checkout v2.1.2
+
+mvn -T 4C clean install -Dmaven.javadoc.skip=true -DskipTests -Dlicense.skip=true -Dcheckstyle.skip=true -Dfindbugs.skip=true -Pufs-hadoop-3 -Dufs.hadoop.version=3.0.0-cdh6.1.1
+
+
+
+二.基本安装
+
+高可用有两种方式：1.Raft-based Embedded Journal 2.Zookeeper and Shared Journal Storage。
+
+这里介绍的是第一种，Raft-based Embedded Journal
+cp conf/alluxio-site.properties.template conf/alluxio-site.properties
+
+alluxio.master.hostname为本机的主机名，如在server7的节点写server7,server8的节点写server8
+
+
+
+alluxio.master.hostname=server7  
+
+alluxio.underfs.hdfs.configuration=/opt/alluxio/conf/core-site.xml:/opt/alluxio/conf/hdfs-site.xml
+alluxio.underfs.version=3.0.0-cdh6.1.1
+alluxio.master.mount.table.root.ufs=hdfs://nameservice1/
+alluxio.master.embedded.journal.addresses=server7:19200,server8:19200,server9:19200
+
+
+
+vi conf/masters    #添加三行
+
+server7
+
+server8
+
+server9
+
+vi conf/works #添加三行
+
+server7
+
+server8
+
+server9
+
+
+
+rm -rf /opt/alluxio/lib/alluxio-underfs-hadoop-*
+
+将编译生成的alluxio-underfs-hdfs-3.0.0-cdh6.1.1-2.1.2.jar放到lib目录下，即/opt/alluxio/lib下
+
+设置server7名免密访问server7 server8 server9
+
+
+
+将/opt/alluxio同步到server8、server9，同步后修改配置conf/alluxio-site.properties中
+
+alluxio.master.hostname=server8
+
+alluxio.master.hostname=server9
+
+
+
+ ./bin/alluxio format
+./bin/alluxio-start.sh all SudoMount
+./bin/alluxio fs leader
+看到是哪个节点为leader,比如server7为leader可以访问http://server7:19999
+
+
+
+停止所有
+
+ ./bin/alluxio-stop.sh all
+重启所有
+./bin/alluxio-start.sh all
+角色操作
+./bin/alluxio-start.sh masters
+./bin/alluxio-start.sh workers
+单节点操作
+./bin/alluxio-start.sh master
+./bin/alluxio-start.sh worker
+增加移除worker
+ ./bin/alluxio-start.sh worker SudoMount
