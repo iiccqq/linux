@@ -5,9 +5,9 @@ https://docs.alluxio.io/os/user/stable/en/compute/Hadoop-MapReduce.html#advanced
 https://www.alluxio.io/blog/alluxio-developer-tip-why-am-i-seeing-the-error-user-yarn-is-not-configured-for-any-impersonation-impersonationuser-foo/
 
 
-安装alluxio后，详细见上"alluxio对接底层源/alluxio可高用集群版的安装"的文档，将${ALLUXIO_HOME}/client/alluxio-2.1.2-client.jar如/opt/alluxio/client/alluxio-2.1.2-client.jar，复制到所有节点上。
+安装alluxio后，详细见上"alluxio对接底层源/alluxio可高用集群版的安装"的文档，将<PATH_TO_ALLUXIO>/client/alluxio-2.1.2-client.jar如/opt/alluxio/client/alluxio-2.1.2-client.jar，复制到所有节点上。
 增加HADOOP_CLASSPATH路径，在执行脚本前增加。
-vi /home/console/hadoop_client/bin/hadoop
+vi <PATH_TO_HADOOP_CLIENT>/bin/hadoop
 export HADOOP_CLASSPATH=/opt/alluxio/client/alluxio-2.1.2-client.jar:${HADOOP_CLASSPATH}
 
 通过以下命令提交任务
