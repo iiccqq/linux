@@ -1,0 +1,24 @@
+安装完spark后，
+
+在spark的所有节点修改配置，并复制jar包
+
+vi <TO_SPARK_CLIENT>/conf/spark-defaults.conf
+
+追加配置项
+spark.driver.extraClassPath=/opt/alluxio/client/alluxio-2.1.2-client.jar
+spark.executor.extraClassPath=/opt/alluxio/client/alluxio-2.1.2-client.jar
+
+cd /opt/alluxio
+./bin/alluxio fs copyFromLocal LICENSE /Input11
+查看leader
+bin/alluxio fs leader
+cd <TO_SPARK_CLIENT>/scripts/
+
+./spark-shell
+val s = sc.textFile("alluxio://server8:19998/Input11")
+val double = s.map(line => line + line)
+double.saveAsTextFile("alluxio://server8:19998/Output11")
+
+查看结果
+cd /opt/alluxio
+./bin/alluxio fs ls /Output11
