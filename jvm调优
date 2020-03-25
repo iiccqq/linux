@@ -5,6 +5,10 @@ jps -m -l
 jps -v
 
 jmap -dump:format=b,file=1.dump pid
+jmap -histo:live pid
+jmap -dump:live,format=b,file=heap.bin pid
+
+
 
 jvisualvm
 启动图形界面
