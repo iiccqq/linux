@@ -1,6 +1,8 @@
 
 代理proxy sock5代理上网
 
+官网：
+http://tinyproxy.github.io/
 
 一.验证规划
 宿主机
