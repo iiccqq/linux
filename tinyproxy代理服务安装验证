@@ -1,0 +1,46 @@
+
+192.168.56.101   想访问http的机器
+192.168.56.102   代理服务器
+192.168.56.103   http服务提供机器，只能代理服务器访问
+
+192.168.56.103上开启http服务
+nohup python -m SimpleHTTPServer 8000&
+firewall-cmd --permanent --add-rich-rule="rule family=ipv4 source address=192.168.56.102 port protocol=tcp port=8000 accept"
+firewall-cmd --reload
+firewall-cmd --list-all
+
+在192.168.56.102
+yum install -y epel-release
+yum install tinyproxy
+vi /etc/tinyproxy/tinyproxy.conf
+找到以下Allow、ConnectPort的位置,注释掉Allow，增加ConnectPort 8000
+#Allow 127.0.0.1
+ConnectPort 8000
+
+启停服务
+systemctl status tinyproxy
+systemctl start tinyproxy
+systemctl stop tinyproxy
+
+在192.168.56.101或者192.168.56.102上先验证
+curl -x 192.168.56.102:8888  192.168.56.103:8000
+
+设置全局代理
+vi /etc/profile.d/myproxy.sh
+export proxy="http://192.168.56.102:8888"
+export http_proxy=$proxy
+export https_proxy=$proxy
+export ftp_proxy=$proxy
+export no_proxy="localhost, 127.0.0.1, ::1"
+如果想取消，运行以下
+unset http_proxy
+unset https_proxy
+unset ftp_proxy
+unset no_proxy
+curl  192.168.56.103:8000
+
+mac上在chrome中，设置，高级，设置代理跳到网络的代理设置，勾选http代理，设置192.168.56.102:8888 
+浏览器就能正常访问。
+
+
+
