@@ -1,0 +1,17 @@
+
+
+
+参考：
+https://sobird.me/node-path-module-talk-about.htm
+
+vi path.js
+console.log(module.paths);
+node  path.js
+node path.js
+如下下
+[ /home/jenkinswork/workspace/node_modules',
+  '/home/jenkinswork/node_modules',
+  '/home/node_modules',
+  '/node_modules' ]
+  
+  
