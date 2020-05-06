@@ -1,0 +1,19 @@
+
+
+
+安装nginx
+
+
+tar -zxvf ambari-2.7.4.0-centos7.tar.gz -C /var/www/html/
+tar -zxvf HDP-3.1.4.0-centos7-rpm.tar.gz -C /var/www/html/hdp
+tar -zxvf HDP-GPL-3.1.4.0-centos7-gpl.tar.gz -C /var/www/html/hdp
+tar -zxvf HDP-UTILS-1.1.0.22-centos7.tar.gz -C /var/www/html/hdp
+
+
+http://192.168.56.104/hdp/HDP/centos7/3.1.4.0-315
+http://192.168.56.104/hdp/HDP-GPL/centos7/3.1.4.0-315
+http://192.168.56.104/hdp/HDP-UTILS-1.1.0.22/HDP-UTILS/centos7/1.1.0.22
+确保nginx已经启动
+nginx
+
+ambari-server start
