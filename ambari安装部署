@@ -75,3 +75,10 @@ ambari-server stop
 
 http://centos74.localdomain:8080
 在可视化界面中设置hdp源。
+
+可视化安装过程中也遇到过，不确定是否与以下有关，改过以下，也改过hostname，原来没有完全centos74.localdomain
+Failed to set locale, defaulting to C的解决方法
+//解决方法，执行locale能够看到当前系统支持字符，按需设置。
+//设置系统环境变量
+# echo "export LC_ALL=en_US.UTF-8"  >>  /etc/profile
+# source /etc/profile
