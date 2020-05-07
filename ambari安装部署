@@ -2,6 +2,41 @@
 参考：
 https://docs.cloudera.com/HDPDocuments/Ambari-2.7.4.0/bk_ambari-installation/content/ch_Getting_Ready.html
 
+hostname -f
+hostname centos74.localdomain
+生成rsa密钥，管理机管理各个主机
+yum install -y ntp
+systemctl enable ntpd
+vi /etc/hosts
+192.168.56.104 centos74 centos74.localdomain
+官方不推荐去掉127.0.0.1 ... 但是我这里已经去掉
+
+vi /etc/sysconfig/network
+NETWORKING=yes
+HOSTNAME=centos74.localdomain
+
+systemctl disable firewalld
+service firewalld stop
+临时Disable SELinux
+setenforce 0
+永久Disable SELinux
+vi /etc/selinux/config
+set SELINUX=disabled 
+
+check the umask Value
+umask
+umask 0022
+Permanently changing the umask for all interactive users:
+echo umask 0022 >> /etc/profile
+
+安装mariadb，这
+查看是否存在mysql驱动
+ls /usr/share/java/mysql-connector-java.jar
+没有
+yum install mysql-connector-java*
+ambari-server setup --jdbc-db=mysql --jdbc-driver=/usr/share/java/mysql-connector-java.jar
+
+
 安装nginx
 
 
