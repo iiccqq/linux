@@ -29,21 +29,26 @@ umask 0022
 Permanently changing the umask for all interactive users:
 echo umask 0022 >> /etc/profile
 
-安装mariadb，这
+安装mariadb
 查看是否存在mysql驱动
 ls /usr/share/java/mysql-connector-java.jar
 没有
 yum install mysql-connector-java*
-ambari-server setup --jdbc-db=mysql --jdbc-driver=/usr/share/java/mysql-connector-java.jar
+#ambari-server setup --jdbc-db=mysql --jdbc-driver=/usr/share/java/mysql-connector-java.jar
 
-
+yum install yum-utils createrepo
 安装nginx
+ln -s /var/www/html /usr/share/nginx/html
+yum repolist
 
-
+https://docs.cloudera.com/HDPDocuments/Ambari-2.7.4.0/bk_ambari-installation/content/ambari_repositories.html
+https://docs.cloudera.com/HDPDocuments/Ambari-2.7.4.0/bk_ambari-installation/content/hdp_314_repositories.html
+从以上地方下载，然后解压到对应目录
 tar -zxvf ambari-2.7.4.0-centos7.tar.gz -C /var/www/html/
 tar -zxvf HDP-3.1.4.0-centos7-rpm.tar.gz -C /var/www/html/hdp
 tar -zxvf HDP-GPL-3.1.4.0-centos7-gpl.tar.gz -C /var/www/html/hdp
 tar -zxvf HDP-UTILS-1.1.0.22-centos7.tar.gz -C /var/www/html/hdp
+
 
 
 http://192.168.56.104/hdp/HDP/centos7/3.1.4.0-315
@@ -52,4 +57,21 @@ http://192.168.56.104/hdp/HDP-UTILS-1.1.0.22/HDP-UTILS/centos7/1.1.0.22
 确保nginx已经启动
 nginx
 
+vi /etc/yum.repos.d/ambari.repo
+[ambari-2.7.4.0]
+name=ambari Version - ambari-2.7.4.0
+baseurl=http://192.168.56.104/ambari/ambari/centos7/2.7.4.0-118
+gpgcheck=1
+gpgkey=http://192.168.56.104/ambari/ambari/centos7/2.7.4.0-118/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+enabled=1
+priority=1
+
+
+yum install ambari-server
+
 ambari-server start
+ambari-server status
+ambari-server stop
+
+http://centos74.localdomain:8080
+在可视化界面中设置hdp源。
