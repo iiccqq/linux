@@ -184,4 +184,7 @@ tcpdump port http or port ftp or port smtp or port imap or port pop3 or port tel
 IP header 中有一个 bit 从来没有被用过，我们叫 它evil bit，可以过滤设置它的包：
 tcpdump 'ip[6] & 128 != 0'  
 
+29. 抓web服务器登录密码
+tcpdump tcp port 8080 -n -s 0 -w /tmp/tcp.cap
+查看admin对应的密码。
 
