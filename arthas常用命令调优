@@ -1,0 +1,16 @@
+
+
+参考地址：
+https://alibaba.github.io/arthas/quick-start.html
+
+
+下载运行
+curl -O https://alibaba.github.io/arthas/arthas-boot.jar
+java -jar arthas-boot.jar
+
+
+选择要查看的进程对应的序号
+
+profiler start
+profiler getSamples
+profiler stop
