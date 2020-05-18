@@ -74,3 +74,8 @@ vagrant package
 vagrant snapshot save master1 basesoft
 vagrant snapshot pop
 
+
+安装windows server 2008 
+vagrant init opentable/win-2008r2-standard-amd64-nocm
+vagrant up
+
