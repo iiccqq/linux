@@ -1,0 +1,41 @@
+官方文档
+https://prometheus.io/docs/prometheus/latest/getting_started/
+
+控制节点：192.168.56.101
+node_exporter节点：192.168.56.102
+下载页面
+https://prometheus.io/download/
+
+wget https://github.com/prometheus/prometheus/releases/download/v2.18.1/prometheus-2.18.1.linux-amd64.tar.gz
+tar xvf prometheus-2.18.1.linux-amd64.tar.gz -C /usr/local/
+cd /usr/local/
+mv prometheus-2.18.1.linux-amd64 prometheus
+cd /usr/local/prometheus
+
+prometheus.yml中修改ip localhost:9090=>192.168.56.101:9090
+static_configs:
+      - targets: ['192.168.56.101:9090']
+
+./prometheus --config.file="/usr/local/prometheus/prometheus.yml" &
+
+访问
+http://192.168.56.101:9090/
+
+增加
+node_exporter
+wget https://github.com/prometheus/node_exporter/releases/download/v1.0.0-rc.1/node_exporter-1.0.0-rc.1.linux-amd64.tar.gz
+tar xvf node_exporter-1.0.0-rc.1.linux-amd64.tar.gz
+cd node_exporter-1.0.0-rc.1.linux-amd64/
+cp node_exporter /usr/local/bin/
+node_exporter
+
+prometheus.yml中修改ip localhost:9090=>192.168.56.101:9090
+static_configs:
+      - targets: ['192.168.56.101:9090'，'192.168.56.102:9100']
+      
+重启
+./prometheus --config.file="/usr/local/prometheus/prometheus.yml" &
+      
+      
+      
+      
