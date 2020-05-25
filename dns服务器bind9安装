@@ -44,3 +44,7 @@ systemctl disable named
 systemctl start named-chroot
 systemctl enable named-chroot
  ps -ef|grep named
+
+如果是centos6，可以参考
+https://www.linuxidc.com/Linux/2015-06/119371.htm
+
