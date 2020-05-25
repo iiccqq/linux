@@ -36,3 +36,11 @@ a1 IN A 192.168.56.101
 a1 IN A 192.168.66.101
 a2 IN A 192.168.56.102
 a3 IN A 192.168.56.103
+
+
+/usr/libexec/setup-named-chroot.sh /var/named/chroot on
+systemctl stop named
+systemctl disable named
+systemctl start named-chroot
+systemctl enable named-chroot
+ ps -ef|grep named
