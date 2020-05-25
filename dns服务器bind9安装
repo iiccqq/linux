@@ -22,3 +22,17 @@ zone "dcfs.com" {
 
 cp /var/named/chroot/var/named/named.localhost /var/named/chroot/var/named/dcfs.com.zone
 vi /var/named/chroot/var/named/dcfs.com.zone
+$TTL 1D
+@       IN SOA  @ rname.invalid. (
+                                        0       ; serial
+                                        1D      ; refresh
+                                        1H      ; retry
+                                        1W      ; expire
+                                        3H )    ; minimum
+        NS      @
+        A       127.0.0.1
+        AAAA    ::1
+a1 IN A 192.168.56.101
+a1 IN A 192.168.66.101
+a2 IN A 192.168.56.102
+a3 IN A 192.168.56.103
