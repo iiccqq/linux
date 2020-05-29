@@ -8,6 +8,8 @@ lsof -p 19611
 清除缓存
 echo 3 > /proc/sys/vm/drop_caches
 
+除了某个然后删除
+ls|grep -v XXXXXXXXXX|xargs|xargs rm -rf
 
 网络方面
 yum install epel-release
