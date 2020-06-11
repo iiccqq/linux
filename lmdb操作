@@ -1,0 +1,22 @@
+lmdb操作
+
+pip3 install lmdb
+
+test.py
+# !/usr/bin/python
+# -*- coding: UTF-8 -*-
+import lmdb
+env = lmdb.open("lmdb_path")
+txn = env.begin(write=True)
+txn.put( '1'.encode(), 'aaa'.encode())
+txn.put( '2'.encode(), 'bb'.encode())
+txn.put( '3'.encode(), 'ccc'.encode())
+txn.delete( '2'.encode())
+
+print (txn.stat()['entries'])
+txn.commit()
+env.close()
+
+
+python3 test.py
+2
