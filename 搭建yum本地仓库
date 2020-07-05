@@ -1,0 +1,26 @@
+实验机器centos7
+
+1.能上网的机器将samba的包下载到本地
+yum install --downloadonly --downloaddir=/home/vagrant/pack samba samba-client cifs-utils
+
+2.将包压缩
+cd /home/vagrant
+tar cvf pack.tar pack
+将包放到要提供本地仓库的机器后解压
+tar xvf pack.tar
+
+将pack下的内容放到放在nginx的静态目录下repository/yum/
+yum install createrepo -y
+cd repository/yum/
+createrepo .
+
+需要安装软件的客户机，
+vi /etc/yum.repos.d/local.repo
+[centos-local]
+name=CentOS-Local
+baseurl=http://192.168.33.101:80/repository/yum/
+enabled=1
+gpgcheck=0
+
+yum makecache
+yum install samba samba-client cifs-utils
