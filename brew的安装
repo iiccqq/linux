@@ -34,7 +34,6 @@ brew install wget
 
 解决brew安装包一直卡在Updating Homebrew
 方法一：关闭brew每次执行命令时的自动更新（推荐）
-
 vim ~/.bash_profile
 # 新增一行
 export HOMEBREW_NO_AUTO_UPDATE=true
