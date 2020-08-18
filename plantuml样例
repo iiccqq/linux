@@ -1,0 +1,99 @@
+
+
+@startuml
+nfs_client -> nfs_server : ACCESS 根目录的nodeid
+nfs_server -> namenode : STAT 根目录的nodeid
+nfs_server <- namenode : 返回文件的信息
+nfs_client <- nfs_server : 返回根目录的属性，及具有的权限
+
+nfs_client -> nfs_server : LOOKUP 根目录的nodeid,目录a
+nfs_server -> namenode : STAT 根目录的nodeid
+nfs_server <- namenode : 返回文件信息
+nfs_client <- nfs_server : 返回根目录的文件句柄及属性，及父目录的属性
+
+nfs_client -> nfs_server : ACCESS a目录的nodeid
+nfs_server -> namenode : STAT a目录的nodeid
+nfs_server <- namenode : 返回文件的信息
+nfs_client <- nfs_server : 返回a目录的属性，及具有的权限
+
+nfs_client -> nfs_server : LOOKUP a目录的nodeid,目录b
+nfs_server -> namenode : STAT a目录的nodeid
+nfs_server <- namenode : 返回文件信息
+nfs_client <- nfs_server : 返回a目录的文件句柄及属性，及父目录的属性
+
+nfs_client -> nfs_server : ACCESS b目录的nodeid
+nfs_server -> namenode : STAT b目录的nodeid
+nfs_server <- namenode : 返回文件信息
+nfs_client <- nfs_server : 返回b目录的属性，及具有的权限
+
+nfs_client -> nfs_server : LOOKUP b目录的nodeid,文件名c.txt
+nfs_server -> namenode : STAT b目录的nodeid
+nfs_server <- namenode : 返回文件信息c
+nfs_client <- nfs_server : 返回c目录的文件句柄及属性，及父目录的属性
+
+nfs_client -> nfs_server : CREATE b目录的nodeid,文件名c.txt的nodeid,mode(UNCHECKED, GUARDED, and EXCLUSIVE.)，SetAttr3
+nfs_server -> namenode : stat b目录的nodeid
+nfs_server <- namenode : 返回b目录文件信息
+nfs_server -> namenode : OPEN b目录的nodeid,文件名c.txt
+nfs_server <- namenode : 返回用于打开c.txt文件流需要的信息
+nfs_server -> namenode : SET_STAT b目录的nodeid,文件名c.txt,设置文件属性
+nfs_server <- namenode : 设置文件属性成功
+nfs_server-> namenode  : stat b目录的nodeid,文件名c.txt
+nfs_server <- namenode : 返回c.txt文件信息
+nfs_server-> namenode  : stat b目录的nodeid
+nfs_server <- namenode : 返回b目录文件信息
+nfs_client <- nfs_server : c.txt的文件句柄,创建完文件的属性。b目录的之前属性之后属性（WccData）。
+
+nfs_client -> nfs_server : WRITE 文件名c.txt的nodeid
+nfs_server-> namenode : STAT 文件名c.txt的nodeid
+nfs_server <- namenode : 返回c.txt的文件信息
+nfs_server <- nfs_server:将需要写的数据放到线程池中，异步进行处理。
+nfs_server -> namenode: SET_STAT flush设置文件长度
+nfs_server <- namenode: 设置成功
+nfs_client <- nfs_server : c.txt的文件的之前属性之后属性（WccData），count实际写成功的数据这里直接返回请求里的count。
+nfs_server --> nfs_server :周期性（5秒）检查有没有过期的流，5秒内最多检查一次，有超过10分钟（过期时间）的流认为是过期，将关闭，过期时间可配置但是不能低于10s,如果最早打开的流到现在不足10s，认为所有流都是繁忙的流。
+nfs_server -->namenode:CLOSE过期的文件
+nfs_server <--namenode:CLOSE完成
+
+@enduml
+
+
+@startuml
+
+[第一个组件] as com1
+() "First Interface" -- com1
+() "First Interface2" -- com1
+() "First Interface3" -- com1
+() "First Interface4" -- com1
+() "First Interface5" -- com1
+() "First Interface6" -- com1
+() "First Interface7" -- com1
+() "First Interface8" -- com1
+
+[第一个组件2] as com2
+() " Interface" -- com2
+() " Interface2" -- com2
+() " Interface3" -- com2
+() " Interface4" -- com2
+() " Interface5" -- com2
+() " Interface6" -- com2
+() " Interface7" -- com2
+() " Interface8" -- com2
+
+() "First Interface" -> () " Interface"
+() "First Interface2" -> () " Interface2"
+@enduml
+
+
+@startuml
+left to right direction
+actor 消费者
+actor 销售员
+rectangle 买单 {
+消费者 -- (买单)
+(买单) .> (付款) : include
+(帮助) .> (买单) : extends
+(买单) -- 销售员
+}
+@enduml
+
