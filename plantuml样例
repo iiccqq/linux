@@ -1,5 +1,4 @@
 
-
 @startuml
 nfs_client -> nfs_server : ACCESS 根目录的nodeid
 nfs_server -> namenode : STAT 根目录的nodeid
@@ -48,13 +47,14 @@ nfs_client -> nfs_server : WRITE 文件名c.txt的nodeid
 nfs_server-> namenode : STAT 文件名c.txt的nodeid
 nfs_server <- namenode : 返回c.txt的文件信息
 nfs_server <- nfs_server:将需要写的数据放到线程池中，异步进行处理。
+nfs_server -> datanode:将数据写到dcfs_datanode
+nfs_server <- datanode:写入完成
 nfs_server -> namenode: SET_STAT flush设置文件长度
 nfs_server <- namenode: 设置成功
 nfs_client <- nfs_server : c.txt的文件的之前属性之后属性（WccData），count实际写成功的数据这里直接返回请求里的count。
 nfs_server --> nfs_server :周期性（5秒）检查有没有过期的流，5秒内最多检查一次，有超过10分钟（过期时间）的流认为是过期，将关闭，过期时间可配置但是不能低于10s,如果最早打开的流到现在不足10s，认为所有流都是繁忙的流。
 nfs_server -->namenode:CLOSE过期的文件
 nfs_server <--namenode:CLOSE完成
-
 @enduml
 
 
