@@ -1,3 +1,4 @@
+
 @startuml
 nfs_client -> nfs_server : ACCESS 根目录的nodeid
 activate nfs_client
@@ -59,13 +60,21 @@ activate nfs_server
 nfs_server -> namenode : stat b目录的nodeid
 activate namenode
 nfs_server <- namenode : 返回b目录文件信息
+deactivate namenode
 nfs_server -> namenode : OPEN b目录的nodeid,文件名c.txt
+activate namenode
 nfs_server <- namenode : 返回用于打开c.txt文件流需要的信息
+deactivate namenode
 nfs_server -> namenode : SET_STAT b目录的nodeid,文件名c.txt,设置文件属性
+activate namenode
 nfs_server <- namenode : 设置文件属性成功
+deactivate namenode
 nfs_server-> namenode  : stat b目录的nodeid,文件名c.txt
+activate namenode
 nfs_server <- namenode : 返回c.txt文件信息
+deactivate namenode
 nfs_server-> namenode  : stat b目录的nodeid
+activate namenode
 nfs_server <- namenode : 返回b目录文件信息
 deactivate namenode
 nfs_client <- nfs_server : c.txt的文件句柄,创建完文件的属性。b目录的之前属性之后属性（WccData）。
@@ -76,10 +85,13 @@ activate nfs_server
 nfs_server-> namenode : STAT 文件名c.txt的nodeid
 activate namenode
 nfs_server <- namenode : 返回c.txt的文件信息
+deactivate namenode
 nfs_server <- nfs_server:将需要写的数据放到线程池中，异步进行处理。
 nfs_server -> datanode:将数据写到dcfs_datanode
+activate dcfs_datanode
 nfs_server <- datanode:写入完成
 nfs_server -> namenode: SET_STAT flush设置文件长度
+activate namenode
 nfs_server <- namenode: 设置成功
 deactivate namenode
 nfs_client <- nfs_server : c.txt的文件的之前属性之后属性（WccData），count实际写成功的数据这里直接返回请求里的count。
@@ -88,8 +100,8 @@ nfs_server -->namenode:CLOSE过期的文件
 activate namenode
 nfs_server <--namenode:CLOSE完成
 deactivate namenode
-@enduml
 
+@enduml
 
 @startuml
 
