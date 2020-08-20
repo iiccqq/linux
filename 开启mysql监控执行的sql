@@ -1,0 +1,8 @@
+SHOW VARIABLES LIKE "general_log%"; 
+开启
+SET GLOBAL general_log = 'ON';
+关闭
+SET GLOBAL general_log = 'OFF';
+
+指定位置
+SET GLOBAL general_log_file = '/tmp/mysqlQuery.log';
