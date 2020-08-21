@@ -86,6 +86,6 @@ pom.xml
  </distributionManagement> 
 mvn deploy
 
-
+idea插件
 idea使用mavn help插件查找依赖冲突
 
