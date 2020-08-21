@@ -85,3 +85,7 @@ pom.xml
         </snapshotRepository>  
  </distributionManagement> 
 mvn deploy
+
+
+idea使用mavn help插件查找依赖冲突
+
