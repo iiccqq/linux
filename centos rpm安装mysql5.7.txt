@@ -1,7 +1,7 @@
 
-mysql5.7°²×°·½·¨
+mysql5.7å®‰è£…æ–¹æ³•
 
-1.5.7µØÖ·£ºhttps://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.17-1.el6.x86_64.rpm-bundle.tar
+1.5.7åœ°å€ï¼šhttps://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.17-1.el6.x86_64.rpm-bundle.tar
 
 2.yum install mysql-community-{server,client,common,libs}-* 
 
@@ -10,7 +10,7 @@ mysql5.7°²×°·½·¨
 
 4.grep 'temporary password' /var/log/mysqld.log
 
-5.mysql -uroot -p Ğ´ÔÚÉÏÃæÈÕÖ¾ÀïµÄÁÙÊ±ÃÜÂë
+5.mysql -uroot -p å†™åœ¨ä¸Šé¢æ—¥å¿—é‡Œçš„ä¸´æ—¶å¯†ç 
 
 6.ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass4!';
 
@@ -22,7 +22,19 @@ mysql5.7°²×°·½·¨
 
 
 tip:
-MySql5.7²Ù×÷Ê±±¨´í£ºYou must SET PASSWORD before executing this statement½â¾ö
+MySql5.7æ“ä½œæ—¶æŠ¥é”™ï¼šYou must SET PASSWORD before executing this statementè§£å†³
 mysql>  SET PASSWORD = PASSWORD('123456');
 Query OK, 0 rows affected (0.03 sec)
 
+
+
+åªå®‰è£…å®¢æˆ·ç«¯
+ä»…å®‰è£…MySQLå®¢æˆ·ç«¯
+# æ·»åŠ rpmæº
+[root@k8s-master ~]# rpm -ivh https://repo.mysql.com//mysql57-community-release-el7-11.noarch.rpm
+[root@test1 ~]#
+# é€šè¿‡yumæœç´¢
+[root@test1 ~]# yum search mysql-community
+[root@test1 ~]#
+# å®‰è£…x64ä½çš„ mysqlå®¢æˆ·ç«¯
+[root@test1 ~]# yum install mysql-community-client.x86_64 -y
