@@ -15,6 +15,7 @@ w保存
 
 保存退出后可以看到已经产生/dev/sdb1分区。
 fdisk -l
+lsblk
 
 # mkfs.xfs -i size=512 /dev/sdb1
 # mkdir -p /bricks/brick1
