@@ -9,7 +9,8 @@ ls /dev/sd*
 fdisk /dev/sdb
 进行分区
 m打印菜单
-p创建分区
+n创建分区
+p打印分区
 w保存
 
 保存退出后可以看到已经产生/dev/sdb1分区。
