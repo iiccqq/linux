@@ -1,0 +1,13 @@
+https://zhuanlan.zhihu.com/p/34669883
+
+
+一、docker版本检验
+启动clickhouse-server实例
+docker run -d --name some-clickhouse-server --ulimit nofile=262144:262144 yandex/clickhouse-server
+clickhouse-client连接
+docker run -it --rm --link some-clickhouse-server:clickhouse-server yandex/clickhouse-client --host clickhouse-server
+
+快速体验
+CREATE TABLE ontime_local (FlightDate Date,Year UInt16) ENGINE = MergeTree(FlightDate, (Year, FlightDate), 8192);
+insert into ontime_local (FlightDate,Year) values('2001-10-12',2001);
+select count(*) from ontime_local;
