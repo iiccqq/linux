@@ -37,6 +37,11 @@ cat /etc/security/limits.d/clickhouse.conf
 clickhouse      soft    nofile  262144
 clickhouse      hard    nofile  262144
 
+新版本在centos7上
+vi /etc/systemd/system/clickhouse-server.service
+ExecStart=/usr/bin/clickhouse-server --config=/data/clickhouse/config.xml --pid-file=/data/clickhouse/clickhouse-server.pid
+
+/etc/rc.d/init.d/clickhouse-server不确定是否为须
 vi /etc/rc.d/init.d/clickhouse-server
 CLICKHOUSE_LOGDIR=/data/clickhouse/log
 CLICKHOUSE_CONFIG=/data/clickhouse/config.xml
