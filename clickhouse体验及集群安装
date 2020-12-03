@@ -41,12 +41,14 @@ clickhouse      hard    nofile  262144
 vi /etc/systemd/system/clickhouse-server.service
 ExecStart=/usr/bin/clickhouse-server --config=/data/clickhouse/config.xml --pid-file=/data/clickhouse/clickhouse-server.pid
 
-/etc/rc.d/init.d/clickhouse-server不确定是否为须
+<!--
+/etc/rc.d/init.d/clickhouse-server 应该不需要改
 vi /etc/rc.d/init.d/clickhouse-server
 CLICKHOUSE_LOGDIR=/data/clickhouse/log
 CLICKHOUSE_CONFIG=/data/clickhouse/config.xml
 CLICKHOUSE_DATADIR=/data/clickhouse/data
 然后注释掉原来的对应项
+-->
 
  mkdir -p /data/clickhouse
  mkdir -p /data/clickhouse/log
