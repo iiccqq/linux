@@ -272,3 +272,16 @@ chown -R clickhouse:clickhouse /data/clickhouse
 clickhouse新版本的需要以下启动，clickhouse老版本用service clickhouse-server start
 systemctl start clickhouse-server
 
+
+clickhouse-client -h 127.0.0.1 -d default -m -u default --password Q4jqoxLj
+use system;
+select * from clusters;
+CREATE TABLE ontime_local (FlightDate Date,Year UInt16) ENGINE = MergeTree(FlightDate, (Year, FlightDate), 8192);
+CREATE TABLE ontime_all AS ontime_local ENGINE = Distributed(bip_ck_cluster, default, ontime_local, rand());
+insert into ontime_local (FlightDate,Year)values('2001-10-12',2001);
+insert into ontime_local (FlightDate,Year)values('2002-10-12',2002);
+insert into ontime_local (FlightDate,Year)values('2003-10-12',2003);
+insert into ontime_all (FlightDate,Year)values('2003-10-12',2008);
+select count(*) from ontime_all;
+
+
