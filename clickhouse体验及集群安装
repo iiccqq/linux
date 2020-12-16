@@ -22,6 +22,11 @@ vi /etc/hosts
 192.168.56.102   node2.clickhouse.com   node2
 192.168.56.103   node3.clickhouse.com   node3
 
+192.168.56.101 zk1.clickhouse.com   zk1
+192.168.56.102 zk2.clickhouse.com   zk2
+192.168.56.103 zk3.clickhouse.com   zk3
+
+
 sudo sed -i 's#SELINUX=enforcing#SELINUX=disabled#g' /etc/selinux/config
 setenforce 0
 sudo grep SELINUX=disabled /etc/selinux/config
@@ -187,15 +192,15 @@ vi /data/clickhouse/metrika.xml
 <!-- ZK集群  -->
 <zookeeper-servers>
   <node index="1">
-    <host>192.168.150.17</host>
+    <host>zk1.clickhouse.com</host>
     <port>2181</port>
   </node>
   <node index="2">
-    <host>192.168.150.18</host>
+    <host>zk2.clickhouse.com</host>
     <port>2181</port>
   </node>
   <node index="3">
-    <host>192.168.150.19</host>
+    <host>zk3.clickhouse.com</host>
     <port>2181</port>
   </node>
 </zookeeper-servers>
@@ -283,5 +288,65 @@ insert into ontime_local (FlightDate,Year)values('2002-10-12',2002);
 insert into ontime_local (FlightDate,Year)values('2003-10-12',2003);
 insert into ontime_all (FlightDate,Year)values('2003-10-12',2008);
 select count(*) from ontime_all;
+
+
+配置多磁盘
+参考：
+https://cloud.tencent.com/developer/article/1649377
+https://clickhouse.tech/docs/en/engines/table-engines/mergetree-family/mergetree/
+vi storage.xml
+<yandex>
+<storage_configuration>
+     <default>
+         <!--
+             You can reserve some amount of free space
+             on any disk (including default) by adding
+             keep_free_space_bytes tag
+         -->
+         <keep_free_space_bytes>1024</keep_free_space_bytes>
+      </default>
+    <disks>
+        <disk_sdc>
+            <path>/data/sdd/clickhouse/data/</path>
+        </disk_sdc>
+        <disk_sdd>
+            <path>/data/sdd/clickhouse/data/</path>
+        </disk_sdd>
+    </disks>
+  <policies>
+        <policy_in_order>
+            <volumes>
+                <vol1>
+                    <disk>disk_sdc</disk>
+                    <disk>disk_sdd</disk>
+                </vol1>
+            </volumes>
+            <move_factor>0.2</move_factor>
+        </policy_in_order>
+    </policies>
+</storage_configuration>
+</yandex>
+
+select * from system.disks;
+SELECT
+    name,
+    path,
+    formatReadableSize(free_space) AS free,
+    formatReadableSize(total_space) AS total,
+    formatReadableSize(keep_free_space) AS reserved
+FROM system.disks;
+select * from system.storage_policies;
+
+CREATE TABLE sample2 (id UInt64) Engine=MergeTree 
+ORDER BY id SETTINGS storage_policy = 'policy_in_order';
+
+INSERT INTO sample2 SELECT * FROM numbers(1000000);
+
+SELECT name, data_paths, metadata_path, storage_policy
+FROM system.tables
+WHERE name LIKE 'sample%'
+
+
+
 
 
