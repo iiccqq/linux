@@ -31,3 +31,6 @@ df -T
 
 文件系统类型
 #mkfs.ext4 /dev/sdb1
+
+/etc/fstab还有使用UUID的方式
+blkid /dev/sda1
