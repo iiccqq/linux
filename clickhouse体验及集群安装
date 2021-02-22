@@ -307,7 +307,7 @@ vi storage.xml
       </default>
     <disks>
         <disk_sdc>
-            <path>/data/sdd/clickhouse/data/</path>
+            <path>/data/sdc/clickhouse/data/</path>
         </disk_sdc>
         <disk_sdd>
             <path>/data/sdd/clickhouse/data/</path>
