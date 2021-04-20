@@ -6,12 +6,16 @@ https://www.cnblogs.com/hama1993/p/10580581.html
 确认你的机器已经安装了git、jdk、perl、c++编译器，
 
 git clone https://github.com/jvm-profiling-tools/async-profiler
+下面这个应该可以不需要安装
 git clone https://github.com/brendangregg/FlameGraph
 
 
 cd async-profiler
 make
 
+./profiler.sh -d 30 -f profile.svg ${pid}
+
+或者先生成文本再生成图
 ./profiler.sh -d 60 -o collapsed -f /tmp/test_01.txt ${pid}
 
 perl flamegraph.pl --colors=java /tmp/test_01.txt > test_01.svg
