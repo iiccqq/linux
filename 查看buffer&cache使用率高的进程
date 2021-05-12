@@ -1,0 +1,23 @@
+如何查看Buffer&Cache使用率高的进程有哪些
+推荐一个工具hcache
+wget https://silenceshell-1255345740.cos.ap-shanghai.myqcloud.com/hcache
+chmod 755 hcache && mv hcache /usr/local/bin/
+
+
+全局显示10个最大的被缓存文件
+hcache -top 10
+
+查看缓存文件对应的进程
+lsof  缓存的文件
+
+hcache -pid 进程号
+
+
+手动回收Buffer&Cache
+
+清除pagecache： echo 1 > /proc/sys/vm/drop_caches
+清除回收slab分配器中的对象（包括目录项缓存和inode缓存）。slab分配器是内核中管理内存的一种机制，其中很多缓存数据实现都是用的pagecache： echo 2 > /proc/sys/vm/drop_caches
+清除pagecache和slab分配器中的缓存对象： echo 3 > /proc/sys/vm/drop_caches
+
+参考：
+https://blog.csdn.net/linxi7/article/details/109078516
