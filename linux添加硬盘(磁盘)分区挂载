@@ -17,10 +17,15 @@ w保存
 fdisk -l
 lsblk
 
+
+文件系统类型
+#mkfs.ext4 /dev/sdb1
+
 # mkfs.xfs -i size=512 /dev/sdb1
 # mkdir -p /bricks/brick1
 # vi /etc/fstab
 /dev/sdb1 /bricks/brick1 xfs defaults 1 2
+#使挂载生效
 mount -a && mount
 
 可以看到新增加的分区
@@ -29,8 +34,6 @@ df -h
 df -T
 可以看到磁盘类型。
 
-文件系统类型
-#mkfs.ext4 /dev/sdb1
 
 /etc/fstab还有使用UUID的方式
 blkid /dev/sda1
