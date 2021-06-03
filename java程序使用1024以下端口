@@ -1,0 +1,16 @@
+参考：
+https://blog.csdn.net/eussi/article/details/87102043
+
+一、使用root用户设置，给java程序具有该权限
+setcap CAP_NET_BIND_SERVICE=+eip /opt/jdk1.8.0_111/bin/java
+ln -s /opt/jdk1.8.0_111/lib/amd64/jli/libjli.so /usr/lib/
+ldconfig
+
+增加完该权限后可看到变成红色。
+ll  /opt/jdk1.8.0_111/bin/java
+
+ /opt/jdk1.8.0_111/bin/java -version
+
+二、去掉该权限
+setcap -r /home/bigdata/jdk1.8.0_111/bin/java
+
