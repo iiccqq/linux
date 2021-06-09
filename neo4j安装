@@ -1,0 +1,22 @@
+
+参考：
+https://yum.neo4j.com/?_ga=2.220744280.1109684905.1623137884-383656685.1623137884
+
+rpm --import https://debian.neo4j.com/neotechnology.gpg.key
+
+cat <<EOF>  /etc/yum.repos.d/neo4j.repo
+[neo4j]
+name=Neo4j Yum Repo
+baseurl=http://yum.neo4j.com/stable
+enabled=1
+gpgcheck=1
+EOF
+
+sudo yum install neo4j
+
+systemctl start neo4j
+systemctl stop neo4j
+systemctl status  neo4j
+
+可视化访问地址：
+http://192.168.56.101:7474/
