@@ -8,6 +8,10 @@
  
  二、启动
  
-nohup consul agent -server -bootstrap-expect=3 -data-dir=/opt/consul/data -node=node1 -bind=192.168.56.101 -client=192.168.56.101 -datacenter=dc1 -ui >consul.log 2>&1 &
-nohup consul agent -server -bootstrap-expect=3 -data-dir=/opt/consul/data -node=node2 -bind=192.168.56.102 -client=192.168.56.102 -datacenter=dc1 -ui >consul.log 2>&1 &
-nohup consul agent -server -bootstrap-expect=3 -data-dir=/opt/consul/data -node=node3 -bind=192.168.56.103 -client=192.168.56.103 -datacenter=dc1 -ui >consul.log 2>&1 &
+ 三台机器上分别运行
+nohup consul agent -server -bootstrap-expect=3 -data-dir=/opt/consul/data -node=node1 -bind=192.168.56.101 -client=0.0.0.0 -datacenter=dc1 -ui >consul.log 2>&1 &
+nohup consul agent -server -bootstrap-expect=3 -data-dir=/opt/consul/data -node=node2 -bind=192.168.56.102 -client=0.0.0.0 -datacenter=dc1 -ui >consul.log 2>&1 &
+nohup consul agent -server -bootstrap-expect=3 -data-dir=/opt/consul/data -node=node3 -bind=192.168.56.103 -client=0.0.0.0 -datacenter=dc1 -ui >consul.log 2>&1 &
+
+三台机器上都运行以下命令
+consul join 192.168.56.101
