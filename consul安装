@@ -1,0 +1,13 @@
+
+参考：https://www.consul.io/docs/install
+
+一、consul安装
+ sudo yum install -y yum-utils
+ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+ sudo yum -y install consul
+ 
+ 二、启动
+ 
+nohup consul agent -server -bootstrap-expect=3 -data-dir=/opt/consul/data -node=node1 -bind=192.168.56.101 -client=192.168.56.101 -datacenter=dc1 -ui >consul.log 2>&1 &
+nohup consul agent -server -bootstrap-expect=3 -data-dir=/opt/consul/data -node=node2 -bind=192.168.56.102 -client=192.168.56.102 -datacenter=dc1 -ui >consul.log 2>&1 &
+nohup consul agent -server -bootstrap-expect=3 -data-dir=/opt/consul/data -node=node3 -bind=192.168.56.103 -client=192.168.56.103 -datacenter=dc1 -ui >consul.log 2>&1 &
