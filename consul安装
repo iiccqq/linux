@@ -9,9 +9,25 @@
  二、启动
  
  三台机器上分别运行
-nohup consul agent -server -bootstrap-expect=3 -data-dir=/opt/consul/data -node=node1 -bind=192.168.56.101 -client=0.0.0.0 -datacenter=dc1 -ui >consul.log 2>&1 &
-nohup consul agent -server -bootstrap-expect=3 -data-dir=/opt/consul/data -node=node2 -bind=192.168.56.102 -client=0.0.0.0 -datacenter=dc1 -ui >consul.log 2>&1 &
-nohup consul agent -server -bootstrap-expect=3 -data-dir=/opt/consul/data -node=node3 -bind=192.168.56.103 -client=0.0.0.0 -datacenter=dc1 -ui >consul.log 2>&1 &
-
+nohup consul agent -server -bootstrap-expect=3 -config-dir /etc/consul.d -data-dir=/opt/consul/data -node=node1 -bind=192.168.56.101 -client=0.0.0.0 -datacenter=dc1  -enable-script-checks=true  -ui >consul.log 2>&1 &
+nohup consul agent -server -bootstrap-expect=3 -config-dir /etc/consul.d -data-dir=/opt/consul/data -node=node1 -bind=192.168.56.102 -client=0.0.0.0 -datacenter=dc1  -enable-script-checks=true  -ui >consul.log 2>&1 &
+nohup consul agent -server -bootstrap-expect=3 -config-dir /etc/consul.d -data-dir=/opt/consul/data -node=node1 -bind=192.168.56.103 -client=0.0.0.0 -datacenter=dc1  -enable-script-checks=true  -ui >consul.log 2>&1 &
 三台机器上都运行以下命令
-consul join 192.168.56.101
+consul join 192.168.56.101 192.168.56.102 192.168.56.103
+
+cat /etc/consul.d/web.josn
+{
+    "service":{
+        "name":"web",
+        "tags":[
+            "Python"
+        ],
+        "port":8888,
+        "check":{
+"id": "tcp-check",
+    "name": "tcp",
+"tcp": "localhost:8888",
+    "interval": "10s"
+}
+    }
+}
