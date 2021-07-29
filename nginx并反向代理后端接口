@@ -70,6 +70,16 @@ location / {
 　　　　　　修改/etc/selinux/config 文件
 　　　　　　将SELINUX=enforcing改为SELINUX=disabled
 　　　　　　重启机器即可
+ 静态资源压缩
+ 
+    gzip on;
+    gzip_static on;
+    gzip_vary on;
+    gzip_min_length 1k; #不压缩临界值,大于1k的才压缩,一般不用改
+    gzip_buffers 4 16k;
+    gzip_comp_level 9; #压缩级别,数字越大压缩的越好
+    gzip_types  text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png image/x-icon; #压缩文件类型,缺啥补啥
+
 
 五、完整的配置参考
 
@@ -81,6 +91,13 @@ server {
     listen       80;
     server_name  localhost;
     gzip on;
+    gzip_static on;
+    gzip_vary on;
+    gzip_min_length 1k; #不压缩临界值,大于1k的才压缩,一般不用改
+    gzip_buffers 4 16k;
+    gzip_comp_level 9; #压缩级别,数字越大压缩的越好
+    gzip_types  text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png image/x-icon; #压缩文件类型,缺啥补啥
+
     access_log  /var/log/nginx/host.access.log  main;
     error_log  /var/log/error.log debug;
     location / {
