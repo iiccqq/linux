@@ -44,12 +44,8 @@ systemctl stop nginx
 /etc/nginx/conf.d/default.conf
 
 后端的反向代理
-upstream backend {
- server 172.16.160.153:8080;
-}
-
 location /prod-api/ {
-   proxy_pass http://backend/;
+   proxy_pass http://172.16.160.153:8080/;
 }
 日志位置
 /var/log/nginx/error.log
@@ -82,11 +78,7 @@ location / {
 
 
 五、完整的配置参考
-
 /etc/nginx/conf.d/default.conf
-upstream backend {
-server 172.16.160.153:8080;
-}
 server {
     listen       80;
     server_name  localhost;
@@ -107,7 +99,7 @@ server {
     }
 
     location /prod-api/ {
-     proxy_pass http://backend/;
+     proxy_pass http://172.16.160.153:8080/;
    }
 
     #error_page  404              /404.html;
