@@ -44,3 +44,38 @@ http://192.168.56.101:8500/
  dig @127.0.0.1 -p 8600 web.service.consul SRV
  dig @127.0.0.1 -p 8600 web.service.consul SRV
  dig @127.0.0.1 -p 8600 web.service.consul SRV
+ 
+ dns的解析
+与dnsmasq集成
+yum -y install dnsmasq
+cat /etc/dnsmasq.d/consul
+server=/consul/192.168.56.101#8600
+server=/consul/192.168.56.102#8600
+server=/consul/192.168.56.103#8600
+
+systemctl start dnsmasq
+
+vi /etc/resolv.conf
+nameserver 192.168.56.101
+
+如果是在192.168.56.101，192.168.56.102，192.168.56.103
+运行ping web.service.consul
+或者ping consul.service.consul
+将解析
+
+
+
+
+
+
+
+
+
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
