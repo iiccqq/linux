@@ -31,3 +31,11 @@ cat /etc/consul.d/web.josn
 }
     }
 }
+
+在三台机器上分别启动服务
+cd /opt/consul/data
+python -m SimpleHTTPServer  8888
+
+访问consul的ui界面可以看到服务及节点的状态正常
+http://192.168.56.101:8500/
+ 
