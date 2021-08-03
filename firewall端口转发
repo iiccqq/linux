@@ -1,0 +1,23 @@
+#开启系统路由模式功能
+echo net.ipv4.ip_forward=1>>/etc/sysctl.conf
+#运行这个命令会输出上面添加的那一行信息，意思是使内核修改生效
+sysctl -p
+#开启firewalld
+systemctl start firewalld
+#开启4650端口监听tcp请求
+firewall-cmd --zone=public --add-port=8081/tcp --permanent
+#设置IP地址伪装
+firewall-cmd --add-masquerade --permanent
+#设置端口映射,可以转发到其它机器
+firewall-cmd --add-forward-port=port=8081:proto=tcp:toaddr=192.168.56.101:toport=8888 --permanent
+firewall-cmd --add-masquerade --permanent
+#重新加载firewall
+firewall-cmd --reload
+
+
+如时机取消转发
+firewall-cmd --remove-forward-port=port=8081:proto=tcp:toaddr=192.168.56.101:toport=8888 --permanent
+
+firewall-cmd --list-all
+firewall-cmd --list-ports
+
