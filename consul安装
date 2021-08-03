@@ -39,3 +39,8 @@ python -m SimpleHTTPServer  8888
 访问consul的ui界面可以看到服务及节点的状态正常
 http://192.168.56.101:8500/
  
+ 安装dig命令
+ yum install bind-utils
+ dig @127.0.0.1 -p 8600 web.service.consul SRV
+ dig @127.0.0.1 -p 8600 web.service.consul SRV
+ dig @127.0.0.1 -p 8600 web.service.consul SRV
