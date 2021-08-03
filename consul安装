@@ -45,6 +45,7 @@ http://192.168.56.101:8500/
  dig @127.0.0.1 -p 8600 web.service.consul SRV
  dig @127.0.0.1 -p 8600 web.service.consul SRV
  
+
  dns的解析
 与dnsmasq集成
 yum -y install dnsmasq
@@ -61,7 +62,17 @@ nameserver 192.168.56.101
 如果是在192.168.56.101，192.168.56.102，192.168.56.103
 运行ping web.service.consul
 或者ping consul.service.consul
-将解析
+将解析到本机，应该是优先本机,如果不在这三台机器，如在192.168.56.104上运行，将随机到不同的ip地址。
+
+
+dig @127.0.0.1 consul.service.consul
+dig @127.0.0.1 web.service.consul
+
+请求网站服务
+wget web.service.consul:8888
+
+在192.168.56.102上将python的web服务停止,kill掉。
+ping web.service.consul将不在请求192.168.56.102。在界面上也看到该服务的健康状态为不健康
 
 
 
