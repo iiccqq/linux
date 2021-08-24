@@ -145,4 +145,5 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documen
 kubeadm join 192.168.56.101:6443 --token xvxk6z.zlndt599klfkiatx \
 	--discovery-token-ca-cert-hash sha256:7429f0edb1aaccc17c192c17d83abc3bf903dd0695ec67d761e6931180667960
 
-
+root用户使用
+export KUBECONFIG=/etc/kubernetes/admin.conf
