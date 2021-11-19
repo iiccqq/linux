@@ -79,3 +79,22 @@ vagrant snapshot pop
 vagrant init opentable/win-2008r2-standard-amd64-nocm
 vagrant up
 
+
+出现的问题
+升级macOS Monterey后vagrant up报错。
+解决方法
+1.vagrant up on macOS Monterey
+
+Running Vagrant via “vagrant up” on macOS Monterey (12.0.1) fails
+
+Here are the steps I took to fix:
+
+1.Add the following to Vagrantfile in the config.vm.provider section
+v.gui = true
+2.Create a file as sudo: /etc/vbox/networks.conf
+
+3.Paste the following in the networks.conf: * 0.0.0.0/0 ::/0
+
+4.Then run this:
+sudo kextload -b org.virtualbox.kext.VBoxDrv && sudo kextload -b org.virtualbox.kext.VBoxNetFlt && sudo kextload -b org.virtualbox.kext.VBoxNetAdp  && sudo kextload -b org.virtualbox.kext.VBoxUSB
+
