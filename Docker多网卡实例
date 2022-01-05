@@ -15,10 +15,12 @@ docker network create --driver bridge --subnet 172.25.25.0/24 --gateway 172.25.2
 
 # 让test1容器再添加一个虚拟网卡，就是刚刚创建的两个网卡(后一个)
 docker run -itd --name test1 --network mynet1  docker.io/busybox  /bin/sh
-# 让test1容器连接桥接网卡，联通本地网络
 
 docker run -itd --name test2 --network mynet2  docker.io/busybox  /bin/sh
 docker run -itd --name test3 --network mynet2  docker.io/busybox  /bin/sh
+
+# 让test1容器连接桥接网卡，联通本地网络
+docker network connect mynet2 test1
 
  docker network inspect mynet2
 
