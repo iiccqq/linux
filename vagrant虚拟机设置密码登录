@@ -2,6 +2,7 @@
 vagrant虚拟机设置密码登录
 参考：
 https://www.cnblogs.com/lonecloud/p/9058379.html
+注：参考地址里配置项应该不对
 
 
 1. 在自己的电脑中想使用Vagrant在局域网中安装centos，并将其ip释放到局域网中提供给自己的机器访问，这种操作需要在VagrantFile中加入如下配置
@@ -12,20 +13,9 @@ config.vm.network "private_network", ip: "192.168.66.101"
 Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
 
 解决方案：
-1.卸载装好的sshd服务
-#yum -y remove openssh-server
-2. 重新安装
-#yum -y install openssh-server
-3. 编辑配置文件
+1. 编辑配置文件
 vi /etc/ssh/sshd_config
 并将如下属性设置为yes,如果是注释，请将注释打开
-PubkeyAuthentication yes 
-4.启动sshd服务
-#service sshd start
-或者#/usr/sbin/sshd  
-
-centos7
-systemctl restart sshd
-
-
-测试即可　
+PasswordAuthentication yes
+2.重启sshd服务
+3.systemctl restart sshd
